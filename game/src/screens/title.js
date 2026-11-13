@@ -7,6 +7,7 @@ import { button, fade, panel } from '../engine/gfx.js';
 import { P } from '../data/core/palette.js';
 import { hasAnySave, latest, slots, keepPreviousAutosave, mapExists, wonSaves, freeSlot, saveStateToSlot } from '../engine/save.js';
 import { newGame } from '../state.js';
+import { hint, soundLocked, SOUND_HINT } from '../engine/prompts.js';
 
 export async function startGame(saveState) {
   const { ExploreScene } = await import('../world/explore.js');
@@ -151,7 +152,9 @@ export class TitleScene {
     ui.text('a war between warrens, and the long way down to peace', W / 2, 88, { align: 'center', size: 10, color: '#e8dcc0' });
     if (!this.started) {
       const a = 0.55 + 0.45 * Math.sin(this.t * 3);
-      ui.text('Press any key', W / 2, 300, { align: 'center', size: 13, color: P.chalk, alpha: a });
+      // "Press any key" until a controller has been used; then "Press any button", and the sound hint on its own line
+      ui.text(input.padSeen ? 'Press any button' : 'Press any key', W / 2, 300, { align: 'center', size: 13, color: P.chalk, alpha: a });
+      if (soundLocked()) ui.text(SOUND_HINT, W / 2, 318, { align: 'center', size: 9, color: '#e8dcc0' });
       return;
     }
     // under Settings / Load / a confirm: only the art (dimmed by that panel), so no half-hidden menu peeks out beside it
@@ -164,6 +167,7 @@ export class TitleScene {
     // the controls hint on a soft dark band: the art at the bottom is light rocks and flowers
     const hg = c.createLinearGradient(0, H - 32, 0, H); hg.addColorStop(0, 'rgba(20,14,30,0)'); hg.addColorStop(0.4, 'rgba(20,14,30,0.72)'); hg.addColorStop(1, 'rgba(20,14,30,0.82)');
     c.fillStyle = hg; c.fillRect(0, H - 32, W, 32);
-    ui.text('Arrows and Space, or the mouse.  M mutes.', W / 2, H - 9, { align: 'center', size: 8, color: '#efe4c8' });
+    hint(c, W / 2, H - 9, { kb: 'Arrows and Space, or the mouse.  M mutes.', pad: [['dpad', 'move'], ['cross', 'choose']] }, { align: 'center', size: 8, color: '#efe4c8' });
+    if (soundLocked()) ui.text(SOUND_HINT, W / 2, H - 21, { align: 'center', size: 8, color: '#efe4c8' });
   }
 }

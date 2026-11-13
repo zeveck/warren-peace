@@ -5,6 +5,7 @@ import { input } from '../engine/input.js';
 import { bg } from '../engine/assets.js';
 import { panel, fade, drawPortrait, keyHint } from '../engine/gfx.js';
 import { P } from '../data/core/palette.js';
+import { hint, chip, padOn } from '../engine/prompts.js';
 
 export class PictureScene {
   // lines: array of strings shown one at a time (any key advances); o.skippable: Escape skips all
@@ -23,7 +24,7 @@ export class PictureScene {
       c.fillStyle = 'rgba(18,14,24,0.78)'; c.fillRect(30, H - h - 18, W - 60, h);
       ls.forEach((l, i) => ui.text(l, W / 2, H - h - 18 + 20 + i * 15, { align: 'center', size: 11 }));
     }
-    if (this.o.skippable) { const w = ui.measure('Esc: skip', 8) + 10; c.fillStyle = 'rgba(18,14,24,0.7)'; c.fillRect(W - 7 - w, 4, w, 14); ui.text('Esc: skip', W - 12, 14, { align: 'right', size: 8, color: '#e8dcc0' }); }
+    if (this.o.skippable) hint(c, W - 12, 14, { kb: () => { const w = ui.measure('Esc: skip', 8) + 10; c.fillStyle = 'rgba(18,14,24,0.7)'; c.fillRect(W - 7 - w, 4, w, 14); ui.text('Esc: skip', W - 12, 14, { align: 'right', size: 8, color: '#e8dcc0' }); }, kbLog: 'Esc: skip', pad: [['circle', 'skip']], back: 'rgba(18,14,24,0.7)' }, { align: 'right', size: 8, color: '#e8dcc0' });
     fade(c, Math.max(0, 1 - this.t * 3) * (this.i === 0 ? 1 : 0));
   }
 }
@@ -70,7 +71,7 @@ export class DefeatCard {
     const where = o.place ? `Everyone is back at ${o.place}, Heart and all, and nothing is lost.` : 'Everyone is back at the last door, Heart and all, and nothing is lost.';
     ui.wrap('The fight was too much this time, so the friends carried each other home. ' + where, tw, 9, true)
       .forEach((l, i) => ui.text(l, tx, py + 60 + i * 12, { size: 9, color: '#d8ccb0' }));
-    if (this.t > 0.6) { const kw = keyHint(c, 'Space', px + pw - 112, py + ph - 18); ui.text('or click', px + pw - 106 + kw, py + ph - 9, { size: 8, color: '#b8acc8' }); }
+    if (this.t > 0.6) { const kw = chip(c, 'Space', 'cross', px + pw - 112, py + ph - 18); if (!padOn()) ui.text('or click', px + pw - 106 + kw, py + ph - 9, { size: 8, color: '#b8acc8' }); }
     fade(c, Math.max(0, 1 - this.t * 2.5));
   }
 }

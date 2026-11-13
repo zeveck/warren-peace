@@ -1,0 +1,19 @@
+{ "segment": null, "note": "Run on a fresh page (reload) with --no-jump: the title to New Game on the pad only.", "steps": [
+  {"js": "localStorage.removeItem('warren-peace-save'); setTimeout(() => location.reload(), 50); return true;", "note": "no saves: New Game is the first item"},
+  {"wait": 3500},
+  {"until": "s.screen === 'title'", "timeout": 10000},
+  {"expect": "!s.padSeen && s.device === 'kb'"},
+  {"pad": "cross", "note": "any button passes the title"},
+  {"wait": 400},
+  {"expect": "s.device === 'pad' && s.padKind === 'ps' && s.hints.some(h => h.includes('[cross] choose'))"},
+  {"pad": "options", "note": "nothing happens on the title"},
+  {"pad": "down"}, {"pad": "up"},
+  {"pad": "cross", "note": "New Game"},
+  {"until": "s.screen !== 'title'", "timeout": 10000},
+  {"padTalkthrough": true},
+  {"until": "s.screen === 'explore' && s.map === 'c0-downs' || s.dialog.open", "timeout": 30000},
+  {"padTalkthrough": true},
+  {"until": "s.screen === 'explore' && !s.busy", "timeout": 30000},
+  {"expect": "s.device === 'pad' && s.hints.length >= 0"},
+  {"pass": true}
+]}

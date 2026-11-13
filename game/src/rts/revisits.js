@@ -5,6 +5,7 @@ import { input } from '../engine/input.js';
 import { audio } from '../engine/audio.js';
 import { panel, button, clickIn, mouseIn } from '../engine/gfx.js';
 import { P } from '../data/core/palette.js';
+import { hint } from '../engine/prompts.js';
 import { REVISITS, bestOf, medalOf, medalsOf, fmtTime, fmtSecs, shortName, MEDAL_NAME, MEDAL_COLOR } from './best.js';
 
 export function revisitList() { return REVISITS.filter(id => G.data.rts[id] && G.s.flags['g_' + id + '_won']); }
@@ -58,6 +59,6 @@ class RevisitScene {
     if (chose >= 0) { this.pick(chose); return; }
     const by = RY + this.ids.length * ROW + 6;
     if (button(c, 'Back', W / 2 - 50, by, 100, 22, { size: 10, sel: this.sel === this.ids.length })) { popScene(this); this.done(null); return; }
-    ui.text('Arrows / 1-5 / click: choose    Esc: back', W / 2, by + 34, { align: 'center', size: 8, color: '#8a7e9a' });
+    hint(c, W / 2, by + 34, { kb: 'Arrows / 1-5 / click: choose    Esc: back', pad: [['dpad', ''], ['cross', 'choose'], ['circle', 'back']] }, { align: 'center', size: 8, color: '#8a7e9a' });
   }
 }

@@ -1,0 +1,9 @@
+{ "segment": null, "note": "Run on a fresh page with --no-jump: no Gamepad API at all (insecure http).", "steps": [
+  {"until": "s.screen === 'title'", "timeout": 10000},
+  {"js": "Object.defineProperty(navigator, 'getGamepads', { value: undefined, configurable: true });"},
+  {"wait": 300},
+  {"expect": "s.padOff === true"},
+  {"press": "Space"}, {"wait": 300},
+  {"expect": "s.hints.includes('Arrows and Space, or the mouse.  M mutes.')"},
+  {"pass": true}
+]}

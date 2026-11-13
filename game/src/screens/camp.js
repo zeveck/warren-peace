@@ -9,6 +9,8 @@ import { ITEMS, KEY_ITEMS, gearInfo, ARMY_GEAR } from '../data/core/items.js';
 import { SQUADS, KINDS } from '../data/core/squads.js';
 import * as st from '../state.js';
 import { runScript } from '../world/script.js';
+import { hint } from '../engine/prompts.js';
+import { padWords } from '../engine/pad.js';
 
 const TABS = ['Party', 'Talk', 'Gear', 'Items', 'Army', 'Quests', 'Map', 'Bestiary'];
 export function areaOf() { const m = G.data.maps[G.s.map]; return (m && m.area) || G.s.map; }
@@ -33,7 +35,8 @@ export function talkEntries() {
 export function hasNewTalk() { return talkEntries().some(e => !G.s.flags['heard_' + e.key]); }
 
 export class CampScene {
-  constructor(ex) { this.kind = 'camp'; this.opaque = false; this.ex = ex; this.tab = 0; this.sel = 0; this.sub = 0; this.focus = 'tabs'; this.slotSel = 0; this.mode = null; G.paused = true; }
+  // startTab: a tab name to open on (the controller's Create/View opens the Map)
+  constructor(ex, startTab) { this.kind = 'camp'; this.opaque = false; this.ex = ex; this.tab = Math.max(0, TABS.indexOf(startTab)); this.sel = 0; this.sub = 0; this.focus = 'tabs'; this.slotSel = 0; this.mode = null; G.paused = true; }
   exit() { G.paused = false; }
   close() { popScene(this); this.ex.buildFollowers(false); }
   update() {
@@ -123,9 +126,10 @@ export class CampScene {
       if (newTalk) { c.fillStyle = P.sage; c.fillRect(x + 62, 15, 7, 5); c.fillStyle = '#4e7a40'; c.fillRect(x + 63, 17, 5, 1); }
     });
     ui.text(`${G.s.buttons} buttons`, W - 94, H - 22, { align: 'right', size: 9, color: P.gold });
-    ui.text('Q/E or click: tabs   Arrows + Space   Tab: close', 20, H - 16, { size: 8, color: '#8a7e9a' });
+    hint(c, 20, H - 16, { kb: 'Q/E or click: tabs   Arrows + Space   Tab: close', pad: [['l1r1', 'tabs'], ['cross', 'choose'], ['circle', 'back'], ['triangle', 'close']] }, { size: 8, color: '#8a7e9a' });
     if (button(c, 'Close', W - 86, H - 34, 64, 16, { size: 9 })) { this.close(); return; }
     const y0 = 42;
+    c2 = c;
     this['draw' + TABS[this.tab]](c, y0);
   }
   // scrolling window for long lists: moves only to keep the selection in view (so hovering a row never shifts the
@@ -138,7 +142,7 @@ export class CampScene {
     this.scrollStart = st0; return st0;
   }
   // under a long list: which rows are showing, so a player knows there are more
-  more(x, y, start, per, n) { if (n > per) ui.text(`${start + 1}-${Math.min(n, start + per)} of ${n}   (mouse wheel or arrows for more)`, x, y, { size: 8, color: '#b8acc8' }); }
+  more(x, y, start, per, n) { if (n > per) hint(c2 || null, x, y, { kb: `${start + 1}-${Math.min(n, start + per)} of ${n}   (mouse wheel or arrows for more)`, pad: [['dpad', `${start + 1}-${Math.min(n, start + per)} of ${n}   (more)`]] }, { size: 8, color: '#b8acc8' }); }
   rowSel(i, x, y, w, h, label) {
     if (G.drawingTop) hits.add(label, x, y, w, h);
     if (mouseIn(x, y, w, h) && input.mouse.moved) this.sel = i;
@@ -176,7 +180,7 @@ export class CampScene {
     const next = Pm.skills.length > st.skillsOf(id).length ? Pm.skills[st.skillsOf(id).length] : null;
     if (next) ui.text(`Next at level ${st.skillsOf(id).length === 3 ? 10 : 20}: ${SKILLS[next].name}`, 284, y0 + 159 + st.skillsOf(id).length * 11, { size: 8, color: '#8a7e9a' });
     const sq = SQUADS[Pm.squad]; if (sq) ui.text(`Leads: ${sq.name} (${KINDS[sq.kind].name})`, 284, y0 + 226, { size: 8, color: '#c8bca8' });
-    if (id !== 'bramble') ui.text(G.s.party.active.includes(id) ? 'Space: send to reserve' : 'Space: travel with Bramble', 284, y0 + 240, { size: 8, color: '#b8acc8' });
+    if (id !== 'bramble') { const t = G.s.party.active.includes(id) ? 'send to reserve' : 'travel with Bramble'; hint(c, 284, y0 + 240, { kb: 'Space: ' + t, pad: [['cross', t]] }, { size: 8, color: '#b8acc8' }); }
     if (button(c, 'Auto-equip best', 472, y0 + 230, 140, 18, { size: 9 })) { st.autoEquip(); audio.synth('equip'); toast('Everyone travelling is wearing the best gear you own.'); }
   }
   drawTalk(c, y0) {
@@ -198,7 +202,9 @@ export class CampScene {
       const [mid, slot] = this.gearTarget; const list = this.gearList();
       ui.text(`${PARTY[mid].name}: choose a ${slot}`, 20, y0 + 6, { size: 10, color: P.gold });
       const worn = st.member(mid).gear[slot] && gearInfo(st.member(mid).gear[slot]);
-      ui.text(`Wearing: ${worn ? worn.name : 'nothing'}.  ${list.length ? '' : 'No spare ' + slot + 's in the pack (shops sell more).  '}Esc: back`, 370, y0 + 6, { size: 8, color: '#b8acc8' });
+      const wear = `Wearing: ${worn ? worn.name : 'nothing'}.  ${list.length ? '' : 'No spare ' + slot + 's in the pack (shops sell more).  '}`;
+      if (input.device === 'pad') { ui.text(wear, 370, y0 + 6, { size: 8, color: '#b8acc8' }); hint(c, 370 + ui.measure(wear, 8), y0 + 6, { pad: [['circle', 'back']] }, { size: 8, color: '#b8acc8' }); }
+      else hint(c, 370, y0 + 6, { kb: wear + 'Esc: back' }, { size: 8, color: '#b8acc8' });
       ['(nothing)', ...list].forEach((g, i) => {
         const y = y0 + 14 + i * 18; if (y > H - 50) return;
         this.rowSel(i, 18, y, 330, 17, 'gear:' + (i ? gearInfo(g).name : 'none'));
@@ -265,7 +271,7 @@ export class CampScene {
   }
   drawQuests(c, y0) {
     ui.text('Now:', 20, y0 + 10, { size: 10, color: P.gold });
-    const now = ui.wrap(G.s.quest || 'Explore.', 552, 10);
+    const now = ui.wrap(padWords(G.s.quest) || 'Explore.', 552, 10);
     now.forEach((l, i) => ui.text(l, 60, y0 + 10 + i * 12, { size: 10 }));
     y0 += Math.max(0, now.length - 2) * 12;
     const qs = (G.data.quests || []).filter(q => !q.show || q.show());

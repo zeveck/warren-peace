@@ -10,10 +10,15 @@ export const input = {
   shift: false, shiftPressed: new Set(),   // keys pressed this frame with Shift down (a quick Shift+key tap can release Shift before the frame runs)
   mouse: { x: 0, y: 0, inside: false, down: [false, false, false], pressed: [false, false, false], released: [false, false, false], dragFrom: null, wheel: 0, moved: false, px: -1, py: -1 },   // px, py: where the last left press went down
   anyPressed: false,
+  // controller layer (engine/pad.js): padHeld is rebuilt every poll from held buttons and stick directions; device is the
+  // last used device ('kb' = keyboard or mouse, 'pad'); padKind picks the glyph set ('ps' or 'xbox'); padSeen: a pad has
+  // been used this session
+  padHeld: new Set(), device: 'kb', padKind: 'xbox', padSeen: false, padAnchor: null, canvas: null,
+  onClear: null,       // set by pad.js: clears the pad's own just-pressed buttons with the keys
   toLogical: null,     // set by main.js: (clientX, clientY) -> {x, y} in 640x360 units
   onFirstInput: null,  // set by main.js: resumes audio
 
-  isHeld(code) { return this.held.has(code); },
+  isHeld(code) { return this.held.has(code) || this.padHeld.has(code); },
   isPressed(code) { return this.pressed.has(code); },
   // action helpers
   act() { return this.pressed.has('Space') || this.pressed.has('Enter') || this.pressed.has('KeyE'); },
@@ -23,10 +28,10 @@ export const input = {
   left() { return this.pressed.has('ArrowLeft') || this.pressed.has('KeyA'); },
   right() { return this.pressed.has('ArrowRight') || this.pressed.has('KeyD'); },
   heldDir() {
-    const h = this.held;
+    const h = this.held, p = this.padHeld;
     return {
-      up: h.has('ArrowUp') || h.has('KeyW'), down: h.has('ArrowDown') || h.has('KeyS'),
-      left: h.has('ArrowLeft') || h.has('KeyA'), right: h.has('ArrowRight') || h.has('KeyD'),
+      up: h.has('ArrowUp') || h.has('KeyW') || p.has('ArrowUp'), down: h.has('ArrowDown') || h.has('KeyS') || p.has('ArrowDown'),
+      left: h.has('ArrowLeft') || h.has('KeyA') || p.has('ArrowLeft'), right: h.has('ArrowRight') || h.has('KeyD') || p.has('ArrowRight'),
     };
   },
   shiftWith(code) { return this.shift || this.shiftPressed.has(code); },
@@ -38,10 +43,11 @@ export const input = {
   rclick() { return this.mouse.pressed[2]; },
   // consume: stop lower handlers in the same frame from seeing a press
   eat(code) { this.pressed.delete(code); },
-  eatAll() { this.pressed.clear(); this.mouse.pressed = [false, false, false]; this.anyPressed = false; },
-  endKeys() { this.pressed.clear(); this.shiftPressed.clear(); this.order.length = 0; this.anyPressed = false; this.mouse.pressed = [false, false, false]; this.mouse.released = [false, false, false]; },
+  eatAll() { if (this.onClear) this.onClear(); this.pressed.clear(); this.mouse.pressed = [false, false, false]; this.anyPressed = false; },
+  endKeys() { if (this.onClear) this.onClear(); this.pressed.clear(); this.shiftPressed.clear(); this.order.length = 0; this.anyPressed = false; this.mouse.pressed = [false, false, false]; this.mouse.released = [false, false, false]; },
   endMouse() { this.mouse.pressed = [false, false, false]; this.mouse.released = [false, false, false]; this.mouse.wheel = 0; this.mouse.moved = false; },
   endFrame() {
+    if (this.onClear) this.onClear();
     this.pressed.clear(); this.shiftPressed.clear(); this.order.length = 0; this.anyPressed = false;
     this.mouse.pressed = [false, false, false]; this.mouse.released = [false, false, false];
     this.mouse.wheel = 0; this.mouse.moved = false;
@@ -49,11 +55,17 @@ export const input = {
 };
 
 function first() { if (input.onFirstInput) input.onFirstInput(); }
+// back to keyboard/mouse: hover and the cursor return
+export function useKeyboard() {
+  if (input.device === 'kb') return;
+  input.device = 'kb'; input.padAnchor = null;
+  if (input.canvas) input.canvas.style.cursor = '';
+}
 
 export function initInput(canvas) {
   window.addEventListener('keydown', e => {
     if (USED.has(e.code)) e.preventDefault();
-    first();
+    first(); useKeyboard();
     input.shift = e.shiftKey;
     if (!e.repeat) { input.pressed.add(e.code); if (e.shiftKey) input.shiftPressed.add(e.code); input.order.push(e.code); input.anyPressed = true; }
     input.held.add(e.code);
@@ -62,11 +74,18 @@ export function initInput(canvas) {
     if (USED.has(e.code)) e.preventDefault();
     input.shift = e.shiftKey; input.held.delete(e.code);
   }, { capture: true });
-  window.addEventListener('blur', () => { input.held.clear(); input.mouse.down = [false, false, false]; });
-  const pos = e => { const p = input.toLogical(e.clientX, e.clientY); input.mouse.x = p.x; input.mouse.y = p.y; input.mouse.inside = p.inside; };
-  canvas.addEventListener('pointermove', e => { pos(e); input.mouse.moved = true; });
+  window.addEventListener('blur', () => { input.held.clear(); input.padHeld.clear(); input.mouse.down = [false, false, false]; });
+  input.canvas = canvas;
+  // while the pad is the last device, hover readers see the pointer as outside the canvas (no hover look, no edge-scroll);
+  // moving the mouse 3 logical px from where it was when the pad took over hands back to the mouse
+  const pos = e => {
+    const p = input.toLogical(e.clientX, e.clientY); input.mouse.x = p.x; input.mouse.y = p.y;
+    if (input.device === 'pad') { const a = input.padAnchor; if (!a || Math.hypot(p.x - a.x, p.y - a.y) >= 3) useKeyboard(); }
+    input.mouse.inside = p.inside && input.device !== 'pad';
+  };
+  canvas.addEventListener('pointermove', e => { pos(e); if (input.device !== 'pad') input.mouse.moved = true; });
   canvas.addEventListener('pointerdown', e => {
-    e.preventDefault(); canvas.focus(); first(); pos(e);
+    e.preventDefault(); canvas.focus(); first(); useKeyboard(); pos(e);
     const b = e.button === 1 ? 1 : e.button === 2 ? 2 : 0;
     input.mouse.down[b] = true; input.mouse.pressed[b] = true; input.anyPressed = true;
     if (b === 0) { input.mouse.px = input.mouse.x; input.mouse.py = input.mouse.y; }

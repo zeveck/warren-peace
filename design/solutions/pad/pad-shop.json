@@ -1,0 +1,21 @@
+{ "segment": "c0-warren", "note": "Mallow's shop on the pad: L1/R1 tabs (sent as Left/Right), Cross buys, R1 must not accept the auto-equip offer, Circle declines and leaves.", "steps": [
+  {"until": "s.screen === 'explore' && !s.busy", "timeout": 20000},
+  {"js": "const { G } = await import('/src/core.js'); G.s.buttons = 900;"},
+  {"padTalk": "mallow"}, {"padTalkthrough": true, "choose": [0]},
+  {"until": "s.screen === 'shop'", "timeout": 8000},
+  {"wait": 300},
+  {"expect": "s.device === 'pad' && s.hints.some(h => h === '[cross] buy [l1r1] tabs [circle] leave')"},
+  {"js": "const { G } = await import('/src/core.js'); const sc = G.scenes[G.scenes.length - 1]; window.__tab0 = sc.tab; return sc.tab === 0;"},
+  {"pad": "r1"}, {"js": "const { G } = await import('/src/core.js'); return G.scenes[G.scenes.length - 1].tab === 1;"},
+  {"pad": "l1"}, {"js": "const { G } = await import('/src/core.js'); return G.scenes[G.scenes.length - 1].tab === 0;"},
+  {"pad": "down"}, {"pad": "up"},
+  {"pad": "cross", "note": "buy the first piece of gear"},
+  {"js": "const { G } = await import('/src/core.js'); return !!G.scenes[G.scenes.length - 1].offerAuto;"},
+  {"pad": "r1", "note": "R1 must not accept the auto-equip offer"},
+  {"js": "const { G } = await import('/src/core.js'); const sc = G.scenes[G.scenes.length - 1]; return !!sc.offerAuto && sc.tab === 0;"},
+  {"pad": "circle", "note": "decline"},
+  {"js": "const { G } = await import('/src/core.js'); const sc = G.scenes[G.scenes.length - 1]; return sc.kind === 'shop' && !sc.offerAuto;"},
+  {"pad": "circle", "note": "leave"},
+  {"until": "s.screen !== 'shop'", "timeout": 4000},
+  {"pass": true}
+]}

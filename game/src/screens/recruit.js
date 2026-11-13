@@ -5,6 +5,7 @@ import { input } from '../engine/input.js';
 import { audio } from '../engine/audio.js';
 import { panel, drawPortrait, keyHint } from '../engine/gfx.js';
 import { P } from '../data/core/palette.js';
+import { chip, padOn } from '../engine/prompts.js';
 import { PARTY } from '../data/core/party.js';
 import { SQUADS, KINDS } from '../data/core/squads.js';
 
@@ -38,7 +39,7 @@ export class RecruitCard {
     if (this.role) { ui.text('Party: ' + this.role, x + 102, y, { size: 9 }); y += 12; }
     if (this.sq) { ui.text(`Army: ${this.sq.name} (${KINDS[this.sq.kind].name})`, x + 102, y, { size: 9 }); y += 12; }
     quote.forEach((l, i) => ui.text(l, x + 102, y + 6 + i * 11, { size: 9, color: '#e8dcc0' }));
-    if (this.t > 0.6) { const kx = x + pw - 96, ky = y0 + ph - 18, kw = keyHint(c, 'Space', kx, ky); ui.text('or click', kx + kw + 5, ky + 9, { size: 8, color: '#b8acc8' }); }
+    if (this.t > 0.6) { const kx = x + pw - 96, ky = y0 + ph - 18, kw = chip(c, 'Space', 'cross', kx, ky); if (!padOn()) ui.text('or click', kx + kw + 5, ky + 9, { size: 8, color: '#b8acc8' }); }
     this.bannerY = y0 + ph + 12;
     // the row of banners
     const n = this.banners.length, bw = 9, total = n * (bw + 3);

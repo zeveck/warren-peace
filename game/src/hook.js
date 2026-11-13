@@ -5,6 +5,8 @@ import { toScreen } from './engine/iso.js';
 import { view } from './main.js';
 import { newGame, addMember, travelling, member, maxHp, maxPl, giveItem, setActive, healAll } from './state.js';
 import { PARTY } from './data/core/party.js';
+import { input } from './engine/input.js';
+import { pad, padWords } from './engine/pad.js';
 
 function css(x, y) { return { x: (view.OX + x * view.K) / view.DPR, y: (view.OY + y * view.K) / view.DPR }; }
 
@@ -18,7 +20,7 @@ export function installHook() {
         screen: top ? top.kind : null, scenes: G.scenes.map(s => s.kind),
         segment: seg ? seg.id : null, segmentIndex: G.segment, chapter: G.s ? G.s.chapter : null,
         ...(ex && ex.map ? ex.summary() : {}),
-        flags: G.s ? { ...G.s.flags } : {}, quest: G.s ? G.s.quest : '',
+        flags: G.s ? { ...G.s.flags } : {}, quest: G.s ? padWords(G.s.quest) : '',
         party: G.s ? travelling() : [], reserve: G.s ? G.s.party.order.filter(id => !travelling().includes(id)) : [],
         members: G.s ? Object.fromEntries(Object.entries(G.s.party.members).map(([id, m]) => [id, { lvl: m.lvl, hp: m.hp, maxHp: maxHp(id), pl: m.pl, maxPl: maxPl(id), gear: { ...m.gear } }])) : {},
         buttons: G.s ? G.s.buttons : 0, items: G.s ? { ...G.s.items, ...G.s.keyItems } : {},
@@ -26,6 +28,7 @@ export function installHook() {
         battle: findScene('battle') ? findScene('battle').summary() : null,
         segmentComplete: !!(seg && G.s && seg.done && seg.done(G.s)), gameWon: !!(G.s && G.s.flags.g_won), ng: G.s && G.s.ng ? G.s.ng.cycle || 0 : 0, playTime: G.s ? G.s.playTime : 0,
         paused: !!G.paused,
+        device: input.device, padKind: input.padKind, padSeen: input.padSeen, padOff: pad.off, hints: (G.hintsShown || []).slice(), toast: G.flash ? G.flash.msg : null,
       };
     },
     levels() { return G.data.segments.map((s, i) => ({ n: i, id: s.id, name: s.name })); },

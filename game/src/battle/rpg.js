@@ -10,6 +10,8 @@ import { ITEMS } from '../data/core/items.js';
 import { BattleSim, makeEnemy, makeAlly } from './sim.js';
 import { BOSSES } from '../data/core/enemies.js';
 import * as st from '../state.js';
+import { hint } from '../engine/prompts.js';
+import { pad } from '../engine/pad.js';
 import { ngEnemies } from './ngplus.js';
 import { tellerOf } from '../data/ng/bosses.js';
 
@@ -237,6 +239,7 @@ class BattleScene {
         audio.sfx(e.crit ? 'crit' : e.splash ? 'splash-melt' : Math.random() < 0.5 ? 'hit-1' : 'hit-2', { vol: 0.8 });
         this.flashT[e.tg] = 0.12; if (tg) this.offset[e.tg] = { x: (tg.side === 'party' ? -1 : 1) * 5, t: 0.15 };
         if (e.crit) this.shake = 0.25;
+        if (e.crit) pad.rumble('crit'); else if (tg && tg.side === 'party') pad.rumble('hit');
         const [x, y] = this.posOf(tg);
         this.nums.push({ x, y: y - 60, text: String(e.dmg), col: e.crit ? P.gold : '#fff', t: 0, crit: e.crit });
         await sleep(0.06); // hit pause
@@ -272,7 +275,7 @@ class BattleScene {
       case 'flee': { audio.sfx('scamper'); await this.say(e.ok ? 'Got away!' : 'Couldn\'t get away!', 1.0); break; }
       case 'story': await this.storyVignette(e.memory, U); break;
       case 'phase': {   // NG+: a boss's second phase begins
-        audio.sfx(e.sfx || 'alert-horn', { vol: 0.9 }); this.shake = 0.5; this.phase2At = this.t;
+        audio.sfx(e.sfx || 'alert-horn', { vol: 0.9 }); this.shake = 0.5; this.phase2At = this.t; pad.rumble('boss');
         for (const l of e.lines || []) await this.say(l, 2.0);
         break;
       }
@@ -584,7 +587,7 @@ class BattleScene {
       const cur = list[m.lsel];
       if (cur && cur.d) { c.fillStyle = 'rgba(18,14,24,0.85)'; const lines = ui.wrap(cur.d, 300, 9); const w = 316; c.fillRect(8, y0 - 6 - lines.length * 11 - 4, w, lines.length * 11 + 6); lines.forEach((l, i) => ui.text(l, 14, y0 - 6 - lines.length * 11 + 6 + i * 11, { size: 9, color: '#e8dcc0' })); }
       if (m.mode === 'target') ui.text('Choose a target', 14, y0 + 58, { size: 8, color: '#b8acc8' });
-      else ui.text('Esc: back', 14, y0 + 58, { size: 8, color: '#b8acc8' });
+      else hint(c, 14, y0 + 58, { kb: 'Esc: back', pad: [['circle', 'back']] }, { size: 8, color: '#b8acc8' });
       if (m.mode === 'list' && button(c, 'Back', 172, y0 + 49, 54, 11, { size: 8, hitLabel: 'Back' })) { m.mode = 'cmd'; }
     }
   }
@@ -616,7 +619,7 @@ class BattleScene {
     ui.text('Victory!', W / 2, py + 22, { align: 'center', size: 15, color: P.gold });
     ui.text(`${r.xp} XP   ${r.btn} buttons`, W / 2, py + 40, { align: 'center', size: 10 });
     lines.forEach((l, i) => ui.text(l, W / 2, py + 58 + i * 13, { align: 'center', size: 10, color: '#c0f0a0' }));
-    if (this.resultsReady) ui.text('Space or click', W / 2, py + h - 9, { align: 'center', size: 8, color: '#b8acc8' });
+    if (this.resultsReady) hint(c, W / 2, py + h - 9, { kb: 'Space or click', pad: [['cross', 'continue']] }, { align: 'center', size: 8, color: '#b8acc8' });
     if (G.drawingTop) hits.add('Continue', px, py, pw, h);
   }
   // debug-hook summary

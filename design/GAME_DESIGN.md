@@ -39,7 +39,7 @@ Being small and brave: a rabbit who sets off with a key and a good heart, makes 
 
 ## Controls
 
-Desktop only. The input layer records "just pressed" on keydown and calls `preventDefault` on every key the game uses (arrows, Space, Tab).
+Desktop only: keyboard and mouse, or a PS5 / Xbox controller (below). The input layer records "just pressed" on keydown and calls `preventDefault` on every key the game uses (arrows, Space, Tab).
 
 Exploration, menus and RPG battles
 
@@ -47,7 +47,7 @@ Exploration, menus and RPG battles
 |---|---|---|
 | Hop | Arrows or WASD, **screen-relative**: Up goes up the screen, Right goes right, and so on. A single key alternates the two grid steps either side of it, drawn as one smooth straight line with a steady facing; two keys together (Up+Right) take the one diagonal grid step that way. Hold to keep hopping: after 3 held hops the hop time drops from 0.22 s to 0.16 s; straight up or down the screen hops take 0.8x the time. Settings has "Grid keys" (Up = up-right, Right = down-right...) with a compass in the HUD. | Left-click a tile: hop there by the shortest path (at the fast hop speed); click a person or chest to walk up and use it |
 | Talk / use / open | Space, Enter or E | Click the person or thing |
-| Nibble (clover, grass, sweetgrass) | N | Right-click your own tile, or the HUD Nibble button |
+| Nibble (clover, grass, sweetgrass) | N | Right-click your own tile |
 | Advance dialog / choose a reply | Space, Enter, E; arrows to pick | Click |
 | Camp menu (party, talk, gear, items, army, quests, map, bestiary) | Tab or I (exploration only) | HUD button |
 | Pause / settings / save | Escape or P | HUD button |
@@ -64,6 +64,42 @@ Army battles (left-click only ever selects; right-click only ever orders)
 | Army abilities | Q, W, E, R, then target: a node's letter or a right-click (Moonlight, Monkey Drop), or a burrow mouth's letter for the selected squad (Tunnel); Rally fires at once. Escape cancels targeting | Ability buttons, then right-click the target |
 | Camera | Arrow keys pan; C centres on the selected squad; V centres on home | Edge-scroll (Settings, on by default); middle-drag; left-click the minimap to jump there |
 | Pause / speed | Space pauses (orders still allowed while paused); F toggles 1x / 2x. Settings: "Army auto-pause" off / every 10 s / on first contact (Easy defaults to on contact) | Pause and speed buttons |
+
+### Controller (PS5 DualSense / Xbox; `engine/pad.js`, design in `design/changes/controller.md`)
+
+The Gamepad API's "standard" mapping, polled once per frame. Most screens get the keys their buttons stand for; the army battle reads the pad itself. Prompts switch to drawn button glyphs (PlayStation or Xbox, from the pad's id or Settings > Controller > Button icons) as soon as the pad is used, and back on the next key press, click or mouse move. Names are PlayStation / Xbox.
+
+| Context | Left stick / d-pad | Cross/A | Circle/B | Square/X | Triangle/Y | L1/LB, R1/RB | Options/Menu | Create/View |
+|---|---|---|---|---|---|---|---|---|
+| Exploring | Hop (stick: 8-way, screen-relative; with Grid keys the d-pad follows the setting and the stick snaps to the 4 screen diagonals) | Talk / use | | Nibble | Camp menu | | Pause | Camp on the Map tab |
+| Dialog and choices | Pick a reply | Advance / choose | | | | | | |
+| Camp menu | Rows | Choose | Back / close | | Close | Tabs | Close | |
+| Shops | Rows (left/right: tabs) | Buy | Leave / decline auto-equip | | | Tabs | Leave | |
+| RPG battles | The 2x3 command grid, lists, targets | Confirm | Back | | | | | |
+| Title, pause, save/load, settings, revisits | Rows (held: repeats); settings: left/right change a value | Choose | Back | | | Settings: change a value | Back | |
+| Pictures, recruit cards | | Continue | Skip | | | | | |
+| Army preview | Squad list | Pick / unpick | Back | "The warren rallies" (when shown) | Start the battle | | | |
+| Credits | | Hold to speed up | | | | | | |
+
+Army battles on the pad: a **node cursor** (a gold ring with the node's name) plus the selection.
+
+| Action | Pad |
+|---|---|
+| Move the cursor to the nearest node that way | Left stick or d-pad (the camera follows it) |
+| Order the selected squads to the cursor's node | Cross / A |
+| Select the squads on the cursor's node (none there: those on the roads into it) | Square / X; twice quickly selects all |
+| Next / previous squad | R1 / RB, L1 / LB |
+| Add to the selection | hold L2 / LT with Square or L1/R1 |
+| Reinforce the selected | Triangle / Y |
+| Abilities | hold R2 / RT: Square Rally, Triangle Moonlight, Circle Monkey Drop, Cross Tunnel (Q W E R); then cursor + Cross to aim, Circle cancels. While aiming, R2 does nothing. |
+| Speed 1x / 2x; jump home | R2 + R1; R2 + L1 |
+| Pause / play (orders still work) | Create / View |
+| Camera; centre on the selection | Right stick; L3 |
+| Clear the selection | Circle / B |
+| Close a waiting tip | Cross / A |
+| Pause menu | Options / Menu |
+
+Rumble (Settings > Controller > Vibration; skipped where unsupported): hits on the party, crits, a boss's second phase, map tremors, a new Long Thump layer, army alerts and orders.
 
 **RTS reserved keys:** Q W E R T F C V B, Space, Tab, Escape, P, M, the arrows and the digits. Node labels use only **A S D G H J K L Z X** (10 letters; the biggest battle has 10 nodes). WASD don't move the camera in army battles (A S D are node letters). The camp menu and talk are unavailable during army battles.
 

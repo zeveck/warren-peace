@@ -12,6 +12,8 @@ import { P, WORLD } from '../data/core/palette.js';
 import { DIRS, dirOf, drawActor, actorFrame } from './actors.js';
 import { runScript } from './script.js';
 import { travelling, member, maxHp, maxPl, flag, setFlag } from '../state.js';
+import { pad, padWords } from '../engine/pad.js';
+import { glyph, soundLocked, SOUND_HINT } from '../engine/prompts.js';
 
 const HOP = 0.22, HOP_FAST = 0.16;
 
@@ -438,6 +440,8 @@ export class ExploreScene {
     if (input.isPressed('Tab') || input.isPressed('KeyI')) { input.eatAll(); this.openCamp(); return; }
     // HUD buttons and clicks are handled in draw() (buttons) and here (tiles)
     if (this.hudClick) { const f = this.hudClick; this.hudClick = null; f(); return; }
+    // a controller with the sound still locked: say so once, as a toast
+    if (!G.soundToldPad && soundLocked()) { G.soundToldPad = true; toast(SOUND_HINT, 3); }
     if (this.b.hop) return;
     if (input.act()) { if (this.interact()) return; }
     if (input.isPressed('KeyN')) { this.nibble(); return; }
@@ -623,7 +627,7 @@ export class ExploreScene {
     if (this.sizeTween) { this.sizeTween.t += dt; if (this.sizeTween.t > 0.35) this.sizeTween = null; }
   }
   puff(a) { const s = this.footScreen(a); this.fx.push({ k: 'puff', x: s.x, y: s.y - 6, t: 0, life: 0.4 }); audio.synth('pop', 1.2); }
-  shake(secs = 0.4, amt = 3) { this.shakeT = secs; this.shakeA = amt; }
+  shake(secs = 0.4, amt = 3) { this.shakeT = secs; this.shakeA = amt; pad.rumble('quake', Math.min(1.5, amt / 3)); }
 
   // map-entry bubble: one of the two travelling companions says a line
   enterBubble() {
@@ -872,13 +876,16 @@ export class ExploreScene {
       if (button(c, '', W - 47, 6, 20, 20, { icon: 'ico-pause', hitLabel: 'Pause' })) this.hudClick = () => this.openPause();
       if (button(c, '', W - 24, 6, 20, 20, { icon: G.settings.mute ? 'ico-mute-on' : 'ico-mute-off', hitLabel: 'Mute' })) this.hudClick = () => { G.settings.mute = !G.settings.mute; audio.applyVolumes(); import('../engine/save.js').then(m => m.saveSettings()); };
       this.drawHudGlyphs(c);
+      // with a controller: the button for each HUD icon under it
+      if (input.device === 'pad' && G.settings.keyHints !== false) { glyph(c, 'triangle', W - 66, 28); glyph(c, 'options', W - 44, 28); }
     }
     // quest line
     if (G.s.quest && !this.busy) {
-      const w = Math.min(560, ui.measure(G.s.quest, 9) + 26);
+      const quest = padWords(G.s.quest);
+      const w = Math.min(560, ui.measure(quest, 9) + 26);
       c.fillStyle = 'rgba(18,14,24,0.7)'; c.fillRect((W - w) / 2, H - 20, w, 16);
       drawIcon(c, 'ico-quest', (W - w) / 2 + 3, H - 20, 16);
-      ui.text(G.s.quest, (W - w) / 2 + 21, H - 8, { size: 9, color: P.chalk });
+      ui.text(quest, (W - w) / 2 + 21, H - 8, { size: 9, color: P.chalk });
     }
     if (G.settings.gridKeys) this.drawCompass(c);
   }
@@ -904,7 +911,9 @@ export class ExploreScene {
   }
 
   // visibilitychange and blur both fire on a tab switch: guard so only one menu ever opens (the import is async)
-  openCamp() { this.openMenu('camp', () => import('../screens/camp.js').then(m => new m.CampScene(this))); }
+  openCamp(tab) { this.openMenu('camp', () => import('../screens/camp.js').then(m => new m.CampScene(this, tab))); }
+  // controller: Create/View opens the camp on its Map tab
+  onPad(name) { if (name !== 'create') return false; if (this.map && !this.busy && !this.leaving) this.openCamp('Map'); return true; }
   openPause() { this.openMenu('pause', () => import('../screens/pause.js').then(m => new m.PauseScene())); }
   openMenu(kind, make) {
     if (this.opening || findScene('pause') || findScene('camp')) return;

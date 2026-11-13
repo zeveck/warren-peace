@@ -9,6 +9,7 @@ import { KINDS } from '../data/core/squads.js';
 import { PARTY } from '../data/core/party.js';
 import * as st from '../state.js';
 import { bonusText } from './camp.js';
+import { hint } from '../engine/prompts.js';
 
 export class ShopScene {
   constructor(id, done) {
@@ -92,13 +93,13 @@ export class ShopScene {
         });
       } else if (r.kind === 'item') ui.text(`have ${st.itemCount(r.id)}`, 370, y + 15, { size: 8, color: '#b8acc8' });
     });
-    if (rows.length > per) ui.text(`${start + 1}-${Math.min(rows.length, start + per)} of ${rows.length}  (wheel, ▲▼ or arrow keys for more)`, 540, H - 30, { size: 8, align: 'right', color: '#b8acc8' });
+    if (rows.length > per) hint(c, 540, H - 30, { kb: `${start + 1}-${Math.min(rows.length, start + per)} of ${rows.length}  (wheel, ▲▼ or arrow keys for more)`, pad: [['dpad', `${start + 1}-${Math.min(rows.length, start + per)} of ${rows.length}  (more)`]] }, { size: 8, align: 'right', color: '#b8acc8' });
     const cur = rows[this.sel];
     if (cur) {
       const desc = cur.kind === 'gear' ? `${cur.g.slot[0].toUpperCase() + cur.g.slot.slice(1)}: ${bonusText(cur.g)}` : cur.kind === 'item' ? ITEMS[cur.id].d : { banner: 'Attack +15% per rank', mail: 'Damage taken -10% per rank', rations: 'Heart +10% per rank' }[cur.g] + ` for every ${KINDS[cur.k].name} squad.`;
       ui.text(desc, 24, H - 30, { size: 9, color: '#c8f0a0' });
     }
-    ui.text('Space: buy   Left/Right: tabs   Esc: leave', 24, H - 16, { size: 8, color: '#8a7e9a' });
+    hint(c, 24, H - 16, { kb: 'Space: buy   Left/Right: tabs   Esc: leave', pad: [['cross', 'buy'], ['l1r1', 'tabs'], ['circle', 'leave']] }, { size: 8, color: '#8a7e9a' });
     if (button(c, 'Leave', W - 86, H - 34, 64, 18, { size: 9 })) this.close();
     if (this.offerAuto) {
       panel(c, W / 2 - 140, H / 2 - 30, 280, 60);

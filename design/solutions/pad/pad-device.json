@@ -1,0 +1,20 @@
+{ "segment": "c0-warren", "note": "Prompts follow the last device; a disconnect pauses; R1 in camp.", "steps": [
+  {"until": "s.screen === 'explore' && !s.busy", "timeout": 20000},
+  {"pad": "triangle"}, {"until": "s.screen === 'camp'", "timeout": 3000}, {"wait": 200},
+  {"expect": "s.device === 'pad' && s.hints.some(h => h.startsWith('[l1r1] tabs'))"},
+  {"press": "ArrowDown"}, {"wait": 200},
+  {"expect": "s.device === 'kb' && s.hints.includes('Q/E or click: tabs   Arrows + Space   Tab: close')"},
+  {"pad": "down"}, {"wait": 200}, {"expect": "s.device === 'pad'"},
+  {"mouse": [640, 360]}, {"pad": "up"}, {"mouse": [642, 361], "note": "under 3 logical px: still the pad"},
+  {"expect": "s.device === 'pad'"},
+  {"mouse": [700, 400]}, {"expect": "s.device === 'kb'"},
+  {"padKind": "xbox"}, {"wait": 200}, {"expect": "s.padKind === 'xbox' && s.device === 'pad'"},
+  {"pad": "circle"}, {"until": "s.screen === 'explore'", "timeout": 3000},
+  {"padConnect": false}, {"wait": 300},
+  {"expect": "s.toast === 'Controller disconnected'"},
+  {"until": "s.screen === 'pause'", "timeout": 3000},
+  {"padConnect": true}, {"wait": 300},
+  {"pad": "circle"}, {"until": "s.screen === 'explore'", "timeout": 3000},
+  {"padKind": "ps"},
+  {"pass": true}
+]}

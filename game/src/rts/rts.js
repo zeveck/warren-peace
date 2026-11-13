@@ -11,6 +11,8 @@ import { P, FUR } from '../data/core/palette.js';
 import { KINDS, SQUADS, ENEMY_SQUADS } from '../data/core/squads.js';
 import { makeSim, step, order, orderAttack, reinforce, useAbility, ABILITY, hidden, oddsOf, TICK } from './sim.js';
 import * as st from '../state.js';
+import { pad, padWords } from '../engine/pad.js';
+import { hint, glyph, padOn } from '../engine/prompts.js';
 import { bestOf, recordBest, medalFor, medalOf, medalsOf, beatBurdock, fmtTime, fmtSecs, MEDAL_NAME, MEDAL_COLOR } from './best.js';
 
 const LETTERS = ['A', 'S', 'D', 'G', 'H', 'J', 'K', 'L', 'Z', 'X'];
@@ -94,6 +96,13 @@ class PreviewScene {
     audio.synth('confirm'); this.recalc();
   }
   leave() { popScene(this); audio.music(null); this.done('back'); }
+  rallyShown() { return !this.o.revisit && (G.s.losses[this.id] || 0) >= 2; }
+  // controller: Triangle starts the battle; Square toggles "The warren rallies" (only when that button is shown)
+  onPad(name) {
+    if (name === 'triangle') { if (this.pick.size) { audio.synth('confirm'); this.start(); } else audio.synth('cancel'); return true; }
+    if (name === 'square') { if (this.rallyShown()) { this.rally = !this.rally; this.recalc(); audio.synth('confirm'); } return true; }
+    return false;
+  }
   start() { popScene(this); pushScene(new RtsScene(this.id, [...this.pick], { ...this.o, rallied: this.rally, done: this.done })); }
   draw(c) {
     c.fillStyle = '#1f2a1c'; c.fillRect(0, 0, W, H);
@@ -127,7 +136,7 @@ class PreviewScene {
       if (sugg.includes(q)) ui.text('suggested', 396, y + 12, { size: 8, align: 'right', color: '#f0d880' });
     });
     if (!list.length) ui.text('No squads yet.', 30, 120, { size: 9 });
-    if (list.length > per) ui.text(`${start + 1}-${Math.min(list.length, start + per)} of ${list.length}   (mouse wheel or arrows for more)`, 26, 296, { size: 8, color: '#b8acc8' });
+    if (list.length > per) hint(c, 26, 296, { kb: `${start + 1}-${Math.min(list.length, start + per)} of ${list.length}   (mouse wheel or arrows for more)`, pad: [['dpad', `${start + 1}-${Math.min(list.length, start + per)} of ${list.length}   (more)`]] }, { size: 8, color: '#b8acc8' });
     // field preview: node map
     this.drawMini(c, 420, 100, 200, 150);
     if (this.o.revisit) this.drawPar(c, 420, 262);
@@ -137,7 +146,7 @@ class PreviewScene {
     }
     if (button(c, 'Start the battle', 420, 310, 120, 22, { size: 10, disabled: !this.pick.size })) this.start();
     if (button(c, 'Back', 548, 310, 72, 22, { size: 10 })) this.leave();
-    ui.text('Space: pick/unpick   Esc: back', 24, 332, { size: 8, color: '#8a7e9a' });
+    hint(c, 24, 332, { kb: 'Space: pick/unpick   Esc: back', pad: [['cross', 'pick/unpick'], ...(this.rallyShown() ? [['square', 'rally']] : []), ['triangle', 'start'], ['circle', 'back']] }, { size: 8, color: '#8a7e9a' });
   }
   // post-game revisit: your best, Burdock's time and the medal times, under the field preview
   drawPar(c, x, y) {
@@ -186,6 +195,12 @@ class RtsScene {
     this.N = this.def.size || 28;
     this.prompts = o.revisit ? [] : (this.data.prompts || []).slice(); this.prompt = null;
     this.lastAuto = 0; this.contactSeen = false;
+    // controller: the army battle reads the pad itself (see padUpdate): a node cursor plus the selection
+    this.padNative = true; this.cursor = this.def.home; this.lsRep = null; this.dpRep = null; this.lastSquare = -9; this.stepId = null; this.thumpLayers = 0;
+    if (!o.revisit && this.S.abilities.length && !G.s.flags.pad_ability_tip) {
+      const t = 'Hold {r2} and press the button shown on an ability to use it.';
+      this.prompts.push({ text: t, pad: t, padOnly: true, when: () => input.device === 'pad', cond: r => r.t - r.prompt.shownAt > 10 });
+    }
     // the clock waits for the first order, so reading the field and the opening tips costs nothing (startOnOrder: false opts out)
     this.started = this.def.startOnOrder === false;
     // under-attack warnings: threatened player nodes, a banner, and the first threat to home pauses once
@@ -259,6 +274,7 @@ class RtsScene {
       if (input.isPressed('Space') || input.isPressed('Enter') || onTip) { input.eat('Space'); input.eat('Enter'); if (onTip) input.mouse.pressed[0] = false; this.closeTip(); }
     }
     const S = this.S;
+    if (this.padUpdate(dt)) return;
     // keys
     if (input.isPressed('Escape') && this.targeting) { this.targeting = null; input.eat('Escape'); audio.synth('cancel'); }
     if (input.isPressed('Escape') || input.isPressed('KeyP')) { input.eatAll(); this.openPause(); return; }
@@ -269,7 +285,7 @@ class RtsScene {
     if (h.has('ArrowLeft')) this.camTX -= CAMSPEED * dt; if (h.has('ArrowRight')) this.camTX += CAMSPEED * dt;
     if (h.has('ArrowUp')) this.camTY -= CAMSPEED * dt; if (h.has('ArrowDown')) this.camTY += CAMSPEED * dt;
     const m = input.mouse;
-    if (G.settings.edgeScroll && m.inside && !this.dragBox) { if (m.x < 12) this.camTX -= CAMSPEED * dt; if (m.x > W - 12) this.camTX += CAMSPEED * dt; if (m.y < 12) this.camTY -= CAMSPEED * dt; if (m.y > H - 12) this.camTY += CAMSPEED * dt; }
+    if (G.settings.edgeScroll && m.inside && input.device !== 'pad' && !this.dragBox) { if (m.x < 12) this.camTX -= CAMSPEED * dt; if (m.x > W - 12) this.camTX += CAMSPEED * dt; if (m.y < 12) this.camTY -= CAMSPEED * dt; if (m.y > H - 12) this.camTY += CAMSPEED * dt; }
     if (m.down[1] && this.midFrom) { this.camTX = this.midFrom.cx - (m.x - this.midFrom.x); this.camTY = this.midFrom.cy - (m.y - this.midFrom.y); }
     if (m.pressed[1]) this.midFrom = { x: m.x, y: m.y, cx: this.camTX, cy: this.camTY }; if (!m.down[1]) this.midFrom = null;
     if (input.isPressed('KeyC')) { const q = this.selected()[0]; if (q) this.centerOn(q.x, q.y); }
@@ -306,7 +322,7 @@ class RtsScene {
       }
     }
     // prompts (tutorial)
-    if (!this.prompt && this.prompts.length) { const p = this.prompts[0]; if (!p.when || p.when(this)) { this.prompts.shift(); this.prompt = { ...p, text: typeof p.text === 'function' ? p.text(this) : p.text, shownAt: this.t }; if (p.wait) { this.promptWasPaused = this.paused; this.paused = true; } } }
+    if (!this.prompt && this.prompts.length) { const p = this.prompts[0]; if (!p.when || p.when(this)) { this.prompts.shift(); this.prompt = { ...p, text: typeof p.text === 'function' ? p.text(this) : p.text, pad: typeof p.pad === 'function' ? p.pad(this) : p.pad || null, shownAt: this.t }; if (p.padOnly) G.s.flags.pad_ability_tip = true; if (p.wait) { this.promptWasPaused = this.paused; this.paused = true; } } }
     if (this.prompt && this.prompt.cond && this.prompt.cond(this)) { this.prompt = null; audio.synth('twinkle'); }
     if (this.data.update) this.data.update(this, dt);
     if (!S.result) this.watchThreats();
@@ -318,7 +334,11 @@ class RtsScene {
     // ambience: clash while fighting
     const fighting = S.squads.some(q => q.contact);
     audio.ambience('clash', fighting && !this.paused ? 0.35 : 0);
-    if (this.def.thump) audio.thumps.layers = S.nodes.filter(n => n.kind === 'thump' && n.owner === 'player').length;
+    if (this.def.thump) {
+      const L = S.nodes.filter(n => n.kind === 'thump' && n.owner === 'player').length;
+      if (L > this.thumpLayers) pad.rumble('thump');   // a new layer of the Long Thump starts
+      this.thumpLayers = L; audio.thumps.layers = L;
+    }
   }
   closeTip() { if (!this.prompt) return; const w = this.prompt.wait && !this.prompt.cond; this.prompt = null; if (w) this.paused = this.promptWasPaused; }
   // player nodes with raiders on them, taking them, or about to arrive: a horn, a banner, an arrow if off screen
@@ -351,6 +371,7 @@ class RtsScene {
     this.alertBanner = { text: text + (home ? ' Send someone back!' : ''), t: home ? 5 : 3.5, home };
     this.alerts.push({ x: n.x, y: n.y, t: 5, node: n.id });
     audio.sfx('alert-horn', { vol: home ? 1 : 0.7 }); if (home) audio.sfx('warren-drum', { vol: 0.8 });
+    pad.rumble(home ? 'alertHome' : 'alert');
     // with army auto-pause on (Settings), the first threat to home also pauses the battle once
     if (home && !this.homeWarned && G.settings.autoPause !== 'off') { this.homeWarned = true; this.paused = true; this.acc = 0; this.alertBanner.text += ' (paused)'; }
   }
@@ -371,8 +392,113 @@ class RtsScene {
     let any = false; for (const q of this.selected()) any = order(this.S, q, n.id) || any;
     if (any) { audio.sfx('rts-order', { vol: 0.6 }); this.fx.push({ k: 'ping', x: n.x, y: n.y, t: 0 }); this.ordered(); }
   }
+  // ---------- controller (padNative): the node cursor and the selection. Returns true when the pause menu opened.
+  padUpdate(dt) {
+    const pr = pad.pressed, hd = pad.held, S = this.S;
+    if (!S.node(this.cursor) || S.node(this.cursor).dark) this.cursor = this.def.home;
+    if (!pr.size && !pad.ls.on && !pad.rs.on && !hd.size) { this.lsRep = this.dpRep = null; return false; }
+    if (pr.has('options')) { input.eatAll(); this.openPause(); return true; }
+    // a waiting tip: Cross closes it, and does nothing else
+    if (pr.has('cross') && this.prompt && this.prompt.wait && !this.prompt.cond) { pr.delete('cross'); this.closeTip(); }
+    // camera: the right stick
+    if (pad.rs.on) { const k = { slow: 0.7, normal: 1, fast: 1.4 }[G.settings.padCam] || 1; this.camTX += pad.rs.x * CAMSPEED * k * dt; this.camTY += pad.rs.y * CAMSPEED * k * dt; }
+    // the cursor: the left stick (8 ways, repeating every 0.28 s) or the d-pad (repeating when held)
+    let dir = null;
+    if (pad.ls.on) {
+      const ang = Math.atan2(pad.ls.y, pad.ls.x), sec = Math.round(ang / (Math.PI / 4));
+      if (!this.lsRep || this.lsRep.sec !== sec) { this.lsRep = { sec, t: 0 }; dir = [Math.cos(ang), Math.sin(ang)]; }
+      else if ((this.lsRep.t += dt) >= 0.28) { this.lsRep.t = 0; dir = [Math.cos(ang), Math.sin(ang)]; }
+    } else this.lsRep = null;
+    const DP = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] };
+    const dh = ['up', 'down', 'left', 'right'].find(n => hd.has(n));
+    if (dh) {
+      if (pr.has(dh) || !this.dpRep || this.dpRep.n !== dh) { this.dpRep = { n: dh, t: 0 }; dir = DP[dh]; }
+      else if ((this.dpRep.t += dt) >= 0.32) { this.dpRep.t = 0.04; dir = DP[dh]; }
+    } else this.dpRep = null;
+    if (dir) this.moveCursor(dir[0], dir[1]);
+    // pause / play, and the camera on the selection: any time
+    if (pr.has('create')) { this.paused = !this.paused; audio.synth(this.paused ? 'cancel' : 'confirm'); }
+    if (pr.has('l3')) { const q = this.selected()[0]; if (q) this.centerOn(q.x, q.y); }
+    const mine = this.listSquads(), add = hd.has('l2');
+    if (this.targeting) {
+      // aiming an ability: the R2 layer is off; Cross fires at the cursor, Circle cancels
+      if (pr.has('cross')) { const n = S.node(this.cursor); if (n && this.validTarget(n)) this.nodeCommand(n); else { audio.synth('cancel'); toast('Can\'t do that there.', 1.2); } }
+      if (pr.has('circle')) { this.targeting = null; audio.synth('cancel'); }
+    } else if (hd.has('r2')) {
+      // the R2 layer: abilities on the face buttons (left, top, right, bottom = Q W E R), speed and home on the bumpers
+      const face = { square: 'rally', triangle: 'moonlight', circle: 'monkey', cross: 'tunnel' };
+      for (const b in face) if (pr.has(b)) { this.startAbility(face[b]); if (this.targeting === 'tunnel') this.snapCursor(); }
+      if (pr.has('r1')) { this.speed = this.speed === 1 ? 2 : 1; toast(`Speed ${this.speed}x`, 1); audio.synth('move'); }
+      if (pr.has('l1')) { const n = S.node(this.def.home); this.cursor = n.id; this.centerOn(n.x, n.y); audio.synth('move'); }
+    } else {
+      if (pr.has('cross')) { const n = S.node(this.cursor); if (n) { if (this.selected().length) this.nodeCommand(n); else { audio.synth('cancel'); toast('Pick a squad first: R1, or Square on its node.'.replace('R1', pad.word('r1')).replace('Square', pad.word('square')), 1.6); } } }
+      if (pr.has('circle')) { if (this.sel.size) { this.sel.clear(); audio.synth('cancel'); } }
+      if (pr.has('square')) this.padSquare(mine, add);
+      if (pr.has('triangle')) { let any = false; for (const q of this.selected()) any = reinforce(S, q) || any; audio.synth(any ? 'confirm' : 'cancel'); if (any) audio.sfx('heal', { vol: 0.6 }); else if (!this.selected().length) toast('Select a squad to reinforce.', 1.2); }
+      for (const [b, d] of [['r1', 1], ['l1', -1]]) if (pr.has(b)) this.padStep(mine, d, add);
+    }
+    return false;
+  }
+  // Square: the squads on the cursor's node (or, with none there, those on the roads touching it, nearest first);
+  // a second Square within 0.35 s selects every squad
+  padSquare(mine, add) {
+    const live = mine.filter(q => !q.worn);
+    if (this.t - this.lastSquare < 0.35) { this.sel = new Set(live.map(q => q.id)); this.lastSquare = -9; audio.synth('move'); return; }
+    this.lastSquare = this.t;
+    const n = this.S.node(this.cursor);
+    let qs = live.filter(q => q.at === n.id && !q.edge);
+    if (!qs.length) qs = live.filter(q => q.edge && (q.edge[0] === n.id || q.edge[1] === n.id)).sort((a, b) => Math.hypot(a.x - n.x, a.y - n.y) - Math.hypot(b.x - n.x, b.y - n.y));
+    if (!qs.length) { audio.synth('cancel'); return; }
+    if (!add) this.sel.clear();
+    for (const q of qs) this.sel.add(q.id);
+    this.stepId = qs[0].id; audio.synth('move');
+  }
+  // L1 / R1: the previous / next squad in the list (L2 held: add it)
+  padStep(mine, d, add) {
+    const live = mine.filter(q => !q.worn); if (!live.length) return;
+    let cur = live.findIndex(q => q.id === this.stepId && this.sel.has(q.id));
+    if (cur < 0) cur = live.findIndex(q => this.sel.has(q.id));
+    const nx = live[cur < 0 ? (d > 0 ? 0 : live.length - 1) : (cur + d + live.length) % live.length];
+    if (!add) this.sel.clear();
+    this.sel.add(nx.id); this.stepId = nx.id; audio.synth('move');
+  }
+  // jump the cursor to the nearest node in a screen direction (within 65 degrees; closer and straighter wins)
+  moveCursor(dx, dy) {
+    const S = this.S, cur = S.node(this.cursor), cp = this.w2s(cur.x, cur.y), len = Math.hypot(dx, dy) || 1, lim = Math.cos(65 * Math.PI / 180);
+    let best = null, bs = 1e9;
+    for (const n of S.nodes) {
+      if (n.dark || n.id === cur.id || (this.targeting && !this.validTarget(n))) continue;
+      const p = this.w2s(n.x, n.y), vx = p.x - cp.x, vy = p.y - cp.y, d = Math.hypot(vx, vy); if (!d) continue;
+      const cos = (vx * dx + vy * dy) / (d * len); if (cos < lim) continue;
+      const sc = d * (1 + 2 * (1 - cos)); if (sc < bs) { bs = sc; best = n; }
+    }
+    if (!best) { audio.synth('cancel'); return; }
+    this.cursor = best.id; audio.synth('move'); this.followCursor();
+  }
+  // targeting a burrow: the cursor goes to the nearest valid one
+  snapCursor() {
+    const S = this.S, cur = S.node(this.cursor); if (this.validTarget(cur)) return;
+    let best = null, bd = 1e9; for (const n of S.nodes) { if (n.dark || !this.validTarget(n)) continue; const d = Math.hypot(n.x - cur.x, n.y - cur.y); if (d < bd) { bd = d; best = n; } }
+    if (best) { this.cursor = best.id; this.followCursor(); }
+  }
+  followCursor() { const n = this.S.node(this.cursor), p = this.w2s(n.x, n.y); if (p.x < CLEAR.l + 30 || p.x > CLEAR.r - 30 || p.y < CLEAR.t + 30 || p.y > CLEAR.b - 20) this.centerOn(n.x, n.y); }
+  // the cursor: a gold ring on its node and a one-line label
+  drawCursor(c) {
+    const n = this.S.node(this.cursor); if (!n) return;
+    const p = this.w2s(n.x, n.y), k = 0.5 + 0.5 * Math.sin(this.t * 6);
+    c.strokeStyle = P.gold; c.lineWidth = 2; c.beginPath(); c.ellipse(p.x, p.y, 25 + k * 2, 12.5 + k, 0, 0, 7); c.stroke();
+    c.strokeStyle = 'rgba(18,14,24,0.8)'; c.lineWidth = 1; c.beginPath(); c.ellipse(p.x, p.y, 28 + k * 2, 14 + k, 0, 0, 7); c.stroke();
+    const name = { home: 'Home', hilltop: 'Hilltop', clover: 'Clover', burrow: 'Burrow', plain: 'Field', fortified: 'Wall', thump: 'Thump Stone', warren: 'Warren mouth' }[n.id === this.def.home ? 'home' : n.kind] || 'Node';
+    const ours = this.S.squads.filter(q => q.side === 'player' && !q.worn && !q.gone && q.at === n.id && !q.edge).length;
+    const label = `${n.letter} · ${name} · ${n.owner === 'player' ? 'yours' : n.owner === 'enemy' ? 'theirs' : 'open'}${ours ? ` · ${ours} squad${ours > 1 ? 's' : ''}` : ''}`;
+    const w = ui.measure(label, 8) + 10, ly = Math.round(p.y + 18);
+    if (ly > CLEAR.b - 4 || ly < CLEAR.t) return;
+    c.fillStyle = 'rgba(18,14,24,0.8)'; c.fillRect(Math.round(p.x - w / 2), ly, Math.round(w), 12);
+    ui.text(label, p.x, ly + 9, { align: 'center', size: 8, color: P.gold });
+  }
+  tipText() { if (!this.prompt) return null; return input.device === 'pad' && this.prompt.pad ? padWords(this.prompt.pad) : this.prompt.text; }
   // the first order starts a startOnOrder battle's clock; an order also closes a waiting tip
-  ordered() { this.started = true; if (this.prompt && this.prompt.wait && !this.prompt.cond) this.closeTip(); }
+  ordered() { pad.rumble('order'); this.started = true; if (this.prompt && this.prompt.wait && !this.prompt.cond) this.closeTip(); }
   startAbility(id) {
     const A = ABILITY[id]; if (!this.S.abilities.includes(id)) return;
     if (this.S.supply < A.cost) { toast(`Needs ${A.cost} Supply.`, 1.2); return; }
@@ -491,6 +617,7 @@ class RtsScene {
       items.push({ y: p.y, draw: () => this.drawSquad(c, q, p, hid) });
     }
     items.sort((a, b) => a.y - b.y); for (const it of items) it.draw();
+    if (padOn() && !this.banner && !this.done) this.drawCursor(c);
     for (const f of this.fx) { const p = this.w2s(f.x, f.y); if (f.k === 'ripple') { c.strokeStyle = f.side === 'player' ? `rgba(141,224,138,${1 - f.t})` : `rgba(224,122,106,${1 - f.t})`; c.beginPath(); c.ellipse(p.x, p.y, 20 + f.t * 20, 10 + f.t * 10, 0, 0, 7); c.stroke(); } if (f.k === 'ping') { c.strokeStyle = `rgba(232,201,90,${1 - f.t})`; c.beginPath(); c.ellipse(p.x, p.y, 8 + f.t * 14, 4 + f.t * 7, 0, 0, 7); c.stroke(); } }
     if (this.dragBox) { const b = this.dragBox; c.strokeStyle = P.gold; c.lineWidth = 1; c.strokeRect(Math.min(b.x, b.x2) + 0.5, Math.min(b.y, b.y2) + 0.5, Math.abs(b.x2 - b.x), Math.abs(b.y2 - b.y)); }
     if (!this.banner) this.drawAlerts(c);
@@ -558,6 +685,9 @@ class RtsScene {
     else if (S.holdT > 0) ui.text(`Holding: ${Math.ceil(10 - S.holdT)}`, 320, 17, { size: 10, color: '#8de08a' });
     const live = !this.done;
     if (live && button(c, this.paused ? 'Play' : 'Pause', W - 222, 3, 52, 20, { size: 9, hitLabel: 'Pause/Play' })) this.paused = !this.paused;
+    // with a controller: the buttons for pause (Create/View) and speed (R2+R1) under them
+    const pg = padOn() && live && G.settings.keyHints !== false;
+    if (pg) { glyph(c, 'create', W - 203, 26); glyph(c, 'r2', W - 170, 26); glyph(c, 'r1', W - 153, 26); }
     if (live && button(c, this.speed + 'x', W - 166, 3, 30, 20, { size: 9, hitLabel: 'Speed' })) this.speed = this.speed === 1 ? 2 : 1;
     // squad list
     const mine = this.listSquads();
@@ -568,27 +698,39 @@ class RtsScene {
       if (sel) { c.fillStyle = 'rgba(232,201,90,0.25)'; c.fillRect(2, y, 126, 20); }
       if (G.drawingTop) hits.add('squad:' + D.name, 2, y, 126, 20, null, { squad: q.id });
       if (live && mouseIn(2, y, 126, 20) && input.click()) { input.mouse.pressed[0] = false; if (!input.shift) this.sel.clear(); if (!q.worn) this.sel.add(q.id); audio.synth('move'); if (q && !q.worn) {} }
-      ui.text(i < 10 ? String((i + 1) % 10) : '', 6, y + 13, { size: 8, color: '#8a7e9a' });
+      if (!padOn()) ui.text(i < 10 ? String((i + 1) % 10) : '', 6, y + 13, { size: 8, color: '#8a7e9a' });
       drawIcon(c, KINDS[q.kind].icon, 14, y + 2, 16);
       ui.text(D.name, 32, y + 9, { size: 8, color: q.worn ? '#6a6070' : P.chalk });
       bar(c, 32, y + 13, 90, 3, q.hp / q.maxHp, q.worn ? '#555' : '#8de08a');
     });
+    if (padOn() && live && mine.length && G.settings.keyHints !== false) glyph(c, 'l1r1', 4, 33 + Math.min(mine.length, 13) * 21 + 4);
     // bottom: reinforce + abilities
     c.fillStyle = 'rgba(18,14,24,0.75)'; c.fillRect(0, H - 44, W, 44);
     if (!live) { this.drawMinimap(c); return; }
     const nsel = this.selected().length;
-    if (button(c, 'Reinforce (T) 10', 140, H - 38, 120, 30, { size: 9, icon: 'ico-reinforce', disabled: !nsel || S.supply < 10, hitLabel: 'Reinforce' })) { let any = false; for (const q of this.selected()) any = reinforce(S, q) || any; if (!any) toast('Reinforce works on a friendly node, out of a fight.', 1.6); }
+    const pd = padOn();
+    if (button(c, pd ? 'Reinforce 10' : 'Reinforce (T) 10', 140, H - 38, 120, 30, { size: 9, icon: 'ico-reinforce', disabled: !nsel || S.supply < 10, hitLabel: 'Reinforce' })) { let any = false; for (const q of this.selected()) any = reinforce(S, q) || any; if (!any) toast('Reinforce works on a friendly node, out of a fight.', 1.6); }
+    if (pd && G.settings.keyHints !== false) glyph(c, 'triangle', 140 + 120 - 14, H - 36);
     let x = 268;
     for (const [id, A] of Object.entries(ABILITY)) {
       if (!S.abilities.includes(id)) continue;
       const key = A.key.slice(3);
-      const label = `${A.name} (${key}) ${A.cost}`;
+      const label = pd ? `${A.name} ${A.cost}` : `${A.name} (${key}) ${A.cost}`;
       if (button(c, label, x, H - 38, 116, 30, { size: 8, icon: 'ico-' + (id === 'monkey' ? 'monkey-drop' : id), disabled: S.supply < A.cost || (id === 'monkey' && S.monkeysUsed >= 2), sel: this.targeting === id, hitLabel: A.name })) this.startAbility(id);
+      // with a controller: the face button for each ability while R2 is held (not while aiming one), else an R2 chip
+      if (pd && !this.targeting && G.settings.keyHints !== false) {
+        if (pad.held.has('r2')) glyph(c, { rally: 'square', moonlight: 'triangle', monkey: 'circle', tunnel: 'cross' }[id], x + 116 - 14, H - 36);
+        else if (x === 268) glyph(c, 'r2', x + 116 - 19, H - 36);
+      }
       x += 120;
     }
-    if (this.targeting) ui.text('Choose a node: press its letter or right-click it. Esc cancels.', 140, H - 48, { size: 9, color: P.gold });
-    else if (!nsel) ui.text('Click a squad, then right-click a node (or press its letter).', 140, H - 48, { size: 9, color: '#c8bca8' });
-    if (this.targeting || !nsel) { const tw = ui.measure(this.targeting ? 'Choose a node: press its letter or right-click it. Esc cancels.' : 'Click a squad, then right-click a node (or press its letter).', 9); c.fillStyle = 'rgba(18,14,24,0.75)'; c.fillRect(134, H - 58, Math.round(tw) + 12, 14); }
+    if (pd && (this.targeting || !nsel)) hint(c, 140, H - 48, { pad: this.targeting ? [['lstick', 'move the cursor'], ['cross', 'use it there'], ['circle', 'cancel']] : [['l1r1', 'or'], ['square', 'pick squads'], ['cross', 'send them to the cursor']], back: 'rgba(18,14,24,0.75)' }, { size: 9, color: this.targeting ? P.gold : '#c8bca8' });
+    else {
+      if (this.targeting) ui.text('Choose a node: press its letter or right-click it. Esc cancels.', 140, H - 48, { size: 9, color: P.gold });
+      else if (!nsel) ui.text('Click a squad, then right-click a node (or press its letter).', 140, H - 48, { size: 9, color: '#c8bca8' });
+      if (this.targeting || !nsel) { const tw = ui.measure(this.targeting ? 'Choose a node: press its letter or right-click it. Esc cancels.' : 'Click a squad, then right-click a node (or press its letter).', 9); c.fillStyle = 'rgba(18,14,24,0.75)'; c.fillRect(134, H - 58, Math.round(tw) + 12, 14); }
+      if (this.targeting || !nsel) G.hintLog.push(this.targeting ? 'Choose a node: press its letter or right-click it. Esc cancels.' : 'Click a squad, then right-click a node (or press its letter).');
+    }
     this.drawMinimap(c);
   }
   drawMinimap(c) {
@@ -597,6 +739,7 @@ class RtsScene {
     c.fillStyle = '#4a6a3a'; c.beginPath(); c.moveTo(x0 + w / 2, y0); c.lineTo(x0 + w, y0 + h / 2); c.lineTo(x0 + w / 2, y0 + h); c.lineTo(x0, y0 + h / 2); c.fill();
     const mp = (x, y) => [x0 + w / 2 + (x - y) / N * w / 2, y0 + (x + y) / N * h / 2];
     for (const n of S.nodes) { if (n.dark) continue; const [px, py] = mp(n.x, n.y); c.fillStyle = n.owner === 'player' ? '#8de08a' : n.owner === 'enemy' ? '#e07a6a' : '#e8dcc0'; c.fillRect(px - 2, py - 2, 4, 4); ui.text(n.letter, px + 3, py + 2, { size: 7 }); }
+    if (padOn() && !this.done) { const n = S.node(this.cursor); if (n) { const [px, py] = mp(n.x, n.y); c.strokeStyle = P.gold; c.lineWidth = 1; c.strokeRect(Math.round(px) - 3.5, Math.round(py) - 3.5, 7, 7); } }
     for (const q of S.squads) { if (q.worn || q.gone || (q.side === 'enemy' && hidden(S, q))) continue; const [px, py] = mp(q.x, q.y); c.fillStyle = q.side === 'player' ? '#f0f0a0' : '#ff6050'; c.fillRect(px - 1, py - 1, 2, 2); }
     // view rectangle
     const cx = this.camX + W / 2, cy = this.camY + H / 2; const tx = (cx / 16 + (cy - 8) / 8) / 2, ty = ((cy - 8) / 8 - cx / 16) / 2;
@@ -623,7 +766,7 @@ class RtsScene {
     else if (this.o.revisit && !this.banner) { const b = bestOf(this.id); add('time', `Time ${fmtTime(this.S.tick)}${this.paused ? ' (paused)' : ''}` + (b ? `   Best ${fmtTime(b.ticks)}` : ''), 9); }
     else if (this.paused && !(ab && ab.text.endsWith('(paused)'))) add('paused', 'PAUSED (orders still work)', 9);
     if (ab) add('alert', ab.text, 10);
-    if (this.prompt) add('tip', this.prompt.text, 9, this.prompt.wait && !this.prompt.cond);
+    if (this.prompt) add('tip', this.tipText(), 9, this.prompt.wait && !this.prompt.cond);
     return out;
   }
   dodgeSide() {
@@ -651,7 +794,7 @@ class RtsScene {
       if (b.k === 'tip') {
         this.promptBox = { x: b.x, y: b.y, w: b.w, h: b.h };
         if (G.drawingTop) hits.add('tip', b.x, b.y, b.w, b.h);
-        if (b.hint) ui.text('Space or click', b.x + b.w - 7, b.y + b.h - 5, { align: 'right', size: 8, color: '#b8acc8' });
+        if (b.hint) hint(c, b.x + b.w - 7, b.y + b.h - 5, { kb: 'Space or click', pad: [['cross', 'close']] }, { align: 'right', size: 8, color: '#b8acc8' });
       }
       if (b.k === 'alert') {
         // a click on the alert looks at the threatened node
@@ -663,7 +806,7 @@ class RtsScene {
   summary() {
     const S = this.S;
     return { battle: this.id, tick: S.tick, paused: this.paused, speed: this.speed, supply: Math.floor(S.supply), result: S.result, targeting: this.targeting, holdT: S.holdT, thumpT: S.thumpT,
-      camera: { x: Math.round(this.camX), y: Math.round(this.camY) }, prompt: this.prompt ? this.prompt.text : null, started: this.started,
+      camera: { x: Math.round(this.camX), y: Math.round(this.camY) }, prompt: this.prompt ? this.prompt.text : null, tip: this.tipText(), tipWait: !!(this.prompt && this.prompt.wait && !this.prompt.cond), cursor: this.cursor, started: this.started,
       alert: this.alertBanner ? this.alertBanner.text : null, threats: { ...this.threats },
       nodes: S.nodes.filter(n => !n.dark).map(n => ({ id: n.id, letter: n.letter, kind: n.kind, owner: n.owner, x: n.x, y: n.y, screen: this.w2s(n.x, n.y) })),
       squads: S.squads.filter(q => !q.gone).map(q => ({ screen: (p => ({ x: Math.round(p.x), y: Math.round(p.y) }))(this.sqPos(q)), id: q.id, side: q.side, sq: q.sq, kind: q.kind, hp: Math.round(q.hp), max: Math.round(q.maxHp), at: q.at, edge: q.edge, worn: q.worn, selected: this.sel.has(q.id), contact: !!q.contact, hidden: hidden(S, q), x: q.x, y: q.y })),

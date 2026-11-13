@@ -4,6 +4,7 @@ import { G, pushScene } from '../../core.js';
 import { flag, setFlag, addMember, member, stats, skillsOf, hasMember } from '../../state.js';
 import { findPath } from '../../engine/path.js';
 import { input } from '../../engine/input.js';
+import { padWords } from '../../engine/pad.js';
 import { audio } from '../../engine/audio.js';
 import { PictureScene } from '../../screens/picture.js';
 import { makeAlly } from '../../battle/sim.js';
@@ -40,7 +41,7 @@ async function pictures(s, cards) {
 // ---------------------------------------------------------------- quest lines
 export function morningQuest() {
   if (!flag('c0_tansy') && !flag('c0_pip_asked')) return 'Say good morning: Tansy is in the meadow, and Pip is sniffling by the hollow log.';
-  if (flag('c0_pip_asked') && !flag('c0_button') && !flag('c0_pip_done')) return 'Find Pip\'s button in the hollow log (face the log and press Space).';
+  if (flag('c0_pip_asked') && !flag('c0_button') && !flag('c0_pip_done')) return 'Find Pip\'s button in the hollow log (face the log and press {act}).';
   if (flag('c0_button') && !flag('c0_pip_done')) return 'Take the shiny button back to Pip.';
   if (!flag('c0_pip_asked')) return 'Pip is sniffling by the hollow log, west of the meadow. See what\'s wrong.';
   if (!flag('c0_tansy')) return 'Tansy is waiting for you in the meadow.';
@@ -70,7 +71,8 @@ async function startScript(s) {
   await s.wait(0.3);
   s.emote('bramble', '!', 1.2);
   await s.say('bramble', 'Morning, Sorrel Down! Smells like clover and... more clover.', { mood: 'happy' });
-  await s.narrate('Arrow keys or WASD hop. Click a tile to hop there. Space talks. N nibbles clover. Tab opens the camp menu.');
+  await s.narrate(input.device === 'pad' ? padWords('The stick or the d-pad hops. {cross} talks. {square} nibbles clover. {triangle} opens the camp menu.')
+    : 'Arrow keys or WASD hop. Click a tile to hop there. Space talks. N nibbles clover. Tab opens the camp menu.');
   s.quest(morningQuest());
 }
 
@@ -425,10 +427,11 @@ export const guidedRts = {
     waves: [{ at: 9, sq: ['raiders', 'raiders'], route: ['plain', 'hill', 'home'] }, { at: 13, sq: ['diggers', 'raiders'], route: ['clover', 'hill', 'home'] }, { at: 17, sq: ['diggers'], route: ['plain', 'hill', 'home'] }],
   },
   prompts: [
-    { text: r => { const i = r.listSquads().findIndex(q => q.sq === 'thimblebank-rabbits'); return `Click your squad (or press ${i >= 0 ? i + 1 : 1}) to select it. Nothing moves until you give an order.`; }, cond: r => r.sel.size > 0 || r.t - r.prompt.shownAt > 12 },
-    { text: 'Right-click the hilltop (or press its letter, S) to send them there.', cond: r => r.S.squads.some(q => q.side === 'player' && (q.goal === 'hill' || q.at === 'hill')) || r.t - r.prompt.shownAt > 14 },
-    { text: 'Arrow keys, the screen edge or the minimap (top right) look around the field. V jumps back home.', wait: true },
-    { text: 'Space pauses; you can still give orders while paused.', wait: true },
+    { text: r => { const i = r.listSquads().findIndex(q => q.sq === 'thimblebank-rabbits'); return `Click your squad (or press ${i >= 0 ? i + 1 : 1}) to select it. Nothing moves until you give an order.`; },
+      pad: 'Press {r1} to select your squad. Nothing moves until you give an order.', cond: r => r.sel.size > 0 || r.t - r.prompt.shownAt > 12 },
+    { text: 'Right-click the hilltop (or press its letter, S) to send them there.', pad: 'Move the cursor to the hilltop (S) with the left stick or the d-pad, then press {cross} to send them there.', cond: r => r.S.squads.some(q => q.side === 'player' && (q.goal === 'hill' || q.at === 'hill')) || r.t - r.prompt.shownAt > 14 },
+    { text: 'Arrow keys, the screen edge or the minimap (top right) look around the field. V jumps back home.', pad: 'The right stick looks around the field. Hold {r2} and press {l1} to jump back home.', wait: true },
+    { text: 'Space pauses; you can still give orders while paused.', pad: '{create} pauses; you can still give orders while paused.', wait: true },
   ],
   update(rts) {
     const S = rts.S;

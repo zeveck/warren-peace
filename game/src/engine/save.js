@@ -2,7 +2,7 @@
 import { G, findScene } from '../core.js';
 const KEY = 'warren-peace-save', SKEY = 'warren-peace-settings', VERSION = 1;
 
-export const DEFAULT_SETTINGS = { musicVol: 0.8, soundVol: 0.8, voiceVol: 0.9, mute: false, easy: false, textSpeed: 'normal', gridKeys: false, keyHints: true, edgeScroll: true, autoPause: 'off' };
+export const DEFAULT_SETTINGS = { musicVol: 0.8, soundVol: 0.8, voiceVol: 0.9, mute: false, easy: false, textSpeed: 'normal', gridKeys: false, keyHints: true, edgeScroll: true, autoPause: 'off', vibration: true, padIcons: 'auto', padCam: 'normal', padDead: 'normal' };
 
 export function loadSettings() {
   let s = {};

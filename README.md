@@ -4,7 +4,7 @@
 
 Your warren on Sorrel Down has been wrecked by maddened neighbours, and some of your friends have been carried off. Old Yarrow gives you the key to a door that was never meant to open. Down there, through the Depths, lie storybook worlds and stranger places still. Find friends, build an army, and free each warren in turn, until every rabbit on the downs stands together. And something very old is dreaming at the bottom of it all.
 
-**[▶ Play Warren Peace](https://warrenpeace.synapticnoise.com/)** in your browser on a desktop or laptop. No install.
+**[▶ Play Warren Peace](https://warrenpeace.synapticnoise.com/)** in your browser on a desktop or laptop, with keyboard and mouse or a PS5/Xbox controller. No install.
 
 ![The title screen](media/screenshots/title.png)
 
@@ -32,6 +32,7 @@ A big story adventure, three hours or more: a prologue on the downs, four chapte
 - **Battles:** arrows and Space, or click a command and then a target. Escape goes back.
 - **Army battles:** left-click (or 1-9, B for all) selects squads; right-click a node (or press its letter) to send them. T reinforces, Q W E R use army abilities, Space pauses, F speeds up.
 - **Pause / settings / save:** Escape or P. **Mute:** M.
+- **Controller:** a PS5 or Xbox controller works too (plug it in or pair it, then press a button). The stick or D-pad hops, ✕/A talks and confirms, ○/B goes back, △/Y opens camp, □/X nibbles, Options/Menu pauses. In army battles, move the node cursor with the stick and press ✕/A to send your squads; L1/R1 step through squads, □/X picks squads (twice for all), hold R2/RT plus a face button for abilities. On-screen prompts switch to your controller's buttons, and it rumbles (Settings → Controller turns that off).
 
 The game saves itself as you go between places and after battles, and has three save slots too. Losing a battle just sends you back to the door to try again.
 
@@ -70,6 +71,12 @@ Then, to put it online:
 Then, after it was online, to fix a flicker in the opening:
 
 > `/gamegen --change What I take to be the town map kept flashing between rendering other scenes during the opening. I've seen that happen with other games a bit, so (1) we should fix it and (2) figure out what to file against gamegen so games know to avoid it -- making sure the opening screens render properly without flicker is critical to initial impressions.`
+
+Then, to play with a controller:
+
+> `/gamegen --change add PS5/Xbox controller support: exploring, dialog, menus, shops and battles, button prompts that switch to the controller when it's used, and a controller scheme for army battles`
+
+> When done, /gamegen --feedback hidden, then /gamegen --publish --no-confirm.
 
 gamegen designed the game, had review agents polish the design, made the art, animation, music and sound with these plugins, built it chapter by chapter, and play-tested it, including full playthroughs from New Game to the ending:
 

@@ -5,6 +5,8 @@ import { audio } from '../engine/audio.js';
 import { panel, button, fade, drawFace } from '../engine/gfx.js';
 import { P } from '../data/core/palette.js';
 import { saveSlot, slots, saveSettings } from '../engine/save.js';
+import { hint } from '../engine/prompts.js';
+import { pad } from '../engine/pad.js';
 
 // A vertical menu: items [{label, fn, disabled}]
 class Menu {
@@ -33,7 +35,7 @@ export class PauseScene {
     items.push({ label: 'Quit to title', fn: () => pushScene(new ConfirmScene('Quit to the title? Progress since your last save will be lost (the game autosaves at every doorway).', ok => { if (ok) quitToTitle(); })) });
     this.menu = new Menu('Paused', items);
   }
-  enter() { audio.duck(true); }
+  enter() { audio.duck(true); pad.stopRumble(); }
   exit() { audio.duck(false); G.paused = false; }
   close() { popScene(this); }
   update() { if (input.back() || input.isPressed('KeyP')) { this.close(); return; } this.menu.update(); }
@@ -114,16 +116,26 @@ export class LoadScene {
       } else ui.text('Empty', 144, y + (tight ? 27 : 32), { size: 9, color: '#8a7e9a' });
     });
     if (button(c, 'Back', W / 2 - 40, 293, 80, 18, { size: 9 })) { popScene(this); return; }
-    ui.text('Esc', W / 2 + 48, 305, { size: 8, color: '#8a7e9a' });
+    hint(c, W / 2 + 48, 305, { kb: 'Esc', pad: [['circle', '']] }, { size: 8, color: '#8a7e9a' });
   }
 }
 
 const SPEEDS = ['slow', 'normal', 'fast', 'instant'];
 const AUTOP = ['off', 'every10', 'contact'];
+const ICONS = ['auto', 'ps', 'xbox'], LEVELS = ['slow', 'normal', 'fast'], DEADS = ['small', 'normal', 'large'];
+const cyc = (list, v, d) => list[(list.indexOf(v) + d + list.length * 2) % list.length];
 export class SettingsScene {
-  constructor() { this.kind = 'settings'; this.sel = 0; }
+  // page: 'main', or 'pad' (the Controller page)
+  constructor(page = 'main') { this.kind = 'settings'; this.sel = 0; this.page = page; }
   rows() {
     const s = G.settings, pct = v => Math.round(v * 100) + '%';
+    if (this.page === 'pad') return [
+      { label: 'Vibration', val: s.vibration ? 'On' : 'Off', adj: () => { s.vibration = !s.vibration; if (!s.vibration) pad.stopRumble(); } },
+      { label: 'Button icons', val: { auto: 'Auto', ps: 'PlayStation', xbox: 'Xbox' }[s.padIcons] || 'Auto', adj: d => { s.padIcons = cyc(ICONS, s.padIcons, d); pad.setKind(); } },
+      { label: 'Army camera stick', val: { slow: 'Slow', normal: 'Normal', fast: 'Fast' }[s.padCam] || 'Normal', adj: d => { s.padCam = cyc(LEVELS, s.padCam, d); } },
+      { label: 'Stick deadzone', val: { small: 'Small', normal: 'Normal', large: 'Large' }[s.padDead] || 'Normal', adj: d => { s.padDead = cyc(DEADS, s.padDead, d); } },
+      { label: 'Back', val: '', adj: null },
+    ];
     return [
       { label: 'Music volume', val: pct(s.musicVol), adj: d => { s.musicVol = clamp01(s.musicVol + d * 0.1); } },
       { label: 'Sound volume', val: pct(s.soundVol), adj: d => { s.soundVol = clamp01(s.soundVol + d * 0.1); audio.synth('confirm'); } },
@@ -135,6 +147,7 @@ export class SettingsScene {
       { label: 'Key hints', val: s.keyHints ? 'On' : 'Off', adj: () => { s.keyHints = !s.keyHints; } },
       { label: 'Army edge-scroll', val: s.edgeScroll ? 'On' : 'Off', adj: () => { s.edgeScroll = !s.edgeScroll; } },
       { label: 'Army auto-pause', val: { off: 'Off', every10: 'Every 10 s', contact: 'On first contact' }[s.autoPause], adj: d => { s.autoPause = AUTOP[(AUTOP.indexOf(s.autoPause) + d + 3) % 3]; } },
+      { label: 'Controller...', val: '', open: true, adj: () => pushScene(new SettingsScene('pad')) },
       { label: 'Back', val: '', adj: null },
     ];
   }
@@ -144,18 +157,20 @@ export class SettingsScene {
     if (input.up()) { this.sel = (this.sel + r.length - 1) % r.length; audio.synth('move'); }
     if (input.down()) { this.sel = (this.sel + 1) % r.length; audio.synth('move'); }
     const row = r[this.sel];
-    if (row.adj && (input.left() || input.right())) { row.adj(input.left() ? -1 : 1); this.changed(); }
+    if (row.adj && !row.open && (input.left() || input.right())) { row.adj(input.left() ? -1 : 1); this.changed(); }
     if (input.act()) { if (!row.adj) this.close(); else { row.adj(1); this.changed(); } }
   }
   changed() { audio.applyVolumes(); saveSettings(); }
   close() { saveSettings(); popScene(this); }
   draw(c) {
     c.fillStyle = 'rgba(10,8,16,0.7)'; c.fillRect(0, 0, W, H);
-    panel(c, 150, 24, 340, 312);
-    ui.text('Settings', W / 2, 46, { align: 'center', size: 14, color: P.gold });
+    const pg = this.page === 'pad';
+    panel(c, 150, 24, 340, pg ? 160 : 312);
+    ui.text(pg ? 'Controller' : 'Settings', W / 2, 46, { align: 'center', size: 14, color: P.gold });
     this.rows().forEach((r, i) => {
-      const y = 56 + i * 24, sel = i === this.sel;
+      const y = 56 + i * 22, sel = i === this.sel;
       if (!r.adj) { if (button(c, 'Back', W / 2 - 50, y + 2, 100, 20, { sel, size: 10 })) this.close(); return; }
+      if (r.open) { if (button(c, r.label, 164, y, 316, 20, { sel, size: 9, hitLabel: r.label })) { this.sel = i; r.adj(1); } return; }
       if (button(c, r.label, 164, y, 150, 20, { sel, size: 9, hitLabel: r.label })) { this.sel = i; r.adj(1); this.changed(); }
       if (button(c, '<', 322, y, 20, 20, { size: 9, hitLabel: r.label + ' down' })) { this.sel = i; r.adj(-1); this.changed(); }
       ui.text(r.val, 401, y + 14, { align: 'center', size: 10, color: sel ? P.gold : P.chalk });

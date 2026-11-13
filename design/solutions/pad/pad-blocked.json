@@ -1,0 +1,11 @@
+{ "segment": null, "note": "Run on fresh pages with --no-jump. getGamepads throwing (a permissions policy): the pad layer turns off, the game and keyboard carry on.", "steps": [
+  {"until": "s.screen === 'title'", "timeout": 10000},
+  {"js": "navigator.getGamepads = () => { throw new DOMException('blocked by permissions policy', 'SecurityError'); };"},
+  {"wait": 300},
+  {"expect": "s.padOff === true"},
+  {"js": "const { G } = await import('/src/core.js'); const f = G.frame; await new Promise(r => setTimeout(r, 300)); return G.frame > f + 5;"},
+  {"press": "Space"}, {"wait": 300},
+  {"press": "ArrowDown"}, {"press": "ArrowUp"},
+  {"expect": "s.screen === 'title' && s.device === 'kb' && s.hints.includes('Arrows and Space, or the mouse.  M mutes.')"},
+  {"pass": true}
+]}

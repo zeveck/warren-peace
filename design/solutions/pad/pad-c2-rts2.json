@@ -1,0 +1,15 @@
+{ "segment": "c2-rts2", "note": "A full army battle with abilities on the pad autopilot (army: pad); R2+Square = Rally; the pad-only ability tip.", "steps": [
+  { "until": "s.screen === 'rts-preview' || s.dialog.open || s.screen === 'chapter'", "timeout": 8000 },
+  { "padTalkthrough": true },
+  { "until": "s.screen === 'rts-preview'", "timeout": 8000 },
+  { "pad": "triangle" },
+  { "until": "r && r.list.length", "timeout": 8000 },
+  { "js": "const { G } = await import('/src/core.js'); const sc = G.scenes.find(s => s.kind === 'rts'); sc.S.supply = 60; return sc.S.abilities.includes('rally');" },
+  { "chord": ["r2", "square"], "note": "Rally" },
+  { "js": "const { G } = await import('/src/core.js'); const sc = G.scenes.find(s => s.kind === 'rts'); return sc.S.supply === 35 && sc.S.buffs.rally > 0;" },
+  { "padOrder": "home", "all": true },
+  { "until": "r && r.tip && r.tip.startsWith('Hold R2')", "timeout": 120000 },
+  { "army": "pad" },
+  { "padTalkthrough": true, "choose": [1] },
+  { "done": true }
+]}

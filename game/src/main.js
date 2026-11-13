@@ -1,6 +1,7 @@
 // Boot, scaling, the fixed-step loop and the layer compositor.
 import { G, W, H, ui, hits, topScene, findScene, tickWaiters, pushScene, noLig, setTextScale, HOLD_FRAMES, LINGER_FRAMES } from './core.js';
 import { input, initInput } from './engine/input.js';
+import { pad } from './engine/pad.js';
 import { audio } from './engine/audio.js';
 import { loadSettings } from './engine/save.js';
 import { loadManifest, preload } from './engine/assets.js';
@@ -83,6 +84,7 @@ function draw() {
   ctx.fillStyle = '#0c0a10'; ctx.fillRect(0, 0, CW, CH);
   ctx.imageSmoothingEnabled = false;
   hits.list.length = 0;
+  G.hintLog = [];   // the prompts drawn this frame (engine/prompts.js), read by the play-test hook
   // find the lowest scene that needs drawing (the top opaque one)
   let start = 0;
   for (let i = G.scenes.length - 1; i >= 0; i--) if (G.scenes[i].opaque) { start = i; break; }
@@ -118,6 +120,7 @@ function draw() {
       flushText();
     }
   }
+  G.hintsShown = G.hintLog;
   // toast
   if (G.flash) {
     px.clearRect(0, 0, W, H);
@@ -133,6 +136,7 @@ const STEP = 1 / 60;
 let acc = 0, last = performance.now();
 G.speed = 1;   // test helper multiplier is never used by solutions; kept at 1
 function frame(now) {
+  pad.poll(now);   // controllers: once per frame, before the updates (it can't throw)
   let dt = (now - last) / 1000; last = now;
   if (dt > 0.25) dt = 0.25;
   acc += dt;
@@ -174,6 +178,7 @@ window.addEventListener('blur', () => { const t = topScene(); t && t.onBlur && t
 async function boot() {
   loadSettings();
   initInput(canvas);
+  pad.init();
   // the loading screen shows once its font is in (or after 2 s), so its words never pop in after the bar
   const showBoot = () => { const b = document.getElementById('boot'); if (b) b.style.visibility = 'visible'; };
   document.fonts.load('20px Pixelify').then(showBoot, showBoot); setTimeout(showBoot, 2000);
