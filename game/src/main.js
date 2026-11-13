@@ -1,5 +1,5 @@
 // Boot, scaling, the fixed-step loop and the layer compositor.
-import { G, W, H, ui, hits, topScene, findScene, tickWaiters, pushScene, noLig, setTextScale, HOLD_FRAMES } from './core.js';
+import { G, W, H, ui, hits, topScene, findScene, tickWaiters, pushScene, noLig, setTextScale, HOLD_FRAMES, LINGER_FRAMES } from './core.js';
 import { input, initInput } from './engine/input.js';
 import { audio } from './engine/audio.js';
 import { loadSettings } from './engine/save.js';
@@ -106,6 +106,17 @@ function draw() {
     s.draw(px, i === G.scenes.length - 1);
     ctx.drawImage(off, 0, 0, W, H, OX, OY, W * K, H * K);
     flushText();
+  }
+  // a dialog box that just closed stays up until the next one opens (a few frames at most): no blink between lines
+  if (G.linger) {
+    if (++G.linger.frames > LINGER_FRAMES || G.scenes.includes(G.linger.scene)) G.linger = null;
+    else {
+      G.drawingTop = false;
+      px.setTransform(1, 0, 0, 1, 0, 0); px.clearRect(0, 0, W, H); px.imageSmoothingEnabled = false;
+      G.linger.scene.draw(px, false);
+      ctx.drawImage(off, 0, 0, W, H, OX, OY, W * K, H * K);
+      flushText();
+    }
   }
   // toast
   if (G.flash) {

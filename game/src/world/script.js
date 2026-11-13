@@ -193,7 +193,7 @@ export function dialog(o) {
 }
 export class DialogScene {
   constructor(o, done) {
-    this.kind = 'dialog'; this.o = o; this.done = done; this.t = 0; this.shown = 0; this.sel = 0;
+    this.kind = 'dialog'; this.lingers = true; this.o = o; this.done = done; this.t = 0; this.shown = 0; this.sel = 0;
     this.sp = speaker(o.who);
     if (o.who && G.s) G.s.met[o.who] = 1;
     let text = o.text;

@@ -18,12 +18,16 @@ export const G = {
 // a map first), and for those frames whatever was underneath (the map) would flash through. So the closed cover keeps
 // being drawn, frozen, until another cover opens or HOLD_FRAMES pass (main.js draw()).
 export const HOLD_FRAMES = 20;
-export function pushScene(s) { if (s.cover) G.hold = null; G.scenes.push(s); s.enter && s.enter(); return s; }
+// Boxes that come one after another (dialog lines) set lingers = true: a closed box stays drawn for a few frames
+// unless the next box opens, so it doesn't blink off between lines.
+export const LINGER_FRAMES = 3;
+export function pushScene(s) { if (s.cover) G.hold = null; G.linger = null; G.scenes.push(s); s.enter && s.enter(); return s; }
 export function popScene(s) {
   const i = s ? G.scenes.lastIndexOf(s) : G.scenes.length - 1;
   if (i < 0) return;
   const [gone] = G.scenes.splice(i, 1);
   if (gone.cover) G.hold = { scene: gone, frames: 0 };
+  if (gone.lingers) G.linger = { scene: gone, frames: 0 };
   gone.exit && gone.exit();
   const top = G.scenes[G.scenes.length - 1];
   top && top.resume && top.resume();
