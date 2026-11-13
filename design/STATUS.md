@@ -20,7 +20,7 @@
 
 ## Settings
 
-- Feedback: hidden ("Report a bug" in Pause and Settings after opening the game once with ?feedback; repo filled in by publishing)
+- Feedback: hidden ("Report a bug" in Pause and Settings after opening the game once with ?feedback; repo zeveck/warren-peace, issue form .github/ISSUE_TEMPLATE/bug.yml, label player-report)
 
 - Platform: desktop
 - Target: web
