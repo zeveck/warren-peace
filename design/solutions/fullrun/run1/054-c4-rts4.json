@@ -1,0 +1,119 @@
+{
+ "segment": "c4-rts4",
+ "steps": [
+  {
+   "until": "s.screen === 'rts-preview' || s.dialog.open || s.screen === 'chapter'",
+   "timeout": 8000,
+   "note": "chapter 4 card"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'rts-preview'",
+   "timeout": 8000
+  },
+  {
+   "button": "Start the battle"
+  },
+  {
+   "until": "r && r.tick > 3",
+   "timeout": 8000,
+   "note": "everyone up onto the spoil heap"
+  },
+  {
+   "press": "KeyB"
+  },
+  {
+   "press": "KeyD"
+  },
+  {
+   "until": "r.nodes.find(n => n.id === 'spoil').owner === 'player'",
+   "timeout": 90000,
+   "note": "down onto the quarry floor"
+  },
+  {
+   "press": "KeyB"
+  },
+  {
+   "press": "KeyJ"
+  },
+  {
+   "until": "r.nodes.find(n => n.id === 'floor').owner === 'player'",
+   "timeout": 90000,
+   "note": "up to the lip"
+  },
+  {
+   "press": "KeyB"
+  },
+  {
+   "press": "KeyL"
+  },
+  {
+   "until": "r.nodes.find(n => n.id === 'lip').owner === 'player'",
+   "timeout": 120000,
+   "note": "winkies and the field mice hold the lip; the rest storm the mouth"
+  },
+  {
+   "press": "Digit2"
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit3"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit5"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit7"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit8"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit9"
+   ],
+   "ms": 80
+  },
+  {
+   "press": "KeyX"
+  },
+  {
+   "until": "r.result",
+   "timeout": 200000
+  },
+  {
+   "until": "!r",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c4-flintcomb' && s.screen === 'explore'",
+   "timeout": 20000
+  },
+  {
+   "until": "s.flags['g_c4-rts4_won']",
+   "timeout": 15000,
+   "note": "segment done: c4-rts4"
+  }
+ ]
+}

@@ -1,0 +1,36 @@
+{
+ "segment": "fullrun-title",
+ "steps": [
+  {
+   "until": "s.screen === 'title'",
+   "timeout": 15000,
+   "note": "the title screen (fresh browser profile: no saves, New Game asks no confirm)"
+  },
+  {
+   "wait": 800
+  },
+  {
+   "press": "Space",
+   "note": "press any key"
+  },
+  {
+   "wait": 600
+  },
+  {
+   "button": "New Game",
+   "note": "New Game with a real click"
+  },
+  {
+   "until": "s.screen === 'picture' || s.screen === 'explore'",
+   "timeout": 8000
+  },
+  {
+   "talkthrough": true,
+   "note": "the three intro pictures, Bramble's morning line, the controls hint"
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy && s.map === 'c0-downs'",
+   "timeout": 15000
+  }
+ ]
+}

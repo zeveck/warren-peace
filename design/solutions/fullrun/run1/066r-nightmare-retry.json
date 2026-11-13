@@ -1,0 +1,19 @@
+{"segment": "fullrun-retry", "note": "as run: the Nightmare of Flintcomb was lost (L24, Rumble + Jade; its counter is 'Cure; Ninefold'). Ninefold + Jade Rabbit (headless 30/30 vs 10/30), then 066 from its step 7", "steps": [
+ {"until": "s.screen === 'explore' && !s.busy", "timeout": 10000},
+ {"press": "Tab"},
+ {"until": "s.screen === 'camp'", "timeout": 3000},
+ {"press": "ArrowDown", "times": 14, "note": "Rumble (row 14) out"},
+ {"press": "Space"},
+ {"press": "ArrowUp", "times": 6, "note": "Ninefold (row 8) in"},
+ {"press": "Space"},
+ {"button": "Auto-equip best"},
+ {"press": "Tab"},
+ {"until": "s.screen === 'explore' && s.party.includes('ninefold') && s.party.includes('jade-rabbit')", "timeout": 3000},
+ {"walk": [9, 8]},
+ {"walk": [10, 15]},
+ {"walk": [10, 20], "note": "the Nightmare of Flintcomb"},
+ {"talkthrough": true, "choose": [1]},
+ {"fight": "auto", "note": "BOSS: the Nightmare of Flintcomb (retry)"},
+ {"talkthrough": true},
+ {"until": "s.flags.c5_p2", "timeout": 5000}
+]}

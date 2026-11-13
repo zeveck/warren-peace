@@ -1,0 +1,16 @@
+{"segment":"c6-bowl","steps":[
+{"wait":800,"note":"Shale waits by Thimblebank's mouth; the first hop sets the post-game quest"},{"hop":"ArrowRight","n":1},{"talkthrough":true},
+{"talk":"c6-shale"},{"talkthrough":true,"choose":[0]},
+{"walk":[27,20]},{"walk":[34,20]},{"walk":[38,20]},{"hop":"ArrowRight","n":1},
+{"until":"s.map==='c4-flintcomb'","timeout":8000},{"wait":1500,"note":"chapter card and Quarry's opening"},{"talkthrough":true,"choose":[0]},
+{"note":"five dandelion clocks on the west downs","click":[3,23]},{"until":"s.dialog.open","timeout":8000},{"talkthrough":true},
+{"click":[1,13]},{"until":"s.dialog.open","timeout":8000},{"talkthrough":true},
+{"click":[2,11]},{"until":"s.dialog.open","timeout":8000},{"talkthrough":true},
+{"click":[4,7]},{"until":"s.dialog.open","timeout":8000},{"talkthrough":true},
+{"click":[4,1]},{"until":"s.dialog.open","timeout":8000},{"talkthrough":true},
+{"note":"Rumble comes along; each heap is shoved and its patch sown at once","walk":[3,12]},{"walk":[4,19]},{"talk":"c6-rumble"},{"talkthrough":true},
+{"click":[10,22]},{"until":"s.dialog.open","timeout":8000},{"talkthrough":true},
+{"walk":[17,20]},{"click":[24,19]},{"until":"s.dialog.open","timeout":8000},{"talkthrough":true},
+{"walk":[17,9]},{"click":[16,6]},{"until":"s.dialog.open","timeout":8000},{"talkthrough":true},
+{"done":true}
+]}

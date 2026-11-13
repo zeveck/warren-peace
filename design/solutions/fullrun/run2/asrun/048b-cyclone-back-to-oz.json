@@ -1,0 +1,156 @@
+{
+ "segment": "fullrun-join",
+ "steps": [
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "note": "the optional China Country (mem-china): Glinda's 'use the shoes now?' was answered yes by the Oz plan, so back to Oz through the dust-whirl",
+   "walk": [
+    10,
+    12
+   ]
+  },
+  {
+   "walk": [
+    10,
+    10
+   ]
+  },
+  {
+   "until": "s.map === 'c3-munchkin'",
+   "timeout": 40000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-munchkin' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    26,
+    12
+   ]
+  },
+  {
+   "click": [
+    27,
+    12
+   ]
+  },
+  {
+   "until": "s.map === 'c3-forest'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-forest' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    34,
+    11
+   ]
+  },
+  {
+   "click": [
+    35,
+    11
+   ]
+  },
+  {
+   "until": "s.map === 'c3-river'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-river' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    30,
+    12
+   ]
+  },
+  {
+   "click": [
+    31,
+    12
+   ]
+  },
+  {
+   "until": "s.map === 'c3-poppies'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-poppies' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    32,
+    12
+   ]
+  },
+  {
+   "click": [
+    33,
+    12
+   ]
+  },
+  {
+   "until": "s.map === 'c3-emerald'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-emerald' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    1,
+    26
+   ]
+  },
+  {
+   "click": [
+    0,
+    26
+   ]
+  },
+  {
+   "until": "s.map === 'c3-south'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-south' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    4,
+    14
+   ],
+   "note": "the China segment's start"
+  }
+ ],
+ "note": "AS-RUN detour of run 2 (not main path): Glinda was answered Yes by mistake, back to Oz through the dust whirl for the China Country"
+}

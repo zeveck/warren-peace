@@ -1,0 +1,14 @@
+{"segment": "fullrun-retry", "note": "after 040x: rest at the pool's stone and face the Tidewarden again (the end of 040 from its step 54)", "steps": [
+ {"goto": [5, 13]},
+ {"click": [4, 13], "note": "rest"},
+ {"until": "s.dialog.open || s.screen !== 'explore' || s.busy", "timeout": 15000},
+ {"talkthrough": true},
+ {"walk": [8, 15]},
+ {"walk": [11, 15]},
+ {"talkthrough": true},
+ {"talkthrough": true},
+ {"fight": "auto", "note": "BOSS: the Tidewarden (retry)"},
+ {"talkthrough": true},
+ {"talkthrough": true},
+ {"until": "!!s.flags.g_ch2_done", "timeout": 15000}
+]}

@@ -1,0 +1,353 @@
+{
+ "segment": "c1-depths",
+ "steps": [
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    4,
+    8
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    4,
+    12
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    4,
+    12
+   ]
+  },
+  {
+   "walk": [
+    5,
+    14
+   ]
+  },
+  {
+   "until": "b && b.menu && b.menu.mode === 'cmd'",
+   "timeout": 20000,
+   "note": "let the battle intro finish"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "fight": "auto",
+   "note": "worm"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    10,
+    15
+   ]
+  },
+  {
+   "walk": [
+    12,
+    16
+   ]
+  },
+  {
+   "until": "b && b.menu && b.menu.mode === 'cmd'",
+   "timeout": 20000,
+   "note": "let the battle intro finish"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "fight": "auto",
+   "note": "worms"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "click": [
+    15,
+    13
+   ],
+   "note": "chest"
+  },
+  {
+   "until": "s.dialog.open || s.screen!==\"explore\"",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    15
+   ]
+  },
+  {
+   "walk": [
+    5,
+    17
+   ]
+  },
+  {
+   "walk": [
+    5,
+    21
+   ]
+  },
+  {
+   "walk": [
+    5,
+    22
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    5,
+    26
+   ]
+  },
+  {
+   "walk": [
+    5,
+    27
+   ]
+  },
+  {
+   "walk": [
+    4,
+    27
+   ]
+  },
+  {
+   "until": "b && b.menu && b.menu.mode === 'cmd'",
+   "timeout": 20000,
+   "note": "let the battle intro finish"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "fight": "auto",
+   "note": "tangler"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    9,
+    25
+   ]
+  },
+  {
+   "walk": [
+    10,
+    24
+   ]
+  },
+  {
+   "until": "b && b.menu && b.menu.mode === 'cmd'",
+   "timeout": 20000,
+   "note": "let the battle intro finish"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "fight": "auto",
+   "note": "beetles"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    13,
+    25
+   ]
+  },
+  {
+   "walk": [
+    16,
+    25
+   ]
+  },
+  {
+   "walk": [
+    18,
+    25
+   ]
+  },
+  {
+   "until": "b && b.menu && b.menu.mode === 'cmd'",
+   "timeout": 20000,
+   "note": "let the battle intro finish"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "fight": "auto",
+   "note": "beetle and worm"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "click": [
+    22,
+    20
+   ],
+   "note": "chest"
+  },
+  {
+   "until": "s.dialog.open || s.screen!==\"explore\"",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    20,
+    29
+   ]
+  },
+  {
+   "walk": [
+    20,
+    31
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "click": [
+    21,
+    28
+   ],
+   "note": "the mossy stone: rest"
+  },
+  {
+   "until": "s.dialog.open || s.screen!==\"explore\"",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    20,
+    32
+   ]
+  },
+  {
+   "walk": [
+    20,
+    33
+   ]
+  },
+  {
+   "until": "b && b.menu && b.menu.mode === 'cmd'",
+   "timeout": 20000,
+   "note": "let the battle intro finish"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "fight": "auto",
+   "note": "two old roots"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    20,
+    36
+   ]
+  },
+  {
+   "walk": [
+    20,
+    37
+   ],
+   "note": "down to the Underway"
+  },
+  {
+   "until": "s.map===\"c1-underway\"",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "until": "!!s.flags.g_underway_c1",
+   "timeout": 15000,
+   "note": "segment done: c1-depths"
+  }
+ ]
+}

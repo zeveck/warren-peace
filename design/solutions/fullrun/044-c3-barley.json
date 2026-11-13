@@ -1,0 +1,248 @@
+{
+ "segment": "c3-barley",
+ "steps": [
+  {
+   "walk": [
+    20,
+    15
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "walk": [
+    20,
+    15
+   ]
+  },
+  {
+   "walk": [
+    20,
+    11
+   ]
+  },
+  {
+   "walk": [
+    11,
+    11
+   ]
+  },
+  {
+   "walk": [
+    10,
+    9
+   ]
+  },
+  {
+   "walk": [
+    9,
+    8
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-wheatsheaf-warren' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    11,
+    6
+   ]
+  },
+  {
+   "walk": [
+    11,
+    11
+   ]
+  },
+  {
+   "click": [
+    10,
+    9
+   ],
+   "note": "fullrun: rest at the warren's stone before Barley"
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 15000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "walk": [
+    11,
+    11
+   ]
+  },
+  {
+   "talk": "barley"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    11,
+    10
+   ]
+  },
+  {
+   "walk": [
+    11,
+    2
+   ]
+  },
+  {
+   "walk": [
+    11,
+    0
+   ]
+  },
+  {
+   "until": "s.map === 'c3-wheatsheaf' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    11,
+    11
+   ]
+  },
+  {
+   "walk": [
+    20,
+    11
+   ]
+  },
+  {
+   "walk": [
+    20,
+    21
+   ]
+  },
+  {
+   "walk": [
+    19,
+    23
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    19,
+    23
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    20,
+    21
+   ]
+  },
+  {
+   "fight": "maybe",
+   "note": "a wanderer that came back (enemies respawn on revisit) may catch the party here"
+  },
+  {
+   "walk": [
+    20,
+    11
+   ]
+  },
+  {
+   "fight": "maybe",
+   "note": "a wanderer that came back (enemies respawn on revisit) may catch the party here"
+  },
+  {
+   "fight": "maybe",
+   "note": "the corn wanderer (it may have caught the party already on the walk above)"
+  },
+  {
+   "walk": [
+    20,
+    11
+   ]
+  },
+  {
+   "fight": "maybe",
+   "note": "a wanderer that came back (enemies respawn on revisit) may catch the party here"
+  },
+  {
+   "walk": [
+    12,
+    11
+   ]
+  },
+  {
+   "fight": "maybe",
+   "note": "a wanderer that came back (enemies respawn on revisit) may catch the party here"
+  },
+  {
+   "walk": [
+    12,
+    9
+   ]
+  },
+  {
+   "fight": "maybe",
+   "note": "a wanderer that came back (enemies respawn on revisit) may catch the party here"
+  },
+  {
+   "fight": "maybe",
+   "note": "a wanderer that came back (enemies respawn on revisit) may catch the party here"
+  },
+  {
+   "talk": "barley"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0,
+    0
+   ]
+  },
+  {
+   "until": "s.flags.g_freed_wheatsheaf",
+   "timeout": 15000,
+   "note": "segment done: c3-barley"
+  }
+ ]
+}

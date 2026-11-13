@@ -1,0 +1,9 @@
+{"segment": "fullrun-retry", "note": "only after losing the Hum-taken Tansy (happened once at L14): back at the halls' entrance, walk to her and try again, then the rest of 040 from its step 44", "steps": [
+ {"until": "s.screen === 'explore' && !s.busy", "timeout": 10000},
+ {"goto": [16, 8]},
+ {"talk": "tansy"},
+ {"talkthrough": true},
+ {"fight": "auto", "note": "BOSS: Tansy, Hum-taken (retry)"},
+ {"talkthrough": true},
+ {"until": "s.screen === 'explore' && !s.busy", "timeout": 20000}
+]}

@@ -1,0 +1,99 @@
+{
+ "segment": "c5-dream",
+ "steps": [
+  {
+   "until": "s.dialog.open || (s.screen === 'explore' && !s.busy)",
+   "timeout": 8000,
+   "note": "arrival in the upside-down down (fullrun: may already have played at the end of 064)"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    9,
+    8
+   ],
+   "note": "down the chalk path"
+  },
+  {
+   "walk": [
+    9,
+    9
+   ],
+   "note": "the Nightmare of Deepdelve rises"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    15
+   ]
+  },
+  {
+   "walk": [
+    10,
+    20
+   ],
+   "note": "the Nightmare of Flintcomb"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    1
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    27
+   ]
+  },
+  {
+   "walk": [
+    10,
+    31
+   ],
+   "note": "the Eye"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    1
+   ]
+  },
+  {
+   "fight": "auto",
+   "note": "one story a round, five stories"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c5-sunset'",
+   "timeout": 8000
+  },
+  {
+   "until": "s.flags.g_c5_dream_done",
+   "timeout": 15000,
+   "note": "segment done: c5-dream"
+  }
+ ]
+}

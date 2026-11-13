@@ -1,0 +1,610 @@
+{
+ "segment": "c1-riverbank",
+ "steps": [
+  {
+   "click": [
+    1,
+    8
+   ],
+   "note": "the river door"
+  },
+  {
+   "until": "s.map===\"c1-riverbank\"",
+   "timeout": 10000
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "talk": "ratty"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    16,
+    22
+   ]
+  },
+  {
+   "walk": [
+    18,
+    24
+   ]
+  },
+  {
+   "until": "b && b.menu && b.menu.mode === 'cmd'",
+   "timeout": 20000,
+   "note": "let the battle intro finish"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "fight": "auto",
+   "note": "weasels"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    22,
+    23
+   ]
+  },
+  {
+   "until": "b && b.menu && b.menu.mode === 'cmd'",
+   "timeout": 20000,
+   "note": "let the battle intro finish"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "fight": "auto",
+   "note": "stoat"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "click": [
+    26,
+    16
+   ],
+   "note": "first log"
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "click": [
+    26,
+    14
+   ],
+   "note": "second log"
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "click": [
+    26,
+    12
+   ],
+   "note": "third log"
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 30000
+  },
+  {
+   "walk": [
+    26,
+    8
+   ]
+  },
+  {
+   "walk": [
+    30,
+    7
+   ]
+  },
+  {
+   "until": "b && b.menu && b.menu.mode === 'cmd'",
+   "timeout": 20000,
+   "note": "let the battle intro finish"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "fight": "auto",
+   "note": "stoat and ferret"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    36,
+    6
+   ]
+  },
+  {
+   "walk": [
+    39,
+    6
+   ],
+   "note": "into the Wild Wood"
+  },
+  {
+   "until": "s.map===\"c1-wildwood\"",
+   "timeout": 10000
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    3,
+    18
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    8,
+    18
+   ]
+  },
+  {
+   "walk": [
+    8,
+    15
+   ]
+  },
+  {
+   "until": "b && b.menu && b.menu.mode === 'cmd'",
+   "timeout": 20000,
+   "note": "let the battle intro finish"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "fight": "auto",
+   "note": "wild wood weasels"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    8,
+    18
+   ]
+  },
+  {
+   "walk": [
+    13,
+    18
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    15,
+    16
+   ]
+  },
+  {
+   "walk": [
+    18,
+    13
+   ],
+   "note": "scent 1"
+  },
+  {
+   "walk": [
+    21,
+    11
+   ],
+   "note": "scent 2"
+  },
+  {
+   "walk": [
+    23,
+    8
+   ],
+   "note": "scent 3"
+  },
+  {
+   "walk": [
+    26,
+    6
+   ],
+   "note": "scent 4"
+  },
+  {
+   "walk": [
+    28,
+    4
+   ],
+   "note": "scent 5"
+  },
+  {
+   "walk": [
+    30,
+    3
+   ]
+  },
+  {
+   "talk": "mole"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "click": [
+    32,
+    1
+   ],
+   "note": "Mole End door"
+  },
+  {
+   "until": "s.map===\"c1-mole-end\"",
+   "timeout": 10000
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    1
+   ]
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 30000
+  },
+  {
+   "walk": [
+    6,
+    9
+   ],
+   "note": "out of Mole End"
+  },
+  {
+   "until": "s.map===\"c1-wildwood\" && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "walk": [
+    28,
+    4
+   ]
+  },
+  {
+   "walk": [
+    18,
+    13
+   ]
+  },
+  {
+   "walk": [
+    15,
+    18
+   ]
+  },
+  {
+   "walk": [
+    15,
+    28
+   ]
+  },
+  {
+   "walk": [
+    15,
+    31
+   ]
+  },
+  {
+   "until": "b && b.menu && b.menu.mode === 'cmd'",
+   "timeout": 20000,
+   "note": "let the battle intro finish"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "fight": "auto",
+   "note": "two stoats"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    24,
+    30
+   ]
+  },
+  {
+   "talk": "hedgehog-2"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    15,
+    30
+   ]
+  },
+  {
+   "walk": [
+    15,
+    24
+   ]
+  },
+  {
+   "walk": [
+    12,
+    24
+   ]
+  },
+  {
+   "walk": [
+    12,
+    23
+   ]
+  },
+  {
+   "until": "b && b.menu && b.menu.mode === 'cmd'",
+   "timeout": 20000,
+   "note": "let the battle intro finish"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "fight": "auto",
+   "note": "weasels"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    13,
+    25
+   ]
+  },
+  {
+   "walk": [
+    13,
+    26
+   ]
+  },
+  {
+   "until": "b && b.menu && b.menu.mode === 'cmd'",
+   "timeout": 20000,
+   "note": "let the battle intro finish"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "fight": "auto",
+   "note": "ferret and stoat"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    8,
+    25
+   ]
+  },
+  {
+   "talk": "hedgehog-1"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "click": [
+    3,
+    29
+   ],
+   "note": "chest"
+  },
+  {
+   "until": "s.dialog.open || s.screen!==\"explore\"",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    8,
+    25
+   ]
+  },
+  {
+   "fight": "maybe",
+   "note": "a wanderer that came back on revisit (enemies respawn) may catch the party here"
+  },
+  {
+   "walk": [
+    8,
+    18
+   ]
+  },
+  {
+   "fight": "maybe",
+   "note": "a wanderer that came back on revisit (enemies respawn) may catch the party here"
+  },
+  {
+   "walk": [
+    8,
+    12
+   ]
+  },
+  {
+   "fight": "maybe",
+   "note": "a wanderer that came back on revisit (enemies respawn) may catch the party here"
+  },
+  {
+   "walk": [
+    5,
+    12
+   ]
+  },
+  {
+   "fight": "maybe",
+   "note": "a wanderer that came back on revisit (enemies respawn) may catch the party here"
+  },
+  {
+   "walk": [
+    5,
+    4
+   ]
+  },
+  {
+   "fight": "maybe",
+   "note": "a wanderer that came back on revisit (enemies respawn) may catch the party here"
+  },
+  {
+   "goto": [
+    5,
+    2
+   ],
+   "note": "fullrun: goto fights anything that catches the party on the way"
+  },
+  {
+   "click": [
+    4,
+    1
+   ],
+   "note": "Badger s door"
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map===\"c1-badger\" && s.screen===\"explore\" && !s.busy",
+   "timeout": 40000
+  },
+  {
+   "until": "!!(s.flags.g_recruit_ratty && s.flags.g_recruit_mole && s.flags.g_recruit_badger)",
+   "timeout": 15000,
+   "note": "segment done: c1-riverbank"
+  }
+ ]
+}

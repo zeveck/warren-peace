@@ -1,0 +1,199 @@
+{
+ "segment": "fullrun-retry",
+ "note": "only after losing to the Moth Queen (happened twice at L13 with +2/+3 Thimblebank gear): the Moon Toad's stall in the crater warren for moon gear, Caterpillar + Ninefold travel (headless 30/30 vs 23/30), rest, try again. As run: the Ninefold click in the party tab dropped her (she already travelled); fixed with an extra camp visit (this file is the corrected one).",
+ "steps": [
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "goto": [
+    26,
+    27
+   ]
+  },
+  {
+   "click": [
+    26,
+    28
+   ],
+   "note": "back to the crater warren"
+  },
+  {
+   "until": "s.map === 'c2-moon-craters' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "press": "Tab"
+  },
+  {
+   "until": "s.screen === 'camp'",
+   "timeout": 3000
+  },
+  {
+   "button": "tab:Party"
+  },
+  {
+   "button": "member:Caterpillar"
+  },
+  {
+   "press": "Tab"
+  },
+  {
+   "until": "s.screen === 'explore'",
+   "timeout": 3000
+  },
+  {
+   "goto": [
+    20,
+    7
+   ],
+   "note": "the Moon Toad's Pearl Stall"
+  },
+  {
+   "talk": "moon-toad"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'shop'",
+   "timeout": 5000
+  },
+  {
+   "button": "buy:Lantern III"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "buy:Pestle III"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "buy:Star Amulet III"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "buy:Moon-silk Coat III"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "buy:Moon-silk Coat III"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "Leave"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 5000
+  },
+  {
+   "goto": [
+    27,
+    3
+   ]
+  },
+  {
+   "click": [
+    28,
+    2
+   ],
+   "note": "back to the lantern grove"
+  },
+  {
+   "until": "s.map === 'c2-moon-grove' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "click": [
+    23,
+    25
+   ],
+   "note": "rest at the grove's stone"
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "goto": [
+    11,
+    14
+   ]
+  },
+  {
+   "press": "Tab",
+   "note": "Auto-equip (Ninefold gets the second moon-silk)"
+  },
+  {
+   "until": "s.screen === 'camp'",
+   "timeout": 3000
+  },
+  {
+   "button": "tab:Party"
+  },
+  {
+   "button": "Auto-equip best"
+  },
+  {
+   "press": "Tab"
+  },
+  {
+   "until": "s.screen === 'explore'",
+   "timeout": 3000
+  },
+  {
+   "walk": [
+    9,
+    9
+   ],
+   "note": "the clearing"
+  },
+  {
+   "talk": "moth-queen"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto",
+   "note": "BOSS: the Moth Queen (retry)"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    9,
+    9
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "!!s.flags['g_recruit_jade-rabbit']",
+   "timeout": 15000
+  }
+ ]
+}

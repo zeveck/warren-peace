@@ -1,0 +1,222 @@
+{
+ "segment": "fullrun-join",
+ "steps": [
+  {
+   "note": "Toad Hall done; Ratty rowed us back to the River Bank's door. Save in slot 2 (River Bank done).",
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'pause'",
+   "timeout": 3000
+  },
+  {
+   "button": "Save"
+  },
+  {
+   "button": "Slot 2"
+  },
+  {
+   "wait": 400
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'explore'",
+   "timeout": 3000
+  },
+  {
+   "goto": [
+    10,
+    21
+   ],
+   "note": "Otter again: the Toad Hall buttons (518) on the rest of the River Bank stock"
+  },
+  {
+   "talk": "otter"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'shop'",
+   "timeout": 5000
+  },
+  {
+   "button": "buy:Quill II"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "buy:Oilskin II"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "press": "ArrowDown",
+   "times": 2,
+   "note": "the shop shows 9 rows: Courage Ribbon II (row 10) and Motor-goggles II (row 9) by keyboard (sel is on Oilskin II, row 8)"
+  },
+  {
+   "press": "Space"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "press": "ArrowUp"
+  },
+  {
+   "press": "Space"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "Leave"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 5000
+  },
+  {
+   "goto": [
+    5,
+    24
+   ]
+  },
+  {
+   "note": "the quest says: visit home (Burdock wants to see the nursery). Back through the river door",
+   "click": [
+    4,
+    25
+   ]
+  },
+  {
+   "until": "s.map === 'c1-underway' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    16,
+    8
+   ],
+   "note": "to the Depths door"
+  },
+  {
+   "click": [
+    17,
+    8
+   ]
+  },
+  {
+   "until": "s.map === 'c1-depths' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    4,
+    1
+   ],
+   "note": "up through the Depths to the sealed door"
+  },
+  {
+   "click": [
+    4,
+    0
+   ]
+  },
+  {
+   "until": "s.map === 'c0-warren' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    25,
+    25
+   ],
+   "note": "into the deep passage: Home, briefly"
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy && s.flags.c1_home_brief",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    19,
+    28
+   ],
+   "note": "back down through the sealed door"
+  },
+  {
+   "click": [
+    18,
+    28
+   ]
+  },
+  {
+   "until": "s.dialog.open || s.map === 'c1-depths'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c1-depths' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    20,
+    36
+   ],
+   "note": "down through the Depths to the Underway"
+  },
+  {
+   "click": [
+    20,
+    37
+   ]
+  },
+  {
+   "until": "s.map === 'c1-underway' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    4,
+    4
+   ],
+   "note": "the keyhole door"
+  },
+  {
+   "click": [
+    3,
+    3
+   ]
+  },
+  {
+   "spaceUntil": "s.map === 'c1w-hall'",
+   "timeout": 30000,
+   "note": "peer through the keyhole... and fall"
+  }
+ ]
+}

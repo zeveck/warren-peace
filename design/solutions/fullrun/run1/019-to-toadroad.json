@@ -1,0 +1,121 @@
+{
+ "segment": "fullrun-join",
+ "steps": [
+  {
+   "note": "out of Badger's house into the Wild Wood",
+   "click": [
+    7,
+    12
+   ]
+  },
+  {
+   "until": "s.map === 'c1-wildwood' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    1,
+    18
+   ],
+   "note": "back west through the Wild Wood"
+  },
+  {
+   "click": [
+    0,
+    18
+   ]
+  },
+  {
+   "until": "s.map === 'c1-riverbank'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true,
+   "note": "Mole sees the river for the first time (mem-river)"
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "note": "camp menu: Badger and Mole travel (as the Toad Hall plan expects)",
+   "press": "Tab"
+  },
+  {
+   "until": "s.screen === 'camp'",
+   "timeout": 3000
+  },
+  {
+   "button": "tab:Party"
+  },
+  {
+   "button": "member:Badger"
+  },
+  {
+   "button": "member:Mole"
+  },
+  {
+   "press": "Tab"
+  },
+  {
+   "until": "s.screen === 'explore'",
+   "timeout": 3000
+  },
+  {
+   "goto": [
+    10,
+    21
+   ],
+   "note": "walk to Otter"
+  },
+  {
+   "note": "Otter's shop (Ratty's Riverside Swap): coats and claws with the River Bank's buttons",
+   "talk": "otter"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'shop'",
+   "timeout": 5000
+  },
+  {
+   "button": "buy:Waistcoat II"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "buy:Waistcoat II"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "buy:Digging Claw II"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "buy:Sling II"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "Leave"
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 5000
+  },
+  {
+   "goto": [
+    1,
+    6
+   ],
+   "note": "to the road west (Toad Hall)"
+  }
+ ]
+}

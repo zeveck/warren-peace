@@ -1,0 +1,92 @@
+{
+ "segment": "fullrun-join",
+ "steps": [
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "note": "save in slot 1 (Quarry woken)",
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'pause'",
+   "timeout": 3000
+  },
+  {
+   "button": "Save"
+  },
+  {
+   "button": "Slot 1"
+  },
+  {
+   "wait": 400
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'explore'",
+   "timeout": 3000
+  },
+  {
+   "note": "Captain Quarry and Jade Rabbit travel (the hole plan); Quarry is 14th in the list",
+   "press": "Tab"
+  },
+  {
+   "until": "s.screen === 'camp'",
+   "timeout": 3000
+  },
+  {
+   "button": "tab:Party"
+  },
+  {
+   "press": "ArrowDown",
+   "times": 10,
+   "note": "after Quarry's recruit the pair is [Tansy, Captain Quarry]: Tansy (row 10) out"
+  },
+  {
+   "press": "Space"
+  },
+  {
+   "press": "ArrowUp",
+   "times": 1,
+   "note": "Jade (row 9) in"
+  },
+  {
+   "press": "Space"
+  },
+  {
+   "button": "Auto-equip best"
+  },
+  {
+   "press": "Tab"
+  },
+  {
+   "until": "s.screen === 'explore' && s.party.includes('captain-quarry') && s.party.includes('jade-rabbit')",
+   "timeout": 3000
+  },
+  {
+   "walk": [
+    18,
+    13
+   ],
+   "note": "Quarry's rope over the lip"
+  },
+  {
+   "until": "s.dialog.open && s.dialog.choices && s.dialog.full",
+   "timeout": 10000
+  },
+  {
+   "press": "Space",
+   "note": "Climb down."
+  },
+  {
+   "spaceUntil": "s.map === 'c4-underway'",
+   "timeout": 30000
+  }
+ ]
+}

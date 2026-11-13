@@ -1,0 +1,154 @@
+{
+ "segment": "c1-rts1",
+ "steps": [
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    30,
+    12
+   ]
+  },
+  {
+   "click": [
+    30,
+    10
+   ],
+   "note": "the Lookout Stone"
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "until": "s.screen===\"rts-preview\"",
+   "timeout": 8000
+  },
+  {
+   "button": "Start the battle"
+  },
+  {
+   "until": "r && r.tick > 3",
+   "timeout": 8000
+  },
+  {
+   "press": "KeyB",
+   "note": "everyone to the ridge"
+  },
+  {
+   "press": "KeyS"
+  },
+  {
+   "until": "r && r.prompt && r.prompt.startsWith('Arrow keys')",
+   "timeout": 120000
+  },
+  {
+   "wait": 300
+  },
+  {
+   "press": "Space",
+   "note": "read the tip"
+  },
+  {
+   "until": "r.nodes.find(n => n.id === 'ridge').owner === 'player'",
+   "timeout": 60000
+  },
+  {
+   "until": "r && r.prompt && r.prompt.startsWith('The triangle')",
+   "timeout": 120000
+  },
+  {
+   "wait": 300
+  },
+  {
+   "press": "Space",
+   "note": "read the tip"
+  },
+  {
+   "press": "KeyB",
+   "note": "everyone on the clover: their raiders are Swift, our Diggers and Hedgehogs are Stout"
+  },
+  {
+   "press": "KeyD"
+  },
+  {
+   "until": "r && r.prompt && r.prompt.startsWith('Space pauses')",
+   "timeout": 120000
+  },
+  {
+   "wait": 300
+  },
+  {
+   "press": "Space",
+   "note": "read the tip"
+  },
+  {
+   "until": "r && r.prompt && r.prompt.startsWith('Hurt squads')",
+   "timeout": 120000
+  },
+  {
+   "wait": 300
+  },
+  {
+   "press": "Space",
+   "note": "read the tip"
+  },
+  {
+   "until": "r && r.prompt && r.prompt.startsWith('Raider waves')",
+   "timeout": 120000
+  },
+  {
+   "wait": 300
+  },
+  {
+   "press": "Space",
+   "note": "read the tip"
+  },
+  {
+   "until": "r.nodes.find(n => n.id === 'clover').owner === 'player'",
+   "timeout": 90000
+  },
+  {
+   "press": "KeyB",
+   "note": "on to the bolt-hole: the Flamingos dive on their Diggers"
+  },
+  {
+   "press": "KeyJ"
+  },
+  {
+   "until": "r.nodes.find(n => n.id === 'burrow').owner === 'player'",
+   "timeout": 120000
+  },
+  {
+   "press": "KeyB",
+   "note": "the warren mouth: take it and hold it"
+  },
+  {
+   "press": "KeyK"
+  },
+  {
+   "until": "!r || r.result === 'win'",
+   "timeout": 200000
+  },
+  {
+   "until": "!r",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "!!s.flags['g_c1-rts1_won']",
+   "timeout": 15000,
+   "note": "segment done: c1-rts1"
+  }
+ ]
+}

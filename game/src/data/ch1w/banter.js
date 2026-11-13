@@ -1,0 +1,146 @@
+// ch1w banter: Talk lines per area (camp Talk tab and rest stones), map-entry bubbles, pair banters.
+import { flag } from '../../state.js';
+
+const T = (who, line, cond) => ({ who, line, ...(cond ? { cond } : {}) });
+const won = () => flag('g_c1_wonder_done');
+const choirWon = () => flag('c1w_choir_won');
+
+export default {
+  // ---------------------------------------------------------------- Talk, by area
+  'talk.hall': [
+    T('burdock', 'Hmph. I\'m inside you, Bramble. Don\'t do anything daft. I\'ll feel it.'),
+    T('burdock', 'All these doors and not one of them dug properly.'),
+    T('mole', 'It\'s ever so snug, being tucked in. Like a burrow that walks about. I could get used to it.'),
+    T('mole', 'Doors everywhere and none of them lead home. I don\'t mind. Much.'),
+    T('ratty', 'A hall where the floor is a chessboard and the doors are all too small. It\'s like a riddle someone forgot to finish.'),
+    T('ratty', 'I\'d trade every one of these doors for a single good boat.'),
+    T('badger', 'I don\'t hold with places that change your size. A badger should be badger-sized. Hmph.'),
+    T('badger', 'Mind the drink, Bramble. And the cake. And anything that says it wants to be eaten.'),
+    T('toad', 'A golden key! On a glass table! I had a glass table once. I sold it to buy a horn for the motor-car.'),
+    T('toad', 'Let me be the big one next time! Toad the Tremendous! Poop-poop!'),
+    T('cheshire-cat', 'Every door here is locked, except the ones that aren\'t. That\'s rather the point of doors.', won),
+    T('caterpillar', 'Hm. Bigger, smaller. You get used to it. Then you don\'t. Then you do.', won),
+  ],
+  'talk.shore': [
+    T('burdock', 'Salt water. Your tears, they say. Hmph. You\'re allowed. Just don\'t make a habit of it.'),
+    T('mole', 'Everybody won! I\'ve never won a race before. I\'ve never even been IN a race.'),
+    T('mole', 'The Dodo gave me a thimble and said it was mine. It was already mine. I\'m very pleased.'),
+    T('ratty', 'A pool made of tears. Somehow it\'s still a lovely place to mess about. I\'d like a little boat on it.'),
+    T('ratty', 'Comfits! The Dodo\'s comfits! Mole, save me one. Mole. MOLE.'),
+    T('badger', 'A race that nobody loses. Dodo\'s cleverer than he looks. Which isn\'t hard.'),
+    T('toad', 'The Caucus-race! Nobody beat me. I didn\'t beat anybody either. Most satisfactory all round.'),
+    T('toad', 'I asked the Dodo if he wanted to buy a motor-car. He said he\'d think about it for a thousand years.'),
+    T('cheshire-cat', 'The Dodo has been drying off since before I was born. It\'s more of a hobby now.', won),
+  ],
+  'talk.rabbit-house': [
+    T('burdock', 'A rabbit with a house. Walls. Chairs. Hmph. What\'s wrong with a good hole?'),
+    T('mole', 'The White Rabbit\'s house is so neat. I wonder who does his spring-cleaning. I\'d offer, but I\'d want to be paid in jam.'),
+    T('ratty', 'A rabbit in a waistcoat, with gloves and a fan, always late. I think I could write a poem about him. A short one. He\'d be late for it.'),
+    T('badger', 'That Bill the Lizard took his flight very well. Sensible creature. Not much to say for himself, but sensible.'),
+    T('toad', 'You were stuck in a house? I was stuck in a jail once. Houses are much nicer. Fewer jailers.'),
+    T('toad', 'I could have got you out in a trice. I\'d have... well. I\'d have thought of something. Eventually.'),
+  ],
+  'talk.wood': [
+    T('burdock', 'Mushrooms as big as oaks. Hmph. I\'d not want to dig under one of those. They\'d have roots like ropes.'),
+    T('mole', 'The Caterpillar asked me who I was. I said "a mole". He said that wasn\'t what he asked. I think he was right?'),
+    T('mole', 'A baby turning into a pig! I do hope it\'s happy. It LOOKED happy. It looked very piggy and happy.'),
+    T('ratty', 'This wood\'s nothing like the Wild Wood. It\'s strange, but it isn\'t cruel. You can tell the difference.'),
+    T('badger', 'The Duchess. Hmph. Pepper and morals. I\'ve known weasels with better manners.'),
+    T('toad', 'The Pigeon called you a serpent! Ha! I\'ve been called worse. I\'ve been called a washerwoman.'),
+    T('cheshire-cat', 'This is my wood, more or less. I appear in it. It\'s a living.', () => flag('g_recruit_cheshire-cat')),
+    T('cheshire-cat', 'The Duchess means well. She means it very loudly, and with pepper.', () => flag('g_recruit_cheshire-cat')),
+    T('caterpillar', 'My mushroom is just over there. I am not homesick. I am merely looking in its direction.', () => flag('g_recruit_caterpillar')),
+    T('caterpillar', 'Who are you NOW, rabbit? Ask yourself that each morning. It saves time later.', () => flag('g_recruit_caterpillar')),
+  ],
+  'talk.tea': [
+    T('burdock', 'Always six o\'clock. Hmph. Imagine never getting to the end of the day. I\'d never get to bed.'),
+    T('mole', 'The Dormouse\'s story was about living at the bottom of a well, drawing things you remember. It made me a bit homesick. And a bit afraid.'),
+    T('ratty', 'Why is a raven like a writing-desk? I\'ve been turning it over. I think the answer is: because it\'s a lovely question.'),
+    T('badger', 'That Hatter wants a good sit by a fire and a proper night\'s sleep. Hmph. Don\'t we all.'),
+    T('toad', 'The Hatter admired my waistcoat! At least, he said "what a waistcoat". I choose to take that as admiration.'),
+    T('cheshire-cat', 'The Hatter and I go back. Well, sideways. Nothing goes back here. Time\'s not speaking to him.', () => flag('g_recruit_cheshire-cat')),
+    T('caterpillar', 'A tea-party that never ends. Hm. Some would call it a nightmare. They would call it tea-time.', () => flag('g_recruit_caterpillar')),
+  ],
+  'talk.garden': [
+    T('burdock', 'Croquet with live flamingos. Hmph. The poor things. I\'d have dug them a hole to hide in.'),
+    T('mole', 'The roses are red now. Mostly. A little bit is on your nose, Bramble. And on Toad.'),
+    T('ratty', 'A garden painted to please a Queen. I like the white ones better, if I\'m honest. Don\'t tell her.'),
+    T('badger', 'That King. Quiet fellow. Pardons everyone. There\'s more sense in him than in the whole court.'),
+    T('badger', 'Wonderland\'s with us now. Loud, and muddled, and on our side. I\'ve had worse allies. I\'ve had weasels.', won),
+    T('toad', 'I could have beaten the Queen at croquet with one paw. I DID beat the Queen at croquet. Well, you did. With my help. Mainly mine.'),
+    T('cheshire-cat', '"Off with his head!" She says it to everyone. Nobody ever loses one. It\'s her way of saying good afternoon.', () => flag('g_recruit_cheshire-cat')),
+    T('caterpillar', 'Hm. A trial with tarts and no verdict. Most sensible thing in this whole country.', () => flag('g_recruit_caterpillar')),
+  ],
+  'talk.shallows': [
+    T('burdock', 'Those carvings. Rabbits, digging. Something watched them dig a long time. Hmph. I don\'t like being watched.'),
+    T('burdock', 'Stay close. I mean it.', () => !choirWon()),
+    T('mole', 'It whispered your name, Bramble. Kindly. That\'s worse, isn\'t it? I think that\'s worse.'),
+    T('mole', 'I used to think the dark was cosy. This dark isn\'t. This dark is thinking.', () => !choirWon()),
+    T('ratty', 'There\'s no poem in this place. I tried. All the words came out cold.'),
+    T('badger', 'A room bigger inside than its door. I knew a buried city like that. But this... this was never anybody\'s home.'),
+    T('badger', 'That mural. Deepdelve, digging. And underneath, something asleep. Hmph. Let it sleep, I say. Let it sleep well.', choirWon),
+    T('toad', 'I\'m not frightened. Toad is never frightened. Toad would just like to go up now. Please.'),
+    T('cheshire-cat', 'Even I don\'t vanish down here. I don\'t like to think where I\'d go.'),
+    T('caterpillar', 'Hm. Who are you, the stone asks. It doesn\'t want to know. It wants you to forget.'),
+    T('ninefold', 'This is where I lived. I sat in the corner and was sorry. Now I am leaving the corner. It is strange to see it from the door.', () => flag('g_recruit_ninefold')),
+    T('ninefold', 'The Choir was not wicked. It was a dream, said out loud. I am glad it is quiet now.', choirWon),
+  ],
+
+  // ---------------------------------------------------------------- map-entry bubbles
+  'enter.c1w-hall': [T('burdock', 'Three doors. I don\'t like the eye.'), T('mole', 'So many doors! And all of them shut.'), T('toad', 'A golden key! It\'s calling to me!'), T('badger', 'Mind the bottles.'), T('cheshire-cat', 'Home sweet hall.'), T('ratty', 'Chessboard floors. How civilised.')],
+  'enter.c1w-pool': [T('ratty', 'Water! Salty, but water!'), T('mole', 'Is this all YOUR tears, Bramble?'), T('toad', 'A race! I hear a race!'), T('badger', 'Wet feet. Hmph.'), T('cheshire-cat', 'Everybody wins here. So tedious.')],
+  'enter.c1w-lane': [T('mole', 'A rabbit\'s house! With a door!'), T('burdock', 'Hedges. Good, thick ones.'), T('toad', 'What a charming villa!'), T('ratty', 'Smell that clover.')],
+  'enter.c1w-rabbit-house': [T('mole', 'Ever so tidy.'), T('badger', 'Don\'t touch anything.'), T('toad', 'Small, but tasteful.'), T('burdock', 'Low ceiling. Hmph.')],
+  'enter.c1w-wood': [T('mole', 'Mushrooms as big as trees!'), T('ratty', 'A hedge with no gate. Odd.'), T('badger', 'Stay on the path.'), T('toad', 'I could drive through this!'), T('caterpillar', 'Home. Hm.'), T('cheshire-cat', 'My wood. Ish.')],
+  'enter.c1w-duchess': [T('mole', 'Ah-ah-ACHOO!'), T('badger', 'Pepper. Too much of it.'), T('toad', 'Achoo! I say! Achoo!'), T('burdock', 'Hmph. Achoo.')],
+  'enter.c1w-tea': [T('toad', 'Tea! Excellent!'), T('mole', 'Is there jam?'), T('ratty', 'A picnic! Of sorts.'), T('cheshire-cat', 'Still six o\'clock, I see.'), T('caterpillar', 'Hm. Them.')],
+  'enter.c1w-garden': [T('mole', 'Roses! Lovely roses!'), T('badger', 'Watch the Queen.'), T('toad', 'A croquet lawn! I\'m famous at croquet!'), T('cheshire-cat', 'Mind your heads.'), T('caterpillar', 'Flamingos. Hm.')],
+  'enter.c1w-shallows': [T('mole', 'It\'s so quiet.'), T('burdock', 'Stay where I can see your ears.'), T('badger', 'Careful now.'), T('toad', 'I\'d like to go up, please.'), T('cheshire-cat', 'Oh. I don\'t like this one.'), T('ninefold', 'Home. Of a kind.', () => flag('g_recruit_ninefold'))],
+  'enter.c1w-deep': [T('mole', 'It\'s bigger than it ought to be.'), T('ratty', 'This room goes on and on.'), T('badger', 'Something\'s here.'), T('caterpillar', 'This room is thinking.'), T('ninefold', 'My corner. I will not miss it.', () => flag('g_recruit_ninefold'))],
+
+  // ---------------------------------------------------------------- pair banters
+  pairs: [
+    { id: 'c1w-ninefold-cat', a: 'ninefold', b: 'cheshire-cat', lines: [
+      ['ninefold', 'Cat. You vanish. All of you, except the smile. How do you do it?'],
+      ['cheshire-cat', 'Practice. And not caring very much where the rest of me goes.'],
+      ['ninefold', 'I have nine eyes. I could never vanish. Somebody would always see one of them.'],
+      ['cheshire-cat', 'Then don\'t vanish. Be looked at. It\'s braver, I\'m told.'],
+      ['ninefold', 'Nobody has ever told me I was brave. I will keep that forever too.'],
+    ] },
+    { id: 'c1w-caterpillar-mole', a: 'caterpillar', b: 'mole', lines: [
+      ['caterpillar', 'Who are YOU?'],
+      ['mole', 'Oh! Er. Mole. Of Mole End. I whitewash, and I like rivers, and I miss my front parlour.'],
+      ['caterpillar', 'Hm. That is more of an answer than I usually get.'],
+      ['mole', 'Is it the right answer?'],
+      ['caterpillar', 'There is no right answer. That one was nice, though. Keep it.'],
+    ] },
+    { id: 'c1w-toad-cat', a: 'toad', b: 'cheshire-cat', lines: [
+      ['toad', 'I say, Cat, how does one vanish? Asking for a friend. The friend is me. Bailiffs, you understand.'],
+      ['cheshire-cat', 'First, you stop thinking you\'re the most important thing in the room.'],
+      ['toad', 'Ah.'],
+      ['cheshire-cat', 'Yes. I thought that might be the difficulty.'],
+    ] },
+    { id: 'c1w-badger-caterpillar', a: 'badger', b: 'caterpillar', lines: [
+      ['caterpillar', 'You. Large, stripy one. Who are you?'],
+      ['badger', 'Badger.'],
+      ['caterpillar', 'That is not an answer, it is a description.'],
+      ['badger', 'Hmph. It\'s the only answer anyone\'s needed in a hundred years.'],
+      ['caterpillar', '...Fair. I shall use that one myself.'],
+    ] },
+    { id: 'c1w-ratty-ninefold', a: 'ratty', b: 'ninefold', lines: [
+      ['ninefold', 'Rat. Bramble says you know about the river. Is it true it goes somewhere?'],
+      ['ratty', 'Everywhere, old thing. Down to the sea and back up as rain. It never stops.'],
+      ['ninefold', 'Down in the Shallows, nothing moves unless it is frightened.'],
+      ['ratty', 'Then come up and sit in my boat a while. Nothing frightened about a boat. Mostly.'],
+      ['ninefold', 'I would like that more than I know how to say.'],
+    ] },
+    { id: 'c1w-burdock-ninefold', a: 'burdock', b: 'ninefold', lines: [
+      ['ninefold', 'You did not scream, when you first saw me.'],
+      ['burdock', 'Hmph. Nearly did.'],
+      ['ninefold', 'But you did not. I noticed.'],
+      ['burdock', 'You\'re small. You\'re polite. You fight beside Bramble. That\'s plenty.'],
+      ['ninefold', 'That is the kindest thing a large rabbit has ever said to me.'],
+      ['burdock', 'Don\'t spread it about.'],
+    ] },
+  ],
+};

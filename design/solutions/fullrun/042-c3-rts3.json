@@ -1,0 +1,277 @@
+{
+ "segment": "c3-rts3",
+ "steps": [
+  {
+   "until": "s.screen === 'rts-preview' || s.dialog.open || s.screen === 'chapter'",
+   "timeout": 8000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'rts-preview'",
+   "timeout": 8000
+  },
+  {
+   "button": "Start the battle"
+  },
+  {
+   "until": "r && r.nodes",
+   "timeout": 8000,
+   "note": "diggers and otters stay home; the rest gather in the stooks"
+  },
+  {
+   "press": "Digit2"
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit3"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit4"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit5"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit6"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit7"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit9"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit0"
+   ],
+   "ms": 80
+  },
+  {
+   "press": "KeyS"
+  },
+  {
+   "until": "r.tick >= 160 && r.nodes.find(n => n.id === 'stooks').owner === 'player'",
+   "timeout": 60000,
+   "note": "then all at the mill, with Rally"
+  },
+  {
+   "press": "Digit2"
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit3"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit4"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit5"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit6"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit7"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit9"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit0"
+   ],
+   "ms": 80
+  },
+  {
+   "press": "KeyG"
+  },
+  {
+   "press": "KeyQ"
+  },
+  {
+   "until": "r.nodes.find(n => n.id === 'mill').owner === 'player'",
+   "timeout": 90000
+  },
+  {
+   "press": "Digit2"
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit3"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit4"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit5"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit6"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit7"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit9"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit0"
+   ],
+   "ms": 80
+  },
+  {
+   "press": "KeyK"
+  },
+  {
+   "until": "r.nodes.find(n => n.id === 'cart').owner === 'player'",
+   "timeout": 90000
+  },
+  {
+   "press": "Digit2"
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit3"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit4"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit5"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit6"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit7"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit9"
+   ],
+   "ms": 80
+  },
+  {
+   "keys": [
+    "Shift",
+    "Digit0"
+   ],
+   "ms": 80
+  },
+  {
+   "press": "KeyZ"
+  },
+  {
+   "until": "r.result === 'win'",
+   "timeout": 150000
+  },
+  {
+   "until": "!r",
+   "timeout": 20000
+  },
+  {
+   "spaceUntil": "s.screen === 'chapter' || (s.map === 'c3-wheatsheaf' && !s.busy)",
+   "timeout": 30000,
+   "note": "stop on the Chapter 3 card"
+  },
+  {
+   "shot": "/workspaces/gg-test3/design/screenshots/fullrun3-ch3-card.png",
+   "delay": 700
+  }
+ ]
+}

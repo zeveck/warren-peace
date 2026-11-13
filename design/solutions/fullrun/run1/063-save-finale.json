@@ -1,0 +1,11 @@
+{"segment": "fullrun-join", "note": "the Finale card played inside 062's last talkthrough (the gathering runs on arrival), so its screenshot was missed", "steps": [
+ {"until": "s.screen === 'explore' && !s.busy", "timeout": 10000},
+ {"note": "Chapter 4 done: save in slot 3", "press": "Escape"},
+ {"until": "s.screen === 'pause'", "timeout": 3000},
+ {"button": "Save"},
+ {"button": "Slot 3"},
+ {"wait": 400},
+ {"press": "Escape"},
+ {"press": "Escape"},
+ {"until": "s.screen === 'explore'", "timeout": 3000}
+]}

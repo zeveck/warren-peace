@@ -1,0 +1,59 @@
+{
+ "segment": "fullrun-join",
+ "steps": [
+  {
+   "note": "save in slot 1 through the pause menu (end of the Prologue)",
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'pause'",
+   "timeout": 3000
+  },
+  {
+   "button": "Save"
+  },
+  {
+   "button": "Slot 1"
+  },
+  {
+   "wait": 400
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'explore'",
+   "timeout": 3000
+  },
+  {
+   "until": "s.screen === 'explore' && s.map === 'c0-warren'",
+   "timeout": 3000
+  },
+  {
+   "goto": [
+    19,
+    28
+   ],
+   "note": "down the deep passage to the old sealed door"
+  },
+  {
+   "click": [
+    18,
+    28
+   ],
+   "note": "the sealed door: the Old Key turns"
+  },
+  {
+   "spaceUntil": "s.screen === 'chapter'",
+   "timeout": 30000,
+   "note": "stop on the Chapter 1 card"
+  },
+  {
+   "shot": "/workspaces/gg-test3/design/screenshots/fullrun3-ch1-card.png",
+   "delay": 700
+  }
+ ]
+}

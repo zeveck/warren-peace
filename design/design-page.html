@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Warren Peace Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Layout: a narrow reading column with a sticky contents rail on wide screens; chalk-and-dusk downland palette */
+  --paper: #eef0e9;
+  --panel: #f8f9f5;
+  --ink: #22251f;
+  --muted: #5d6458;
+  --rule: #cfd4c6;
+  --accent: #4b3f72;
+  --accent-soft: rgba(75, 63, 114, 0.10);
+  --sage: #5f7f4f;
+  --hum: #3b7f8f;
+  --display: "Pixelify Sans", "Courier New", monospace;
+  --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #17181c;
+    --panel: #1f2126;
+    --ink: #e7e8e2;
+    --muted: #a3a89c;
+    --rule: #34373d;
+    --accent: #a99be0;
+    --accent-soft: rgba(169, 155, 224, 0.14);
+    --sage: #9cbf88;
+    --hum: #8fcfdc;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #17181c;
+  --panel: #1f2126;
+  --ink: #e7e8e2;
+  --muted: #a3a89c;
+  --rule: #34373d;
+  --accent: #a99be0;
+  --accent-soft: rgba(169, 155, 224, 0.14);
+  --sage: #9cbf88;
+  --hum: #8fcfdc;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+.wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+}
+@media (min-width: 980px) {
+  .wrap { grid-template-columns: 200px minmax(0, 1fr); }
+  nav.toc { position: sticky; top: 32px; align-self: start; }
+}
+nav.toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 14px; }
+nav.toc a { color: var(--muted); text-decoration: none; }
+nav.toc a:hover, nav.toc a:focus-visible { color: var(--accent); }
+nav.toc .label { font-family: var(--display); font-size: 13px; color: var(--accent); letter-spacing: 0.04em; margin-bottom: 10px; }
+main { min-width: 0; max-width: 760px; }
+header.top { display: grid; gap: 8px; padding-bottom: 28px; border-bottom: 1px solid var(--rule); margin-bottom: 8px; }
+h1 { font-family: var(--display); font-weight: 700; font-size: clamp(36px, 6vw, 56px); line-height: 1.05; margin: 0; color: var(--accent); text-wrap: balance; }
+.tagline { font-size: 19px; color: var(--muted); margin: 0; font-style: italic; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.chip { font-size: 13px; padding: 3px 10px; border: 1px solid var(--rule); border-radius: 999px; color: var(--muted); background: var(--panel); }
+h2 { font-family: var(--display); font-weight: 500; font-size: 28px; line-height: 1.2; margin: 56px 0 12px; color: var(--ink); text-wrap: balance; scroll-margin-top: 24px; }
+h3 { font-size: 18px; font-weight: 600; margin: 32px 0 8px; text-wrap: balance; }
+p, li { max-width: 68ch; }
+p { margin: 0 0 14px; }
+ul, ol { padding-left: 22px; margin: 0 0 14px; display: grid; gap: 6px; }
+.lead { font-size: 18px; }
+strong { font-weight: 600; }
+.table-wrap { overflow-x: auto; margin: 16px 0 20px; border: 1px solid var(--rule); border-radius: 8px; background: var(--panel); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; line-height: 1.45; }
+th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--rule); }
+th { font-weight: 600; color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; background: var(--accent-soft); }
+tr:last-child td { border-bottom: 0; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.lvl { display: inline-block; font-size: 12.5px; padding: 1px 8px; border-radius: 999px; white-space: nowrap; border: 1px solid var(--rule); }
+.lvl.vh, .lvl.h-risk { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+.lvl.h { color: var(--ink); }
+.lvl.m { color: var(--muted); }
+.lvl.l { color: var(--muted); border-style: dashed; }
+figure { margin: 20px 0 24px; }
+figure svg { width: 100%; height: auto; display: block; }
+figcaption { font-size: 13.5px; color: var(--muted); margin-top: 8px; }
+.callout { border-left: 3px solid var(--hum); padding: 4px 0 4px 16px; margin: 18px 0; color: var(--ink); }
+.done { list-style: none; padding-left: 0; }
+.done li { padding-left: 28px; position: relative; }
+.done li::before { content: ""; position: absolute; left: 0; top: 5px; width: 14px; height: 14px; border: 1.5px solid var(--sage); border-radius: 3px; }
+a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 14px; }
+/* 2x2 drawing */
+.q-frame { fill: none; stroke: var(--rule); stroke-width: 1.5; }
+.q-hot { fill: var(--accent-soft); }
+.q-line { stroke: var(--rule); stroke-width: 1.25; }
+.q-name { font: 600 12px var(--body); fill: var(--muted); }
+.q-name.hot { fill: var(--accent); }
+.q-item { font: 400 14px var(--body); fill: var(--ink); }
+.q-item.hot { font-weight: 600; }
+.q-dot { fill: var(--muted); opacity: 0.55; }
+.q-dot.hot { fill: var(--accent); opacity: 1; }
+.q-axis { font: 400 12.5px var(--body); fill: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="toc" aria-label="Contents">
+    <div class="label">CONTENTS</div>
+    <ol>
+      <li><a href="#brief">The brief</a></li>
+      <li><a href="#effort">Effort at a glance</a></li>
+      <li><a href="#pitch">Pitch and controls</a></li>
+      <li><a href="#story">Story and worlds</a></li>
+      <li><a href="#allies">Allies</a></li>
+      <li><a href="#battles">Battles</a></li>
+      <li><a href="#assets">Art, sound and assets</a></li>
+      <li><a href="#done">Screens and done</a></li>
+    </ol>
+  </nav>
+  <main>
+    <header class="top">
+      <h1>Warren Peace</h1>
+      <p class="tagline">A war between warrens, a door that was never meant to open, and the long way down to peace.</p>
+      <div class="meta">
+        <span class="chip">Game design</span>
+        <span class="chip">Isometric pixel-art RPG with a light army war</span>
+        <span class="chip">Desktop browser</span>
+        <span class="chip">About 4 to 4.5 hours</span>
+        <span class="chip">Reviewed in 2 rounds</span>
+      </div>
+    </header>
+
+    <section id="brief">
+      <h2>The brief</h2>
+      <p class="lead">Warren Peace is a large, cozy-epic isometric pixel-art adventure RPG with a light army-building war. A young rabbit whose warren is wrecked by maddened neighbours goes down through a door that was never meant to open. There he gathers friends from storybook worlds and from the strange deep places beneath every warren, and builds an army that frees each warren in turn, until all of them stand together on the downs at peace.</p>
+      <p><strong>The feeling.</strong> Warm grass, low sun, friends who tease each other, and a growing band of oddballs who'd follow you anywhere. Underneath runs a quiet chill that gets colder with every layer down: carvings that look back, whispers in tunnels, wrong-angled rooms. Eerie, never gory, never hopeless. The war is sad rather than cruel: the enemy rabbits are victims to be woken, not villains to be killed. All ages.</p>
+      <p><strong>Who and where.</strong> Players of all ages who like cozy RPGs and storybooks; a parent and child could play it together. Desktop browser with keyboard and mouse. Sessions of 20 to 45 minutes, with saves anywhere on the surface and autosaves at every door.</p>
+
+      <h3>What was asked for</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Asked for</th><th>Where it is in the design</th></tr></thead>
+        <tbody>
+          <tr><td>2D isometric pixel art, a large game with a real story, plenty of dialog, a party you care about</td><td>The whole design; a 15-member party, a Talk tab and pair banter</td></tr>
+          <tr><td>A warm, strong title</td><td>"Warren Peace" (one of the requester's own ideas)</td></tr>
+          <tr><td>Cozy-epic, all-ages, an eerie but never gory Lovecraft thread</td><td>Four layers of the Depths, getting stranger each time</td></tr>
+          <tr><td>The mood of Watership Down, with all-original names and story</td><td>Chalk downs and warren life; no names, language or plot borrowed</td></tr>
+          <tr><td>Hop, talk, nibble grass on the downs; a warren maze below</td><td>Prologue on Sorrel Down and in Thimblebank Warren</td></tr>
+          <tr><td>A few minutes in, rivals attack, wreck the warren, carry rabbits off</td><td>The attack lands 4 to 6 minutes in</td></tr>
+          <tr><td>An RTS battle you can start any time on the downs, unwinnable alone</td><td>The Lookout Stone, with a guided first try and a safe retreat</td></tr>
+          <tr><td>The elder's key to the sealed Depths</td><td>Old Yarrow gives Bramble the Old Key</td></tr>
+          <tr><td>Easy RPG battles in the deeper warren</td><td>Thimblebank Depths</td></tr>
+          <tr><td>Every warren's Depths leads to a story world and a deeper Lovecraft layer</td><td>Each warren has its own Underway hub</td></tr>
+          <tr><td>Home: Wind in the Willows, Alice in Wonderland, the shallows</td><td>River Bank, Wonderland, the Shallows</td></tr>
+          <tr><td>Then the Moon Rabbit, Oz (the book's), Journey to the Center of the Earth</td><td>Silverdown and the Moon, Wheatsheaf and Oz, Flintcomb and the Hole</td></tr>
+          <tr><td>Locals to recruit, a key ally or two per place, a rabbit friend from home</td><td>More than 25 recruits, each with a quest; Burdock, Tansy, Pip and Quarry from home</td></tr>
+          <tr><td>The Cheshire Cat can join the party</td><td>It does: a rogue who vanishes and leaves the grin</td></tr>
+          <tr><td>Turn-based battles, party of 3; everyone joins the army</td><td>Both, with every recruit leading a squad</td></tr>
+          <tr><td>A light RTS: strategy over clicking</td><td>Few squads, pause with orders allowed, a three-way matchup</td></tr>
+          <tr><td>Shops for party gear and army gear</td><td>Seven shops, each selling both</td></tr>
+          <tr><td>The war's cause: a warren dug too deep and woke something</td><td>The Undersleeper and its Hum</td></tr>
+          <tr><td>The finale in the deepest depths, then peace on the downs</td><td>The Long Thump, the Dream, the sunset ending</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>Decisions made for the requester</h3>
+      <ul>
+        <li><strong>The creature.</strong> The Undersleeper is a vast, ancient dreamer beneath all the depths. It isn't evil: digging too deep disturbs its sleep, and its bad dreams leak upward as <strong>the Hum</strong>, a drone that makes rabbits forget their names and want only to dig.</li>
+        <li><strong>How it's broken.</strong> Not by killing: Hum-taken rabbits are woken in battle. In the finale every freed warren drums the old warning-thump as one, while Bramble tells the sleeper the story of the journey until it dreams a kind dream.</li>
+        <li><strong>No killing anywhere.</strong> Enemies are woken, fade back into the dark, or are sent packing. Fallen allies just rest.</li>
+        <li><strong>Hero:</strong> Bramble, a young buck with one floppy ear. All other names are invented or come from the public-domain books, which are used as originally written (in Oz the shoes are silver).</li>
+        <li><strong>Visible enemies, no random battles,</strong> so there's less grinding and the game is easier to test.</li>
+        <li><strong>Quality first.</strong> The requester said quality and completeness matter more than cost.</li>
+      </ul>
+    </section>
+
+    <section id="effort">
+      <h2>Effort at a glance</h2>
+      <p class="lead">The game is big in every direction: about 45 maps, more than 100 named characters, 47 kinds of foe, 6 army battles and roughly 440 pieces of art. The heaviest work is the writing and the art pipeline; the riskiest parts are keeping hundreds of generated images looking like one game and making the army battles fair.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Part</th><th>Size</th><th>Work</th><th>Risk</th></tr></thead>
+        <tbody>
+          <tr><td>Story and chapters</td><td>A prologue, 4 chapters and a finale; about 4 to 4.5 hours of play</td><td><span class="lvl h">High</span></td><td><span class="lvl l">Low</span></td></tr>
+          <tr><td>Maps</td><td>About 45 isometric maps: 4 warrens, 5 storybook worlds, 4 depth layers, the finale</td><td><span class="lvl h">High</span></td><td><span class="lvl m">Medium</span></td></tr>
+          <tr><td>Dialog</td><td>Every named character with lines before and after their story beat; about 270 party Talk lines, 30 pair banters, map-entry lines for every map</td><td><span class="lvl vh">Very high</span></td><td><span class="lvl m">Medium</span></td></tr>
+          <tr><td>Party</td><td>15 members, each with 5 skills and their own army squad</td><td><span class="lvl h">High</span></td><td><span class="lvl m">Medium</span></td></tr>
+          <tr><td>Recruits</td><td>25 recruits, each with a quest; 26 player squads</td><td><span class="lvl h">High</span></td><td><span class="lvl l">Low</span></td></tr>
+          <tr><td>RPG battles</td><td>31 regular enemy types at up to 3 strengths, 16 boss fights, each with its own mechanic</td><td><span class="lvl h">High</span></td><td><span class="lvl m">Medium</span></td></tr>
+          <tr><td>Army battles</td><td>A guided prologue battle plus 5 full battles, 9 enemy squad types, 4 army abilities</td><td><span class="lvl h">High</span></td><td><span class="lvl h-risk">High</span></td></tr>
+          <tr><td>One-off mechanics</td><td>Wonderland size puzzles, the China Country's cracking floor, Mole's scent trail, the Kalidah chase, the shepherd sneak, escorts</td><td><span class="lvl m">Medium</span></td><td><span class="lvl h-risk">High</span></td></tr>
+          <tr><td>Character art</td><td>About 90 characters as map and battle sprites, plus action poses for every fighter</td><td><span class="lvl vh">Very high</span></td><td><span class="lvl h-risk">High</span></td></tr>
+          <tr><td>Bramble</td><td>4 true facings (his floppy ear stays on one side), 3 sizes, 7 animations</td><td><span class="lvl m">Medium</span></td><td><span class="lvl h-risk">High</span></td></tr>
+          <tr><td>Animations</td><td>15 animations (hops in four directions, idle, nibble, battle moves, the Cheshire Cat's vanish, the Witch's melt, wings)</td><td><span class="lvl m">Medium</span></td><td><span class="lvl m">Medium</span></td></tr>
+          <tr><td>Portraits</td><td>About 64 portraits for everyone who speaks, plus code recolours for the home rabbits</td><td><span class="lvl h">High</span></td><td><span class="lvl m">Medium</span></td></tr>
+          <tr><td>Props and scenery</td><td>About 116 props across 29 sheets, every interior furnished</td><td><span class="lvl h">High</span></td><td><span class="lvl m">Medium</span></td></tr>
+          <tr><td>Backdrops and key art</td><td>18 battle backdrops, the sea, the mural, title, ending, the attack, 3 intro cards</td><td><span class="lvl m">Medium</span></td><td><span class="lvl l">Low</span></td></tr>
+          <tr><td>Music</td><td>19 instrumental tracks, about 30 minutes, each needing a clean loop point</td><td><span class="lvl m">Medium</span></td><td><span class="lvl m">Medium</span></td></tr>
+          <tr><td>Sound</td><td>42 effects, 7 ambient loops, 5 voiced lines</td><td><span class="lvl m">Medium</span></td><td><span class="lvl l">Low</span></td></tr>
+          <tr><td>Testing</td><td>30 replayable story segments, each proved finishable with real input, plus a full playthrough</td><td><span class="lvl h">High</span></td><td><span class="lvl h-risk">High</span></td></tr>
+        </tbody>
+      </table></div>
+
+      <figure>
+        <svg viewBox="0 0 760 540" role="img" aria-label="Character art, army battles and testing are the most work and the most risk">
+          <text x="24" y="30" style="font: 600 16px var(--body); fill: var(--ink);">Character art, army battles and testing: most work, most risk</text>
+          <rect class="q-hot" x="416" y="60" width="312" height="216"/>
+          <rect class="q-frame" x="104" y="60" width="624" height="428" rx="8"/>
+          <line class="q-line" x1="416" y1="60" x2="416" y2="488"/>
+          <line class="q-line" x1="104" y1="276" x2="728" y2="276"/>
+          <text class="q-axis" x="416" y="516" text-anchor="middle">Less work → more work</text>
+          <text class="q-axis" x="62" y="274" text-anchor="middle" transform="rotate(-90 62 274)">Less risk → more risk</text>
+          <text class="q-name" x="120" y="84">Risky but contained</text>
+          <text class="q-name hot" x="432" y="84">Most work, most risk</text>
+          <text class="q-name" x="120" y="300">Smaller and steadier</text>
+          <text class="q-name" x="432" y="300">Big but steady</text>
+          <circle class="q-dot hot" cx="448" cy="118" r="6"/><text class="q-item hot" x="464" y="123">Character art (about 440 figures)</text>
+          <circle class="q-dot hot" cx="448" cy="166" r="6"/><text class="q-item hot" x="464" y="171">Army battles (6, balance)</text>
+          <circle class="q-dot hot" cx="448" cy="214" r="6"/><text class="q-item hot" x="464" y="219">Testing (30 segments)</text>
+          <circle class="q-dot" cx="136" cy="118" r="6"/><text class="q-item" x="152" y="123">One-off mechanics</text>
+          <circle class="q-dot" cx="136" cy="166" r="6"/><text class="q-item" x="152" y="171">Bramble's facings and ear</text>
+          <circle class="q-dot" cx="448" cy="326" r="6"/><text class="q-item" x="464" y="331">Dialog and banter</text>
+          <circle class="q-dot" cx="448" cy="354" r="6"/><text class="q-item" x="464" y="359">Maps (about 45)</text>
+          <circle class="q-dot" cx="448" cy="382" r="6"/><text class="q-item" x="464" y="387">Story and chapters</text>
+          <circle class="q-dot" cx="448" cy="410" r="6"/><text class="q-item" x="464" y="415">Party and 25 recruits</text>
+          <circle class="q-dot" cx="448" cy="438" r="6"/><text class="q-item" x="464" y="443">Turn-based battles, 16 bosses</text>
+          <circle class="q-dot" cx="448" cy="466" r="6"/><text class="q-item" x="464" y="471">Portraits and props</text>
+          <circle class="q-dot" cx="136" cy="326" r="6"/><text class="q-item" x="152" y="331">Animations (15)</text>
+          <circle class="q-dot" cx="136" cy="354" r="6"/><text class="q-item" x="152" y="359">Music (19 tracks)</text>
+          <circle class="q-dot" cx="136" cy="382" r="6"/><text class="q-item" x="152" y="387">Sound and voice</text>
+          <circle class="q-dot" cx="136" cy="410" r="6"/><text class="q-item" x="152" y="415">Backdrops and key art</text>
+        </svg>
+        <figcaption>Each part of the game by work and risk, grouped into zones from the table above. The three parts in the shaded corner get the most care: each has its own check that runs before anything is built on top of it.</figcaption>
+      </figure>
+
+      <h3>The riskiest parts, and the plan for each</h3>
+      <ol>
+        <li><strong>One look across about 440 generated images.</strong> Every figure is made from one style anchor (Bramble), reduced through one pixel pipeline to one pixel size and one 48-colour palette. A check fails any sprite whose eyes vanish at small sizes, and each world's first sheet is approved before the rest are made.</li>
+        <li><strong>Fair army battles.</strong> The three-way matchup broke in review: flyers lost to the sturdy squads they're meant to beat. It was fixed and proved with a duel simulation. A balance tool now checks that every required battle is winnable with only the required recruits.</li>
+        <li><strong>Isometric drawing order.</strong> Long props like the tea table drew over Bramble. The rule is now that every multi-tile prop is cut into one-tile strips, and walkable pieces (the raft, the tree-bridge) are part of the ground.</li>
+        <li><strong>Softlocks in the puzzle worlds.</strong> Size changes come from refilling sources and reset on every map change. A reachability check proves every door in Wonderland, the China Country and the shepherd's field can be reached and left again.</li>
+        <li><strong>Testing a 4-hour game.</strong> Map enemies move only when Bramble hops, and army battles can auto-pause on exact ticks, so every segment's solution replays the same way each time.</li>
+        <li><strong>The volume of writing.</strong> A shared story bible sets each character's voice and the line budget per area, so separate chapter builders write in one voice.</li>
+      </ol>
+    </section>
+
+    <section id="pitch">
+      <h2>Pitch, core loop and controls</h2>
+      <p class="lead">You are Bramble, a young rabbit of Thimblebank Warren. When maddened neighbours wreck your home and carry your friends away, the elder hands you the key to a door that has never opened. Below it lie storybook worlds (the River Bank, Wonderland, the Moon, Oz, the hollow heart of the Earth) and a deeper, stranger dark beneath them all. You explore, talk to everyone, fight easy-going turn-based battles with a party of three, and lead everyone you've befriended into thoughtful army battles on the downs.</p>
+      <p><strong>The player's fantasy:</strong> being small and brave. You make friends with every odd creature in every storybook and turn them into an army that heals instead of conquers, while your wrecked warren fills back up, room by room.</p>
+      <h3>Core loop</h3>
+      <ul>
+        <li><strong>10 seconds:</strong> hop across an isometric map, one tile per bouncy hop; talk to someone; nibble clover; spot an enemy and choose to fight or slip past.</li>
+        <li><strong>1 minute:</strong> a conversation that opens a path, a short battle (3 to 6 turns), a chest of buttons (the currency), a recruit's quest step.</li>
+        <li><strong>10 to 30 minutes:</strong> a world. Explore its surface and its warren, recruit its friends, beat its boss, open the next layer down. Then go home, shop, rest, and take the fight back to the downs.</li>
+        <li><strong>Session:</strong> every chapter ends with a warren freed, a new world unlocked, more of Thimblebank rebuilt and more friends in the army.</li>
+      </ul>
+      <p class="callout"><strong>The mechanic the game lives or dies by is recruiting.</strong> Every friend matters twice, in the party and in the army, and every recruit has a face, a voice, a quest, a squad and a big moment when they join.</p>
+      <h3>Controls (desktop, keyboard and mouse)</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Action</th><th>Keyboard</th><th>Mouse</th></tr></thead>
+        <tbody>
+          <tr><td>Hop</td><td>Arrows or WASD, following the screen (Up goes up); hops speed up when held</td><td>Click a tile to hop there; click a person or chest to use it</td></tr>
+          <tr><td>Talk, use, open</td><td>Space, Enter or E</td><td>Click</td></tr>
+          <tr><td>Nibble</td><td>N</td><td>Right-click your own tile</td></tr>
+          <tr><td>Camp menu (party, talk, gear, items, army, quests, map, bestiary)</td><td>Tab or I</td><td>HUD button</td></tr>
+          <tr><td>Pause, save, settings / mute</td><td>Escape or P / M</td><td>HUD buttons</td></tr>
+          <tr><td>Battle commands</td><td>Arrows and Space</td><td>Click the command, then the target</td></tr>
+          <tr><td>Army: select squads</td><td>1 to 0, Shift to add, B for all, Tab to cycle</td><td>Left-click (left-click only ever selects)</td></tr>
+          <tr><td>Army: order</td><td>A node's letter</td><td>Right-click a node or enemy (right-click only ever orders)</td></tr>
+          <tr><td>Army: reinforce, abilities</td><td>T; Q W E R, then a target</td><td>Buttons</td></tr>
+          <tr><td>Army: camera</td><td>Arrows pan, C and V centre</td><td>Edge-scroll, middle-drag, clickable minimap</td></tr>
+          <tr><td>Army: pause and speed</td><td>Space pauses (orders still allowed), F for double speed; optional auto-pause</td><td>Buttons</td></tr>
+        </tbody>
+      </table></div>
+      <p>Node letters skip every key that already does a job in army battles, so no key ever does two things.</p>
+    </section>
+
+    <section id="story">
+      <h2>Story and worlds</h2>
+      <p class="lead">The war is a sickness, not a villain: a vast sleeper's bad dreams are leaking up through the soil, and every warren that digs too deep is taken by them. Bramble frees the warrens one by one and, in the end, sings the sleeper back to sleep.</p>
+      <h3>The creature, the Hum, and how it ends</h3>
+      <p>Below every warren and every storybook world run <strong>the Depths</strong>: one continuous dark that gets older and stranger the further down you go. At the very bottom sleeps <strong>the Undersleeper</strong>, a vast dreamer as old as the chalk. It is not wicked. While it sleeps peacefully, the downs are quiet.</p>
+      <p>Long ago, <strong>Deepdelve Warren</strong> dug too deep and woke it a little. Its bad dreams leaked upward as <strong>the Hum</strong>, a low drone in the soil that gets into rabbits' heads. Hum-taken rabbits forget their names, their eyes go flat and pale blue, and they want only to dig deeper and gather more diggers. Deepdelve was lost; the other warrens sealed their deep doors, and the elders kept the keys and the secret until it became a nursery story.</p>
+      <p>Now <strong>Flintcomb Warren</strong> has quarried too deep. The Hum took it first, then Silverdown, then Wheatsheaf, and now it comes for Thimblebank.</p>
+      <ul>
+        <li><strong>Waking.</strong> A Hum-taken rabbit has a "Hum" bar instead of health. Knock it to zero and they shake their head, remember their name, and sit down blinking. Kindness is the weapon.</li>
+        <li><strong>Freeing a warren.</strong> Win the army battle at a warren, then wake its chief in a boss fight. The whole warren joins your army and hands over its Depths key.</li>
+        <li><strong>The Long Thump.</strong> Rabbits thump their back feet to warn each other. Old Yarrow's rhyme goes: "When all the warrens thump as one, the Sleeper's dream is soft and done." In the finale every freed warren thumps as one heartbeat while Bramble walks into the dream and tells it the story of the journey. It dreams a kind dream and sinks back to sleep, and the Hum becomes a contented purr under the hills.</li>
+      </ul>
+
+      <h3>Cast</h3>
+      <p><strong>Home: Thimblebank Warren, on Sorrel Down</strong></p>
+      <ul>
+        <li><strong>Bramble</strong>, the hero: a young brown buck whose left ear flops. Curious, kind, a bit too brave. The player picks his tone at key moments.</li>
+        <li><strong>Old Yarrow</strong>, the elder: grey, half-blind, gentle, cryptic and funny. Keeper of the key.</li>
+        <li><strong>Tansy</strong>, Bramble's best friend: a quick, sharp-tongued sandy doe, carried off in the attack.</li>
+        <li><strong>Burdock</strong>: a big, gruff, soft-hearted doe who digs better than anyone.</li>
+        <li><strong>Pip</strong>: a tiny kit who loses things and asks questions, and trains while Bramble is away.</li>
+        <li><strong>Mallow</strong> the button-trader, <strong>Woodruff</strong> the storyteller, <strong>Comfrey</strong> the healer, and 10 more named rabbits, each with their own fur and a scarf, flower or notched ear.</li>
+      </ul>
+      <p><strong>The other warrens</strong></p>
+      <ul>
+        <li><strong>Captain Quarry</strong> of Flintcomb: once its cheerful head digger, now the Hum's loudest voice. Woken, he's horrified: "I dug the hole. I'll walk it."</li>
+        <li><strong>Chert</strong>: a Flintcomb raider, the first proof that waking works. A sad, decent rabbit who explains what the Hum feels like.</li>
+        <li><strong>Aster</strong>, chief of Silverdown (moon-pale, poetic), and <strong>Barley</strong>, chief of Wheatsheaf (broad, slow-spoken farmer).</li>
+      </ul>
+      <p><strong>The Depths (all our own)</strong></p>
+      <ul>
+        <li><strong>Ninefold</strong>: a small, polite thing of soft dark folds with nine pale eyes. It has never met anyone who didn't scream. Formal and delighted by everything: "I have never been offered a dandelion before. I will keep it forever." Its cousin <strong>Elevenfold</strong> keeps a strange stall far below.</li>
+        <li>The bosses of the deep: <strong>the Whispering Choir</strong>, <strong>the Tidewarden</strong>, <strong>the Watcher on the Stair</strong>, <strong>the Hollow Rabbits of Deepdelve</strong>, and <strong>the Undersleeper</strong>.</li>
+      </ul>
+
+      <h3>Prologue: Sorrel Down (about 15 minutes)</h3>
+      <ol>
+        <li><strong>Morning on the downs.</strong> Learn to hop, talk and nibble. Tansy races Bramble to the warren mouth; Pip has lost a button in a hollow log. About 2 minutes in, a small tremor: every rabbit looks up.</li>
+        <li><strong>Thimblebank Warren.</strong> A maze of tunnels and rooms: the Great Burrow, the nursery, Yarrow's den, Mallow's nook, the root cellar, and the deep passage ending at the old sealed door. Press an ear to it and you hear a faint hum. Woodruff tells the rhyme of the Long Thump.</li>
+        <li><strong>The attack</strong>, 4 to 6 minutes in. Three big shakes, then Flintcomb raiders pour over the hill, eyes pale and blank, humming. Tunnels collapse in chalk dust; Tansy and five others are herded off east. One raider pushes Bramble aside without seeing him. Nobody is hurt on screen: the horror is the blankness.</li>
+        <li><strong>The first battle</strong>, against two dazed raiders left behind; Burdock arrives and joins.</li>
+        <li><strong>The Lookout Stone.</strong> The army battle is offered here, now and at any time after. The first try is a short guided lesson; then Flintcomb's six squads roll over the ridge until Yarrow's voice calls, "Not like this, Bramble. Not alone." From then on the stone shows the odds and "Squads ready: 4 of 7".</li>
+        <li><strong>The key.</strong> In the wrecked Great Burrow, Yarrow gives Bramble the Old Key and the truth: "The Hum is that old story come true. Below, there are others. Find friends."</li>
+      </ol>
+
+      <h3>Chapter 1: The Depths of Thimblebank (about 75 minutes)</h3>
+      <ul>
+        <li><strong>Thimblebank Depths:</strong> rooty old tunnels and easy battles, opening into <strong>the Underway</strong>, a round cavern with three carved doors: a river, a keyhole, and a stair sealed with an eye. Every warren's Depths ends in its own Underway, and they link for fast travel.</li>
+        <li><strong>The River Bank</strong> (<em>The Wind in the Willows</em>): the river in summer, Ratty's hole and the weir, the Wild Wood in snow at dusk (darker than it should be: the Hum has leaked even here), Badger's warm kitchen and the old buried city beneath it, Mole End and its carol, and Toad Hall, retaken from the weasels through the secret tunnel. Boss: <strong>the Chief Weasel</strong> at the banquet.</li>
+        <li><strong>Home, briefly:</strong> Ratty and Badger help Burdock clear the nursery tunnel, and Pip runs in with a chalk pebble scratched with Tansy's mark. She's alive, and still herself enough to leave a sign.</li>
+        <li><strong>Wonderland</strong> (<em>Alice's Adventures in Wonderland</em>): Bramble falls down a rabbit-hole into the hall of doors. Drink Me and Eat Me change his size on the map. Six areas: the Hall of Doors and the Pool of Tears; the Caucus-race shore; the White Rabbit's house; the Caterpillar's wood and the Duchess's peppery kitchen; the Mad Tea-Party ("Why is a raven like a writing-desk?" has no answer, and every reply delights the Hatter); the Queen's garden, croquet and the trial. Boss: <strong>the Queen of Hearts' croquet match</strong>. She shouts "Off with—" and the King quietly pardons everyone, as in the book.</li>
+        <li><strong>The Shallows</strong> (first layer of the Depths): smooth black stone, carvings of rabbits not carved by rabbits, a whisper that says "Bramble..." if he stands still, a room bigger inside than its door. Meet Ninefold. Boss: <strong>the Whispering Choir</strong>, stone mouths that say true, unsettling things ("Your warren is cold tonight."). A mural shows Deepdelve digging, a long shape below it, and an eye.</li>
+        <li><strong>The Battle of Sorrel Down</strong> (army battle 1): retake the warren, wake Chert and the raiders in the Great Burrow, bring five captives home. Tansy isn't with them; she was taken on to Silverdown.</li>
+      </ul>
+
+      <h3>Chapter 2: Silverdown and the Moon (about 55 minutes)</h3>
+      <ul>
+        <li><strong>The Battle of Silverdown</strong>, a pale-chalk warren whose rabbits keep pigeons (flyers). Then wake <strong>Aster</strong>.</li>
+        <li><strong>Silverdown Depths:</strong> Tansy's tracks go down.</li>
+        <li><strong>The Moon</strong> (the folk tale of the Moon Rabbit): a moonbeam stair, silver dust, Wu Gang forever chopping the cassia tree that heals every night, a hungry old traveller, the Moon Palace and Chang'e ("Even here, some nights, the light flickers."), the crater warren of the Moon Hares, and the lantern grove. The <strong>Jade Rabbit</strong>'s pestle has been stolen by Hum-touched moths. Boss: <strong>the Moth Queen</strong>.</li>
+        <li><strong>The Drowned Halls</strong> (second layer): flooded columns, cold black water, carvings that turn their heads. Tansy, Hum-taken, digging at the floor: a fight to wake her. Then <strong>the Tidewarden</strong>, a vast shape under the water that rises only as an outline of eyes.</li>
+      </ul>
+
+      <h3>Chapter 3: Wheatsheaf and Oz (about 50 minutes)</h3>
+      <ul>
+        <li><strong>The Battle of Wheatsheaf</strong>, in cornfields that hide squads. Wake <strong>Barley</strong>; Pip arrives, trained and eager.</li>
+        <li><strong>Wheatsheaf Depths:</strong> a cyclone of dust in a round cave carries you to Oz.</li>
+        <li><strong>Oz</strong> (<em>The Wonderful Wizard of Oz</em>, the 1900 book): the blue Munchkin Country and the silver shoes; the Good Witch's protecting kiss; the road of yellow brick past the rusted Tin Woodman, the Scarecrow stuck on his river pole, the Kalidah ditch and the Lion's roar, the wildcat and the Queen of the Field Mice, the deadly poppy field. The <strong>Emerald City</strong>, with its green spectacles and a Wizard who's a kindly humbug. The yellow Winkie Country and its boss, <strong>the Wicked Witch of the West</strong>, who melts when splashed, played for comedy as in the book. The <strong>Golden Cap</strong> commands the Winged Monkeys. Optional: the fragile China Country and the Hammer-Heads' hill. Glinda explains the silver shoes can carry their wearer anywhere.</li>
+        <li><strong>The Stair of Eyes</strong> (third layer): a stair that goes down further than it should, carvings whose eyes follow you, footsteps that echo a beat too late. Boss: <strong>the Watcher on the Stair</strong>, a tall shape of shut eyes that opens one each turn.</li>
+      </ul>
+
+      <h3>Chapter 4: Flintcomb and the Center of the Earth (about 50 minutes)</h3>
+      <ul>
+        <li><strong>The Battle of Flintcomb</strong>, the hardest army battle, around a white flint quarry. Then down Flintcomb's spiral of tunnels to the lip of a deep, deep hole, where <strong>Captain Quarry</strong> is woken while Yarrow watches.</li>
+        <li><strong>The Hole</strong> (<em>Journey to the Center of the Earth</em>): down into Verne's volcanic tubes, following Arne Saknussemm's carved "A.S." at each fork. The whispering gallery; the Hansbach stream; a raft across the <strong>Lidenbrock Sea</strong> under glowing cloud, with the ichthyosaur and plesiosaur fighting far out and an electric storm turning the compass backwards; the geyser island; the giant mushroom forest; the mastodon herd and its silent giant shepherd, sneaked past with <strong>Rumble</strong> the calf.</li>
+        <li><strong>The Root of the World</strong> (fourth layer): stars in the rock, roots that move, and the empty ruins of Deepdelve. The <strong>Hollow Rabbits</strong>, shadows who've forgotten everything, are woken, thank you in whispers, and fade at peace.</li>
+      </ul>
+
+      <h3>Finale: The Sleeping Deep (about 25 minutes)</h3>
+      <ul>
+        <li>Every freed warren comes down behind Bramble, with Deepdelve's echoes and all the storybook friends.</li>
+        <li><strong>The Long Thump</strong> (army battle 5): hold three Thump Stones at once against the dream-shapes rolling in from the dark. Each held stone adds a layer to the thumping heartbeat.</li>
+        <li><strong>The Dream:</strong> the silver shoes carry the party into an upside-down Sorrel Down under a black sun. After two nightmares comes <strong>the Undersleeper's Eye</strong>, whose bar reads "Dreaming". Attacks barely touch it. Instead, once a round, someone tells a story: a memory from the journey (Mole's first sight of the river, the tea-party, the poppy-field mice, Ninefold's dandelion, Tansy's pebble...). Each memory plays as a short scene, and the Eye answers. Five stories and it closes its eye, and smiles. Optional friends add more memories to choose from.</li>
+        <li><strong>The ending:</strong> Sorrel Down at sunset. Every warren together, every friend with a last line, a feast of clover, Tansy and Bramble on the Lookout Stone. Yarrow locks the door one last time, then leaves the key in it. Credits roll as the characters hop past, and the player can keep wandering afterwards.</li>
+      </ul>
+    </section>
+
+    <section id="allies">
+      <h2>Allies</h2>
+      <p class="lead">Twenty-five friends join over the journey: 15 can fight in the party, and every one of them leads a squad in the army. Each has a quest of at least one step, a recruit card with a sting and a first line when they join, and turns up at Thimblebank on your next visit home.</p>
+      <h3>Recruits and their quests</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Recruit</th><th>Where</th><th>Quest</th><th>Joins as</th><th>Squad</th></tr></thead>
+        <tbody>
+          <tr><td>Burdock</td><td>Prologue</td><td>Arrives in the first battle and won't leave Bramble's side</td><td>Party</td><td>Thimblebank Diggers</td></tr>
+          <tr><td>Ratty</td><td>River Bank</td><td>Shove the logs off the weir to free his boat</td><td>Party</td><td>Otters</td></tr>
+          <tr><td>Mole</td><td>River Bank</td><td>Lost in the snowy Wild Wood: follow his scent home to Mole End, where the field mice sing their carol</td><td>Party</td><td>Field-mouse Carollers</td></tr>
+          <tr><td>Badger</td><td>River Bank</td><td>Bring two lost hedgehog lads through the snow to his door</td><td>Party</td><td>Hedgehogs</td></tr>
+          <tr><td>Toad</td><td>River Bank</td><td>Pull him from his wrecked motor-car, see through his washerwoman disguise, retake Toad Hall</td><td>Party</td><td>Reformed Weasels</td></tr>
+          <tr><td>White Rabbit</td><td>Wonderland</td><td>Fetch his gloves and fan from his house (and grow too big inside it)</td><td>Army</td><td>White Rabbit's Heralds</td></tr>
+          <tr><td>Caterpillar</td><td>Wonderland</td><td>Answer "Who are you?" by reciting "You are old, Father William"; he talks the Flamingos into joining</td><td>Party</td><td>Flamingos</td></tr>
+          <tr><td>Cheshire Cat</td><td>Wonderland</td><td>Find where the Duchess's baby (now a pig) trotted off to; the Cat comes along "to see how it ends"</td><td>Party</td><td>The Grin</td></tr>
+          <tr><td>Seven of Spades (optional)</td><td>Wonderland</td><td>Help Two, Five and Seven paint the white roses red before the Queen comes</td><td>Army</td><td>Card Gardeners</td></tr>
+          <tr><td>Ninefold</td><td>Shallows</td><td>Fetch a dandelion from the surface and offer it</td><td>Party</td><td>The Polite Dark</td></tr>
+          <tr><td>Chert</td><td>After army battle 1</td><td>Woken in the Great Burrow; asks to make amends</td><td>Army</td><td>Chert's Band</td></tr>
+          <tr><td>Aster</td><td>Silverdown</td><td>Woken after army battle 2</td><td>Army</td><td>Silverdown Rabbits</td></tr>
+          <tr><td>Jade Rabbit</td><td>Moon</td><td>Share your sweetgrass with a hungry traveller, then win her pestle back from the Moth Queen</td><td>Party</td><td>Moon Hares</td></tr>
+          <tr><td>Wick (optional)</td><td>Moon</td><td>Carry a flame from the palace lanterns to the woken moths' grove</td><td>Army</td><td>Lantern Moths</td></tr>
+          <tr><td>Tansy</td><td>Drowned Halls</td><td>Woken in battle at the bottom of the flooded stair</td><td>Party</td><td>Tansy's Scouts</td></tr>
+          <tr><td>Barley</td><td>Wheatsheaf</td><td>Woken after army battle 3</td><td>Army</td><td>Wheatsheaf Rabbits</td></tr>
+          <tr><td>Pip</td><td>Wheatsheaf</td><td>Finds Barley's lost bell, a first find that matters</td><td>Party</td><td>Pip's Kits</td></tr>
+          <tr><td>Tin Woodman</td><td>Oz</td><td>Oil his rusted joints; later the Winkies make him their ruler</td><td>Party</td><td>Winkies</td></tr>
+          <tr><td>Scarecrow</td><td>Oz</td><td>Help the Stork lift him off his pole in the river</td><td>Army</td><td>Emerald Guard</td></tr>
+          <tr><td>Cowardly Lion</td><td>Oz</td><td>Roars to hold the Kalidahs; the Wizard gives him a dish of green "courage"</td><td>Army</td><td>Lion's Beasts</td></tr>
+          <tr><td>Queen of the Field Mice</td><td>Oz</td><td>Saved from the wildcat, her thousands pull the sleeping party out of the poppies</td><td>Army</td><td>Field Mice</td></tr>
+          <tr><td>Monkey King</td><td>Oz</td><td>Win the Golden Cap from the Witch's cupboard; the first wish frees them</td><td>Army</td><td>Winged Monkeys</td></tr>
+          <tr><td>Captain Quarry</td><td>Flintcomb</td><td>Woken at the lip of the hole</td><td>Party</td><td>Flintcomb Diggers</td></tr>
+          <tr><td>Rumble</td><td>Journey</td><td>Lead the lost calf past the giant shepherd; he stays with Bramble, and the herd follows</td><td>Party</td><td>Mastodon Herd</td></tr>
+          <tr><td>Elevenfold (optional)</td><td>Root of the World</td><td>Bring it three star-stones for its best stock</td><td>Shop</td><td>none</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>The party</h3>
+      <p>Bramble plus two companions travel together; reserves can be swapped in mid-battle and earn full experience. Each member has 3 skills on joining, a 4th at level 10 and a 5th at level 20.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Member</th><th>Role</th><th>Signature skills</th></tr></thead>
+        <tbody>
+          <tr><td>Bramble</td><td>All-rounder</td><td>Thump, Rally, Burrow Dash, Long Thump</td></tr>
+          <tr><td>Burdock</td><td>Guard</td><td>Dig In, Shove, Earthwork</td></tr>
+          <tr><td>Mole</td><td>Healer</td><td>Mole End Supper, Tunnel Under, Spring-Cleaning, Home at Last</td></tr>
+          <tr><td>Ratty</td><td>Ranged</td><td>Pebble Sling, Messing About in Boats, A Poem</td></tr>
+          <tr><td>Badger</td><td>Tank</td><td>Stout Stick, Stern Word, Old Fortress</td></tr>
+          <tr><td>Toad</td><td>Wild card</td><td>Poop-poop! (random big hit), Boast, Disguise</td></tr>
+          <tr><td>Cheshire Cat</td><td>Rogue</td><td>Vanish (the grin stays), Grin, Which Way?</td></tr>
+          <tr><td>Caterpillar</td><td>Mage</td><td>Who Are You?, One Side (grow), Other Side (shrink), Hookah Haze</td></tr>
+          <tr><td>Ninefold</td><td>Eerie mage</td><td>Nine Eyes Open, Fold, Unspeakable, Polite Refusal</td></tr>
+          <tr><td>Jade Rabbit</td><td>Light healer</td><td>Elixir, Moonbeam, Mooncake, Moonrise</td></tr>
+          <tr><td>Tansy</td><td>Fast striker</td><td>Quick Paws, Sharp Tongue, Lookout, Best Friend</td></tr>
+          <tr><td>Tin Woodman</td><td>Stout hitter</td><td>Axe, Oil Can, A Kind Heart</td></tr>
+          <tr><td>Pip</td><td>Support</td><td>Found It!, Hide, Cheer, Listen to the Ground</td></tr>
+          <tr><td>Captain Quarry</td><td>Heavy digger</td><td>Flint Strike, Quarry Collapse, Never Again</td></tr>
+          <tr><td>Rumble</td><td>Bruiser</td><td>Trumpet, Trample, Shelter, Mastodon March</td></tr>
+        </tbody>
+      </table></div>
+      <p><strong>Keeping the party present.</strong> Only Bramble walks the map, but companions speak up whenever you enter a new place, have something new to say in the camp menu's Talk tab and at every rest stone, and trade pair banter when both travel together: Toad and Badger, Ninefold and the Cheshire Cat, Tansy and Bramble, Ratty and Mole, Pip and Captain Quarry, the Tin Woodman and Rumble.</p>
+    </section>
+
+    <section id="battles">
+      <h2>Battles</h2>
+      <p class="lead">There are two kinds of battle: short turn-based fights with a party of three, and light army battles where strategy beats fast clicking. Neither ever kills anyone, and losing either one costs nothing but the retry.</p>
+      <h3>Turn-based battles</h3>
+      <ul>
+        <li><strong>Rounds:</strong> everyone acts once a round in order of Speed, shown as a row of portraits. Commands: <strong>Tussle</strong> (a friendly scuffle), <strong>Skill</strong>, <strong>Item</strong>, <strong>Guard</strong>, <strong>Swap</strong> (bring in a reserve) and <strong>Flee</strong>.</li>
+        <li><strong>Stats:</strong> Heart (health), Pluck (for skills), Strength, Toughness, Speed, Wits. Level cap 30. Pluck partly refills after every win, so skills stay in use.</li>
+        <li><strong>What "defeat" means:</strong> Hum-taken rabbits have a Hum bar and are woken; depth creatures have Shadow and fade; storybook foes are sent packing.</li>
+        <li><strong>Statuses, kept few:</strong> Afraid, Asleep, Hummed, Shrunk, Grown, Shielded. Eerie foes take extra from Light skills, and flying foes dodge digging attacks.</li>
+        <li><strong>Fairness:</strong> enemies are visible on the map, with no random battles; hop into one's back to strike first. Losing puts you back at the last door with full health ("Up you get."). An Easy setting can be switched on at any time.</li>
+      </ul>
+      <h3>Bosses</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Boss</th><th>Where</th><th>The twist</th></tr></thead>
+        <tbody>
+          <tr><td>The Chief Weasel</td><td>Toad Hall</td><td>Calls in another weasel every few rounds</td></tr>
+          <tr><td>The Queen of Hearts and the Knave</td><td>Wonderland</td><td>"Off with—" charges for two rounds, so Guard in time; the Knave steals an item</td></tr>
+          <tr><td>The Whispering Choir</td><td>Shallows</td><td>Its lines make you Afraid; silence the mouth that speaks</td></tr>
+          <tr><td>Chert's band</td><td>Thimblebank</td><td>A first group of raiders to wake</td></tr>
+          <tr><td>Aster</td><td>Silverdown</td><td>Hums one of your party into acting at random</td></tr>
+          <tr><td>The Moth Queen</td><td>Moon</td><td>Summons moths when left alone</td></tr>
+          <tr><td>Tansy, Hum-taken</td><td>Drowned Halls</td><td>Fast, acts twice a round</td></tr>
+          <tr><td>The Tidewarden</td><td>Drowned Halls</td><td>Two phases; sinks out of reach every third round</td></tr>
+          <tr><td>Barley</td><td>Wheatsheaf</td><td>A guard-breaking plough</td></tr>
+          <tr><td>The Wicked Witch of the West</td><td>Oz</td><td>Sends wave after wave; any water ends her</td></tr>
+          <tr><td>The Watcher on the Stair</td><td>Stair of Eyes</td><td>Opens one of seven eyes a round; hit an eye to close it, or all seven see you</td></tr>
+          <tr><td>Captain Quarry</td><td>Flintcomb</td><td>Brings the quarry down every third round</td></tr>
+          <tr><td>The Hollow Rabbits</td><td>Root of the World</td><td>Four at once, each fading as it wakes</td></tr>
+          <tr><td>The Nightmares of Deepdelve and of Flintcomb</td><td>The Dream</td><td>The dream grows stranger with each</td></tr>
+          <tr><td>The Undersleeper's Eye</td><td>The Dream</td><td>Can't be beaten by force: tell it stories</td></tr>
+        </tbody>
+      </table></div>
+      <h3>Foes</h3>
+      <p>Thirty-one regular kinds of foe, each at up to three strengths:</p>
+      <ul>
+        <li><strong>Thimblebank Depths:</strong> root-tanglers, dazed earthworms, burrowing beetles.</li>
+        <li><strong>River Bank:</strong> weasels, stoats, ferret sentries.</li>
+        <li><strong>Wonderland:</strong> card soldiers, pepper clouds, flying teapots.</li>
+        <li><strong>Shallows:</strong> whispers, carvings that move.</li>
+        <li><strong>Every taken warren:</strong> Hum-taken raiders, diggers and lookouts.</li>
+        <li><strong>Moon:</strong> lantern moths, dust hoppers.</li>
+        <li><strong>Drowned Halls:</strong> drowned eyes, cold ripples.</li>
+        <li><strong>Oz:</strong> Kalidahs, Hammer-Heads, Winkie guards, crows and wolves of the West.</li>
+        <li><strong>Stair of Eyes:</strong> late footsteps, shut eyes.</li>
+        <li><strong>Journey:</strong> cave lizards, trilobite swarms, electric eel-clouds.</li>
+        <li><strong>Root of the World:</strong> moving roots, star-things, Hollow Rabbits.</li>
+        <li><strong>The Dream:</strong> three kinds of dream-shape.</li>
+      </ul>
+      <h3>Gear, items and shops</h3>
+      <ul>
+        <li>The currency is <strong>buttons</strong>. Wonderland pays in card pips, the Moon in pearls and Oz in emeralds, but it's all one purse.</li>
+        <li>Each party member has three slots: <strong>Tool</strong>, <strong>Coat</strong> and <strong>Charm</strong>. There are about 45 pieces in six tiers, themed per shop (Mole's spare waistcoats, the Dodo's thimble armour, moon-silk coats, emerald-spectacle charms, mastodon-hide coats). Gear moves freely between members, with an auto-equip button.</li>
+        <li><strong>Items:</strong> 15 kinds, from Clover Bunches and Dandelions to Comfits, Mooncakes, Jade Elixir, a Water Pail for the Witch and Glow-Mushrooms. Plus 11 key items: the Old Key, Pip's button, the mushroom halves, the silver shoes, the Golden Cap and more.</li>
+        <li><strong>Army gear</strong>, sold in the same shops: Banners (attack), Mail (defence) and Rations (health), three ranks each for every kind of squad.</li>
+        <li><strong>Seven shops:</strong> Mallow at home (stock improves each chapter), Ratty's Riverside Swap, the Dodo's Caucus Store, the Moon Toad, the Emerald City Market, Quarry's old store, and Elevenfold's stall far below.</li>
+      </ul>
+      <h3>Army battles</h3>
+      <ul>
+        <li><strong>The field:</strong> downs maps with 7 to 10 <strong>nodes</strong> (home, the enemy's warren mouth, clover patches that give Supply, hilltops, burrow mouths, fortified ledges) linked by paths. Squads march only along paths, so every order is simply "go there".</li>
+        <li><strong>The three-way matchup:</strong> <strong>Stout</strong> beats <strong>Swift</strong> (a wall they can't get past), Swift beats <strong>Wing</strong> (quick enough to catch them landing), and Wing beats Stout (diving over the wall). <strong>Eerie</strong> squads frighten everything near them but are slow, and Light squads (the Moon's) beat them. A duel simulation proves each matchup wins clearly, even against a fortified defender.</li>
+        <li><strong>Calm control:</strong> pause at any time and still give orders. There's double speed, optional auto-pause, a clickable minimap and edge arrows for waves coming from off-screen.</li>
+        <li><strong>Supply</strong> buys <strong>Reinforce</strong> (heal a squad) and one ability per freed warren: <strong>Rally</strong>, <strong>Moonlight</strong> (reveal and heal), <strong>Monkey Drop</strong> (place the Winged Monkeys anywhere) and <strong>Tunnel</strong>.</li>
+        <li><strong>Win</strong> by holding the enemy's warren mouth. <strong>Lose</strong> and you're simply back at the Lookout Stone. The stone shows the odds (Weak, Even or Strong) from a real simulated run, and advice such as "Their army is mostly Stout. Flyers would help: the Flamingos are waiting." Every required battle is winnable with only the required recruits.</li>
+      </ul>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Battle</th><th>Field</th><th>What's new</th><th>Enemy</th></tr></thead>
+        <tbody>
+          <tr><td>Prologue (guided)</td><td>5 nodes</td><td>A short lesson, ending in the retreat</td><td>6 squads, too many to beat</td></tr>
+          <tr><td>1: Sorrel Down</td><td>7 nodes, a ridge between the sides</td><td>The full tutorial</td><td>8 squads and 3 waves</td></tr>
+          <tr><td>2: Silverdown</td><td>8 nodes, a chalk ridge with two flanks</td><td>Flyers; Rally</td><td>10 squads, pigeon waves</td></tr>
+          <tr><td>3: Wheatsheaf</td><td>9 nodes in the cornfields</td><td>Corn hides squads; Moonlight</td><td>12 squads and waves</td></tr>
+          <tr><td>4: Flintcomb</td><td>10 nodes round a quarry; the warren mouth is fortified</td><td>Hold two nodes at once; Monkey Drop</td><td>14 squads and reinforcements</td></tr>
+          <tr><td>5: The Long Thump</td><td>6 nodes: three Thump Stones</td><td>Hold all three for 60 seconds; each stone held weakens the dream-shapes</td><td>An endless stream of dream-shapes</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section id="assets">
+      <h2>Art, sound and the asset list</h2>
+      <p class="lead">The whole game hangs off one image: Bramble, made first, which every later picture uses as its reference. The art comes to about 440 figures, 15 animations, 19 music tracks and 54 sounds and voiced lines.</p>
+      <h3>Art direction</h3>
+      <ul>
+        <li><strong>Style:</strong> clean isometric pixel art, chunky and readable, in a cozy storybook mood. A warm downland palette of chalk white, sage green, meadow gold and earth brown, with indigo and teal shadows and 1-pixel dark brown outlines. The Depths turn cold: indigo, slate and pale teal, a faint glow, eerie but gentle.</li>
+        <li><strong>One look:</strong> every character, portrait and prop is drawn with Bramble as the reference, reduced to one pixel size and one 48-colour palette, and given a redrawn 1-pixel outline. Each world's first sheet is checked beside Bramble before the rest are made.</li>
+        <li><strong>The screen:</strong> 640x360 pixel art, scaled up crisply; dialog text is drawn sharp at full resolution so long conversations stay readable. Terrain tiles are drawn in code so they join seamlessly.</li>
+        <li><strong>No text in pictures:</strong> card numbers, labels, signposts, Saknussemm's "A.S." and every title are drawn in code.</li>
+        <li><strong>Small touches:</strong> Hum-taken eyes glow pale blue and turn brown on waking. The home rabbits get six fur colours and small accessories, so nobody looks like a clone.</li>
+      </ul>
+      <h3>Sound direction</h3>
+      <p>Nineteen instrumental tracks, each looped seamlessly:</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Track</th><th>Where</th><th>Mood</th></tr></thead>
+        <tbody>
+          <tr><td>Main theme</td><td>Title, credits, ending</td><td>Gentle English folk, solo flute over plucked strings</td></tr>
+          <tr><td>The downs</td><td>Sorrel Down</td><td>Warm pastoral, flute and guitar</td></tr>
+          <tr><td>The warren</td><td>Thimblebank and freed warrens</td><td>Cozy plucked strings and woodblock</td></tr>
+          <tr><td>The attack</td><td>The attack, army losses</td><td>Low drums and a droning cello</td></tr>
+          <tr><td>Battle / boss / army</td><td>Fights</td><td>Bouncy fiddle; heavier brass; marching snare and pipes</td></tr>
+          <tr><td>River Bank / Wild Wood</td><td>The River Bank</td><td>Lazy Edwardian clarinet; hushed snowy celesta</td></tr>
+          <tr><td>Wonderland</td><td>Wonderland</td><td>An off-kilter music-box waltz</td></tr>
+          <tr><td>Moon</td><td>The Moon</td><td>Dreamy guzheng and erhu</td></tr>
+          <tr><td>Oz</td><td>Oz</td><td>A bright road-walking march</td></tr>
+          <tr><td>Journey</td><td>The Hole and the sea</td><td>Vast, cavernous cello</td></tr>
+          <tr><td>Depths / deeper</td><td>The four layers</td><td>A low drone and distant choir; then detuned bells</td></tr>
+          <tr><td>Silverdown, Wheatsheaf, Flintcomb</td><td>Each warren while taken</td><td>A half-forgotten lullaby; wind in empty corn; ringing stone</td></tr>
+          <tr><td>The Dream</td><td>The finale</td><td>Reversed-sounding piano and soft choir</td></tr>
+        </tbody>
+      </table></div>
+      <ul>
+        <li><strong>The Long Thump</strong> builds in code: one drum layer for each Thump Stone held, over a drone, then the main theme as the Eye closes.</li>
+        <li><strong>The Hum</strong> drones under every Depths area, louder each layer down.</li>
+        <li><strong>Sound effects:</strong> 42, one for every action: hops, nibbles, chests, the Old Key turning, hits and crits, the waking chime, the fading sigh, the swanee whistle as Bramble shrinks, the china crack, the Witch's splash, army orders and horns, thumps.</li>
+        <li><strong>Loops:</strong> 7 ambiences: the Hum, wind, the river, the Lidenbrock storm, the army clash, the finale drone, hearth crackle.</li>
+        <li><strong>Voiced lines:</strong> 5, including the whisper of "Bramble..." in the Shallows, Yarrow's "Up you get", and Ninefold's line about the dandelion.</li>
+      </ul>
+      <h3>Asset list</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Kind</th><th>What</th><th>Count</th></tr></thead>
+        <tbody>
+          <tr><td>Style anchor</td><td>Bramble, facing down-right</td><td class="num">1</td></tr>
+          <tr><td>Bramble's other facings</td><td>From behind, plus left-facing views with the ear kept on the correct side</td><td class="num">3</td></tr>
+          <tr><td>Party sprites</td><td>The 15 party members, plus Toad's washerwoman disguise and the adult mastodon</td><td class="num">16 figures</td></tr>
+          <tr><td>Action poses</td><td>Every party member, regular foe and boss, mid-move in battle</td><td class="num">about 50</td></tr>
+          <tr><td>Home and warren rabbits</td><td>Yarrow, Mallow, Woodruff, Comfrey, Chert, Aster, Barley, generic doe, buck and kit, back views, Hum-taken raiders</td><td class="num">16 figures</td></tr>
+          <tr><td>Storybook characters</td><td>Every speaking character and squad leader from the four books and the folk tale, plus the Munchkins, Winkies, pig-baby, wildcat and enemy squad riders</td><td class="num">40 figures</td></tr>
+          <tr><td>Regular foes</td><td>27 drawn types (the rest made in code), plus the far-off sea monsters</td><td class="num">28 figures</td></tr>
+          <tr><td>Bosses</td><td>4 sprites, 2 nightmares, the Choir, the Watcher, and 2 painted bosses (the Tidewarden, the Eye)</td><td class="num">10</td></tr>
+          <tr><td>Animations</td><td>Bramble's hop in 4 facings, idle, nibble, Thump; generic rabbit and raider hops; the Cheshire vanish, the Witch's melt, monkey wings, moth wings</td><td class="num">15</td></tr>
+          <tr><td>Portraits</td><td>Everyone who speaks, Bramble in three moods</td><td class="num">about 64</td></tr>
+          <tr><td>Props</td><td>Furniture and scenery for every map and interior, from Badger's hearth to Elevenfold's stall</td><td class="num">about 116</td></tr>
+          <tr><td>Battle backdrops</td><td>One per area, from the downs to the Dream</td><td class="num">18</td></tr>
+          <tr><td>Key art</td><td>Title, ending, the attack, 3 intro cards, the Shallows mural, the Lidenbrock Sea</td><td class="num">8</td></tr>
+          <tr><td>Icons</td><td>26 items, 24 gear bases (tiers shown by tint), about 30 HUD and status icons</td><td class="num">about 80</td></tr>
+          <tr><td>Drawn in code</td><td>Terrain tiles, menus and frames, the minimap, effects, squads, chapter cards, app icon, social card</td><td class="num">all</td></tr>
+          <tr><td>Music</td><td>Instrumental tracks, about 30 minutes in all</td><td class="num">19</td></tr>
+          <tr><td>Sound effects and loops</td><td>42 effects, 7 ambient loops</td><td class="num">49</td></tr>
+          <tr><td>Voice</td><td>Short voiced lines, always shown as text too</td><td class="num">5</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section id="done">
+      <h2>Screens, polish and definition of done</h2>
+      <p class="lead">The game counts as done only when it has been played start to finish with real input, and every screen looks finished at every window size.</p>
+      <h3>Screens</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Screen</th><th>What's on it</th></tr></thead>
+        <tbody>
+          <tr><td>Title</td><td>Painted Sorrel Down at dusk, the warren glowing; Continue, New Game, Load, Settings</td></tr>
+          <tr><td>Intro</td><td>Three illustrated cards, skippable</td></tr>
+          <tr><td>Exploring</td><td>Party portraits with health, place name, quest line, camp, pause and mute buttons</td></tr>
+          <tr><td>Dialog</td><td>Portraits of both speakers, name tag, typed-out text, reply choices</td></tr>
+          <tr><td>Recruit card</td><td>Portrait, name, role and squad, a first line; their banner joins the row</td></tr>
+          <tr><td>Camp menu</td><td>Party, Talk, Gear, Items, Army, Quests, Map, Bestiary</td></tr>
+          <tr><td>Shop</td><td>Stock with icons, and better or worse arrows for each member or squad</td></tr>
+          <tr><td>Turn-based battle</td><td>Turn order, party bars, enemy bars, commands, damage numbers</td></tr>
+          <tr><td>Army preview</td><td>The field, the odds, squad picks, advice</td></tr>
+          <tr><td>Army battle</td><td>The field with node letters, squad list, minimap, Supply and abilities</td></tr>
+          <tr><td>Chapter cards</td><td>A painted card and the chapter name</td></tr>
+          <tr><td>Pause and settings</td><td>Save, load and three save slots; music and sound volume, Easy mode, text speed, grid keys, army auto-pause</td></tr>
+          <tr><td>Ending</td><td>The sunset feast and scrolling credits</td></tr>
+        </tbody>
+      </table></div>
+      <h3>Juice (the small touches)</h3>
+      <ul>
+        <li>A squash-and-stretch hop with a puff of dust; every rabbit on the map really hops.</li>
+        <li>Typed-out dialog with a soft blip, pitched differently for each speaker.</li>
+        <li>Battle hits: the attacker's action pose, a tiny hit pause, a flash, numbers that arc and fade.</li>
+        <li>Waking: the Hum bar shatters into glitter, pale blue eyes turn brown, then a "?" and a heart.</li>
+        <li>Depth creatures fade into drifting motes; map changes use a rabbit-hole iris wipe.</li>
+        <li>The Depths wobble faintly as the drone grows, and carvings' eyes follow Bramble.</li>
+        <li>Thimblebank's rooms light up as they're rebuilt.</li>
+        <li>In army battles, banners wave, taken nodes ripple into your colour, and the Thump Stones glow.</li>
+        <li>Nice to have: grass sways, fireflies come out at dusk, evening light deepens as the chapters pass, and Bramble's cheeks puff while he nibbles.</li>
+      </ul>
+      <h3>Definition of done</h3>
+      <ul class="done">
+        <li>Starts with no errors at 1280x720, 1920x1080 and a small 800x600 window.</li>
+        <li>The attack begins 4 to 6 minutes into a direct play; the guided Lookout battle runs and retreats safely.</li>
+        <li>Every one of the 30 story segments replays to its end with real input, including a real win of every boss and every army battle.</li>
+        <li>The whole game is played from New Game to the credits in one run.</li>
+        <li>The reachability, battle-balance and army-balance checks all pass.</li>
+        <li>Every recruit can be recruited, shows the recruit card and appears at home; every squad can fight.</li>
+        <li>Every shop sells party and army gear, and both have an effect.</li>
+        <li>Losing any battle returns you safely; nothing gets stuck in the puzzles, menus, pausing or alt-tabbing.</li>
+        <li>Keyboard and mouse both work everywhere; no army-battle key does two jobs; every army node can be seen or reached on the minimap.</li>
+        <li>Every screen looks finished at every size: no junk text, nothing cut off, one pixel size everywhere.</li>
+        <li>Every speaking character has a portrait, and dialog changes after story beats.</li>
+        <li>Every action makes its sound; music loops with no audible seam; mute and volume are remembered.</li>
+        <li>Saves (autosave and three slots) restore correctly, and a broken save falls back safely.</li>
+        <li>Installs as an app and works offline.</li>
+        <li>Nothing from Watership Down; the storybook worlds follow the original books.</li>
+      </ul>
+    </section>
+
+    <footer>Warren Peace, game design as reviewed. The game itself hasn't been built yet.</footer>
+  </main>
+</div>
+</body>
+</html>

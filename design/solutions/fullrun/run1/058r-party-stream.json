@@ -1,0 +1,14 @@
+{"segment": "fullrun-retry", "note": "as run: 057's mouse clicks in the scrolled party list toggled Jade OFF (the hover re-scrolls the list under the cursor) and never added Quarry; with only Bramble+Tansy the stream fight in the tubes was lost (back at the tubes' top). Fix the party with the keyboard, walk back down (fights on the way), then 058 from its step 33", "steps": [
+ {"until": "s.screen === 'explore' && !s.busy", "timeout": 10000},
+ {"press": "Tab"},
+ {"until": "s.screen === 'camp'", "timeout": 3000},
+ {"press": "ArrowDown", "times": 13, "note": "Captain Quarry"},
+ {"press": "Space"},
+ {"press": "ArrowUp", "times": 4, "note": "Jade Rabbit"},
+ {"press": "Space"},
+ {"press": "Tab"},
+ {"until": "s.screen === 'explore' && s.party.length === 3", "timeout": 3000},
+ {"goto": [13, 34], "note": "back down the tubes to the stream"},
+ {"fightIf": 3000},
+ {"until": "s.screen === 'explore' && !s.busy", "timeout": 20000}
+]}

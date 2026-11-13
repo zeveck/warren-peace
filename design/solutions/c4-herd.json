@@ -1,0 +1,194 @@
+{
+ "segment": "c4-herd",
+ "steps": [
+  {
+   "until": "s.dialog.open"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    6,
+    20
+   ]
+  },
+  {
+   "walk": [
+    11,
+    20
+   ]
+  },
+  {
+   "talkthrough": true,
+   "note": "the glade (mem-mushrooms)"
+  },
+  {
+   "walk": [
+    18,
+    21
+   ]
+  },
+  {
+   "walk": [
+    24,
+    22
+   ]
+  },
+  {
+   "walk": [
+    26,
+    22
+   ]
+  },
+  {
+   "talkthrough": true,
+   "note": "plain of bones"
+  },
+  {
+   "walk": [
+    26,
+    20
+   ],
+   "note": "eel-clouds"
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    28,
+    25
+   ]
+  },
+  {
+   "walk": [
+    29,
+    27
+   ]
+  },
+  {
+   "talkthrough": true,
+   "note": "a sad trumpet"
+  },
+  {
+   "talk": "rumble"
+  },
+  {
+   "talkthrough": true,
+   "note": "Rumble, lost"
+  },
+  {
+   "walk": [
+    37,
+    18
+   ],
+   "note": "lizards on the bones"
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    41,
+    13
+   ]
+  },
+  {
+   "walk": [
+    43,
+    13
+   ]
+  },
+  {
+   "until": "s.map === 'c4-field' && s.dialog.open"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    8,
+    13
+   ]
+  },
+  {
+   "until": "s.gaze.dir === 3 && s.gaze.next > 1.6",
+   "timeout": 12000,
+   "note": "he looks away north"
+  },
+  {
+   "walk": [
+    12,
+    10
+   ],
+   "note": "to the first mushroom's shade"
+  },
+  {
+   "until": "s.gaze.dir === 0 && s.gaze.next > 1.6",
+   "timeout": 12000
+  },
+  {
+   "walk": [
+    18,
+    10
+   ],
+   "note": "across his north side"
+  },
+  {
+   "until": "s.gaze.dir === 1 && s.gaze.next > 1.6",
+   "timeout": 12000
+  },
+  {
+   "walk": [
+    23,
+    13
+   ],
+   "note": "out east to the meadow"
+  },
+  {
+   "walk": [
+    24,
+    13
+   ]
+  },
+  {
+   "talkthrough": true,
+   "note": "Rumble's herd; Rumble joins"
+  },
+  {
+   "walk": [
+    28,
+    16
+   ]
+  },
+  {
+   "walk": [
+    30,
+    19
+   ],
+   "note": "the fallen rock: Rumble and Quarry dig"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "done": true
+  }
+ ]
+}

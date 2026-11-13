@@ -1,0 +1,54 @@
+{
+ "segment": "c5-rts5",
+ "steps": [
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 8000,
+   "note": "the gathering played in 063"
+  },
+  {
+   "walk": [
+    12,
+    12
+   ]
+  },
+  {
+   "walk": [
+    17,
+    17
+   ]
+  },
+  {
+   "talk": "yarrow",
+   "note": "Yarrow at the Thump Stones"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "begin the Long Thump"
+  },
+  {
+   "army": "auto",
+   "note": "hold all three stones for 60"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0,
+    0
+   ],
+   "note": "I'll go; three steps into the dream"
+  },
+  {
+   "until": "s.map === 'c5-dream'",
+   "timeout": 8000
+  },
+  {
+   "until": "s.flags['g_c5-rts5_won']",
+   "timeout": 15000,
+   "note": "segment done: c5-rts5"
+  }
+ ]
+}

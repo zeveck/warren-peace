@@ -1,0 +1,144 @@
+{
+ "segment": "c1w-shallows",
+ "steps": [
+  {
+   "talkthrough": true,
+   "note": "the Shallows"
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 9000,
+   "note": "stand still: the whisper"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    15,
+    6
+   ]
+  },
+  {
+   "walk": [
+    19,
+    3
+   ]
+  },
+  {
+   "walk": [
+    19,
+    2
+   ]
+  },
+  {
+   "until": "s.map === 'c1w-deep' && s.dialog.open"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    3,
+    10
+   ]
+  },
+  {
+   "talk": "ninefold"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "Ninefold's dandelion"
+  },
+  {
+   "until": "s.flags.g_recruit_ninefold && !s.busy"
+  },
+  {
+   "walk": [
+    11,
+    21
+   ],
+   "note": "Ninefold's scene ends with Bramble at (3,21) in the corner; with the camera centred on him (18,9) is off screen: walk east first"
+  },
+  {
+   "walk": [
+    18,
+    20
+   ]
+  },
+  {
+   "walk": [
+    18,
+    17
+   ]
+  },
+  {
+   "walk": [
+    18,
+    11
+   ],
+   "note": "(18,12)-(18,16) are hidden behind the raised floor at x=20: click past them"
+  },
+  {
+   "walk": [
+    18,
+    9
+   ]
+  },
+  {
+   "walk": [
+    24,
+    5
+   ]
+  },
+  {
+   "click": [
+    22,
+    5
+   ]
+  },
+  {
+   "until": "s.dialog.open"
+  },
+  {
+   "talkthrough": true,
+   "note": "rest stone"
+  },
+  {
+   "walk": [
+    27,
+    3
+   ]
+  },
+  {
+   "until": "s.dialog.open"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "the Choir"
+  },
+  {
+   "until": "s.screen === 'battle' && window.__game.buttons().some(x => x.label === 'Skill')",
+   "timeout": 20000
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true,
+   "note": "the mural"
+  },
+  {
+   "until": "s.flags.g_c1_shallows_done && !s.busy"
+  },
+  {
+   "done": true
+  }
+ ]
+}

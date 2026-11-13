@@ -1,0 +1,20 @@
+{"segment": "fullrun-join", "steps": [
+ {"until": "s.screen === 'explore' && !s.busy", "timeout": 10000},
+ {"note": "save in slot 3 (Wonderland done)", "press": "Escape"},
+ {"until": "s.screen === 'pause'", "timeout": 3000},
+ {"button": "Save"},
+ {"button": "Slot 3"},
+ {"wait": 400},
+ {"press": "Escape"},
+ {"press": "Escape"},
+ {"until": "s.screen === 'explore'", "timeout": 3000},
+ {"goto": [6, 23], "note": "the rabbit-hole in the garden's south-west corner"},
+ {"click": [6, 24]},
+ {"until": "s.dialog.open", "timeout": 10000},
+ {"talkthrough": true, "choose": [0], "note": "Go down the rabbit-hole (back to the Underway)"},
+ {"until": "s.map === 'c1-underway' && s.screen === 'explore' && !s.busy", "timeout": 30000},
+ {"goto": [8, 2], "note": "the eye-stair: both symbols glow"},
+ {"click": [8, 1]},
+ {"until": "s.dialog.open || s.map === 'c1w-shallows'", "timeout": 10000},
+ {"spaceUntil": "s.map === 'c1w-shallows'", "timeout": 40000}
+]}

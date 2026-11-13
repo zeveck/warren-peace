@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://warrenpeace.synapticnoise.com/sitemap.xml

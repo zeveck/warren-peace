@@ -1,0 +1,13 @@
+# Battle UI / recruit / ending polish (helper "battleui")
+
+Fixes for the polish reviewer's RPG battle, recruit card and ending findings.
+
+1. **Backdrops pop in**: `BattleScene.enter()` (battle/rpg.js) now preloads `bg-battle-*` along with the sprites, and `run()` waits for `this.ready` (all of them, capped at 2.5 s) before the fade-in, so a fight opens on its painting. New `battle/backdrops.js` works out the backdrops a map's fights can use: its wandering enemies' `encounter` plus `battle('id')` calls found in its script functions. `world/explore.js load()` calls it fire-and-forget (one line, dynamic import).
+2. **Enemy labels**: `layoutLabels()` places each enemy's name and bar above its head, or at the nearest clear spot (sideways, then higher). It scores by overlap area with the other labels (weighted heavily) and with the other units' bodies. `labelText()` drops "(Hum)" or "(Dreaming)" when the name already says so. posOf/BESIDE_BIG are unchanged. "Re?ting": a knocked-out member's status icons were drawn over "Resting" in the status panel; a resting member now shows only "Resting". The floating "Resting" on the field sits above the damage number's path (y - 104).
+3. **Victory panel**: shows one line per friend ("Bramble reached level 12! (+9)"). After four lines it closes with "and N more reached level X!" (or "grew stronger!"). The panel is centred above the status panel and its height follows its contents, so the plain Victory panel has no empty band.
+4. **Defeat**: new `DefeatCard` in screens/picture.js shows the lost fight's backdrop, dimmed, with a panel holding a party friend's portrait and name, "Up you get. We'll try again when we're ready.", and a line saying everyone is back at <place> with full Heart and nothing lost. It waits for Space or a click. `world/script.js upYouGet()` shows it instead of the bare black dialog line. rpg.js sets `G.lastDefeat = { bg, who }` on a loss.
+5. **Recruit card**: the card is 360 wide and its height follows its contents. The quote uses `ui.wrap(..., balance)`. The card stays up until a key or click (after 0.6 s) and shows a "Space or click" hint. The banner row sits under the card.
+6. **Credits**: the credits now scroll inside a dark reading column (alpha 0.8, soft sides) that ends above a separate parade lane along the bottom. Lines fade in and out at the column's edges, and the parade sprites are kept below the lane top. The book lines went from size 9 to 10 and the font credit from 8 to 9, all with a dark shadow.
+
+Screens checked at 1280, 1920 and 1024: design/screenshots/bui-*.png.
+Replays c0-attack, c1-depths, c2-moon-b, c1w-wonder-b, c5-ending: all {"ok": true} after the changes.

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Warren Peace: a cozy rabbit adventure RPG with a war that ends in peace</title>
+<meta name="description" content="Bramble's warren has been wrecked and his friends carried off. Take the old key, find allies in storybook worlds and stranger depths, and lead them all home in a war that ends in peace. A cozy isometric pixel-art RPG.">
+<meta name="theme-color" content="#2b2236">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="canonical" href="https://warrenpeace.synapticnoise.com/">
+<meta property="og:url" content="https://warrenpeace.synapticnoise.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Warren Peace">
+<meta property="og:description" content="A cozy isometric pixel-art rabbit RPG: storybook worlds, a strange deep dark, and an army of friends that heals instead of conquers.">
+<meta property="og:image" content="https://warrenpeace.synapticnoise.com/social-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Bramble the rabbit on Sorrel Down at dusk, under the words Warren Peace">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Warren Peace">
+<meta name="twitter:description" content="A cozy isometric pixel-art rabbit RPG with a war that ends in peace.">
+<meta name="twitter:image" content="https://warrenpeace.synapticnoise.com/social-card.jpg">
+<style>
+  @font-face { font-family: 'Pixelify'; src: url('fonts/PixelifySans.ttf') format('truetype'); font-display: block; }
+  html, body { margin: 0; height: 100%; background: #17121f; overflow: hidden; touch-action: none; user-select: none; -webkit-user-select: none; }
+  #screen { position: absolute; left: 0; top: 0; display: block; image-rendering: pixelated; outline: none; }
+  #boot { visibility: hidden; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #efe8d6; font: 20px 'Pixelify', monospace; letter-spacing: 1px; }
+  #boot .bar { width: 240px; height: 8px; border: 2px solid #efe8d6; margin-top: 12px; }
+  #boot .fill { height: 100%; width: 0; background: #c9b458; }
+  .tlink { position: absolute; bottom: max(10px, env(safe-area-inset-bottom)); display: none; font: 13px 'Pixelify', monospace; color: rgba(232,220,192,0.62); text-decoration: none; padding: 4px 6px; z-index: 5; }
+  .tlink:hover, .tlink:focus { color: #f6e7b8; text-decoration: underline; }
+  #tl-gallery { left: max(12px, env(safe-area-inset-left)); }
+  #tl-github { right: max(12px, env(safe-area-inset-right)); }
+  @media (max-width: 700px), (max-height: 420px) { .tlink { font-size: 11px; } }
+</style>
+</head>
+<body>
+<canvas id="screen" tabindex="0" aria-label="Warren Peace game"></canvas>
+<div id="boot"><div><div style="text-align:center">Warren Peace</div><div class="bar"><div class="fill" id="bootfill"></div></div></div></div>
+<a id="tl-gallery" class="tlink" href="https://synapticnoise.com/" target="_blank" rel="noopener" title="More games at synapticnoise.com">synapticnoise.com</a>
+<a id="tl-github" class="tlink" href="https://github.com/zeveck/warren-peace" target="_blank" rel="noopener" title="Warren Peace on GitHub: how it was made">GitHub</a>
+<script>
+  // the two small links show on the title screen only (window.__wpOnTitle comes from src/main.js)
+  (function tick() {
+    const on = !!(window.__wpOnTitle && window.__wpOnTitle());
+    for (const id of ['tl-gallery', 'tl-github']) { const a = document.getElementById(id); if (a) a.style.display = on ? 'block' : 'none'; }
+    requestAnimationFrame(tick);
+  })();
+</script>
+<script type="module" src="src/main.js"></script>
+<script>
+  const local = ['localhost', '127.0.0.1'].includes(location.hostname);
+  if ('serviceWorker' in navigator && (!local || new URLSearchParams(location.search).has('sw'))) {
+    // a waiting update is applied only while the title screen is up (never mid-game: see sw.js), then the page reloads
+    let asked = false;
+    navigator.serviceWorker.register('sw.js').then(reg => setInterval(() => {
+      if (!asked && reg.waiting && navigator.serviceWorker.controller && window.__wpOnTitle && window.__wpOnTitle()) { asked = true; reg.waiting.postMessage('skipWaiting'); }
+    }, 2000));
+    navigator.serviceWorker.addEventListener('controllerchange', () => { if (asked && window.__wpOnTitle && window.__wpOnTitle()) location.reload(); });
+  }
+</script>
+</body>
+</html>

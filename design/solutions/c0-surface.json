@@ -1,0 +1,12 @@
+{ "segment": "c0-surface", "steps": [
+  {"talk": "tansy", "note": "Tansy"}, {"talkthrough": true, "choose": [0]},
+  {"until": "!s.busy", "timeout": 20000},
+  {"talk": "pip", "note": "Pip asks"}, {"talkthrough": true, "choose": [0]},
+  {"click": [9, 26], "note": "the hollow log"}, {"until": "s.dialog.open", "timeout": 20000}, {"talkthrough": true},
+  {"talk": "pip", "note": "button back"}, {"talkthrough": true},
+  {"wait": 600}, {"talkthrough": true, "note": "tremor"},
+  {"walk": [18, 20]}, {"walk": [18, 19]}, {"walk": [18, 18], "note": "the warren mouth"},
+  {"talkthrough": true},
+  {"until": "s.map === 'c0-warren'", "timeout": 20000}, {"talkthrough": true},
+  {"done": true}
+]}

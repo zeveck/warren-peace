@@ -1,0 +1,10 @@
+{ "segment": "c1-greatburrow", "steps": [
+  {"until": "s.dialog.open || s.screen===\"battle\"", "timeout": 20000},
+  {"talkthrough": true},
+  {"until": "b && b.menu && b.menu.mode === 'cmd'", "timeout": 20000, "note": "let the battle intro finish"},
+  {"wait": 300},
+  {"fight": "auto", "note": "Chert s band, Hum-taken"},
+  {"talkthrough": true, "choose": [0]},
+  {"until": "s.screen===\"explore\" && !s.busy", "timeout": 40000},
+  {"done": true}
+]}

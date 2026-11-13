@@ -1,0 +1,547 @@
+{
+ "segment": "c2-moon-b",
+ "steps": [
+  {
+   "wait": 500
+  },
+  {
+   "walk": [
+    14,
+    6
+   ]
+  },
+  {
+   "walk": [
+    13,
+    4
+   ]
+  },
+  {
+   "walk": [
+    13,
+    3
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map==='c2-moon-palace'",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    13,
+    12
+   ]
+  },
+  {
+   "walk": [
+    13,
+    6
+   ]
+  },
+  {
+   "talk": "change"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    13,
+    12
+   ]
+  },
+  {
+   "walk": [
+    13,
+    22
+   ]
+  },
+  {
+   "walk": [
+    13,
+    24
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map==='c2-moon'",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    14,
+    8
+   ]
+  },
+  {
+   "walk": [
+    18,
+    12
+   ]
+  },
+  {
+   "walk": [
+    22,
+    12
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    26,
+    10
+   ]
+  },
+  {
+   "walk": [
+    30,
+    9
+   ]
+  },
+  {
+   "walk": [
+    32,
+    9
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map==='c2-moon-craters'",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "goto": [
+    20,
+    7
+   ],
+   "note": "fullrun: the Moon Toad's Pearl Stall"
+  },
+  {
+   "talk": "moon-toad"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'shop'",
+   "timeout": 5000
+  },
+  {
+   "button": "buy:Lantern III",
+   "note": "Moon Toad: Lantern III and Star Amulet III (Light) for the Moth Queen"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "buy:Star Amulet III"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "Leave"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 5000
+  },
+  {
+   "goto": [
+    8,
+    18
+   ]
+  },
+  {
+   "walk": [
+    12,
+    14
+   ]
+  },
+  {
+   "talk": "hare-elder"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    16,
+    10
+   ]
+  },
+  {
+   "walk": [
+    20,
+    10
+   ]
+  },
+  {
+   "walk": [
+    26,
+    10
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fightIf": 8000,
+   "note": "the crater moth (after the stall detour it is still on its way: fight when it arrives)"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    26,
+    10
+   ]
+  },
+  {
+   "walk": [
+    27,
+    6
+   ]
+  },
+  {
+   "walk": [
+    28,
+    2
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map==='c2-moon-grove'",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    23,
+    24
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    23,
+    24
+   ]
+  },
+  {
+   "walk": [
+    23,
+    20
+   ]
+  },
+  {
+   "walk": [
+    20,
+    20
+   ]
+  },
+  {
+   "walk": [
+    16,
+    20
+   ]
+  },
+  {
+   "walk": [
+    16,
+    17
+   ]
+  },
+  {
+   "walk": [
+    16,
+    14
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    16,
+    17
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    16,
+    17
+   ]
+  },
+  {
+   "walk": [
+    16,
+    20
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    16,
+    20
+   ]
+  },
+  {
+   "walk": [
+    20,
+    20
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    20,
+    20
+   ]
+  },
+  {
+   "walk": [
+    23,
+    20
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    23,
+    20
+   ]
+  },
+  {
+   "walk": [
+    23,
+    24
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    23,
+    24
+   ]
+  },
+  {
+   "click": [
+    23,
+    25
+   ],
+   "note": "rest stone before the Moth Queen (boss fix: she is tuned for a rested party)"
+  },
+  {
+   "until": "s.dialog.open || s.screen!==\"explore\"",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    23,
+    20
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    23,
+    20
+   ]
+  },
+  {
+   "walk": [
+    20,
+    20
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    20,
+    20
+   ]
+  },
+  {
+   "walk": [
+    16,
+    20
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    16,
+    20
+   ]
+  },
+  {
+   "walk": [
+    16,
+    17
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    16,
+    17
+   ]
+  },
+  {
+   "walk": [
+    16,
+    14
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    16,
+    14
+   ]
+  },
+  {
+   "walk": [
+    13,
+    14
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    13,
+    14
+   ]
+  },
+  {
+   "walk": [
+    13,
+    14
+   ]
+  },
+  {
+   "walk": [
+    11,
+    14
+   ]
+  },
+  {
+   "walk": [
+    9,
+    9
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    9,
+    9
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "!!s.flags['g_recruit_jade-rabbit']",
+   "timeout": 15000,
+   "note": "segment done: c2-moon-b"
+  },
+  {
+   "until": "!!s.flags['g_recruit_jade-rabbit']",
+   "timeout": 15000,
+   "note": "segment done: c2-moon-b"
+  }
+ ]
+}

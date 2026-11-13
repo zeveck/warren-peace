@@ -1,0 +1,157 @@
+{
+ "segment": "fullrun-join",
+ "steps": [
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "note": "Chapter 2 done: save in slot 3",
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'pause'",
+   "timeout": 3000
+  },
+  {
+   "button": "Save"
+  },
+  {
+   "button": "Slot 3"
+  },
+  {
+   "wait": 400
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'explore'",
+   "timeout": 3000
+  },
+  {
+   "goto": [
+    18,
+    19
+   ]
+  },
+  {
+   "click": [
+    18,
+    18
+   ]
+  },
+  {
+   "until": "s.map === 'c0-warren'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c0-warren' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    22,
+    4
+   ],
+   "note": "Mallow's tier-3 stock (557 buttons): Waistcoat IV for Badger, Quill III for Jade"
+  },
+  {
+   "talk": "mallow"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "until": "s.screen === 'shop'",
+   "timeout": 5000
+  },
+  {
+   "button": "buy:Waistcoat IV"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "buy:Quill III"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "Leave"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 5000
+  },
+  {
+   "goto": [
+    5,
+    23
+   ],
+   "note": "Comfrey: rest"
+  },
+  {
+   "talk": "comfrey"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "goto": [
+    3,
+    2
+   ]
+  },
+  {
+   "click": [
+    3,
+    1
+   ]
+  },
+  {
+   "until": "s.map === 'c0-downs'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c0-downs' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    30,
+    12
+   ],
+   "note": "the Lookout Stone: Wheatsheaf is next"
+  },
+  {
+   "click": [
+    30,
+    10
+   ]
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "segment": "ng-start",
+ "steps": [
+  {
+   "until": "s.map === 'c5-sunset' && !s.busy && !s.dialog.open",
+   "timeout": 15000,
+   "note": "the won game at sunset"
+  },
+  {
+   "walk": [
+    11,
+    8
+   ],
+   "note": "up toward the warren mouth"
+  },
+  {
+   "talk": "woodruff",
+   "note": "Woodruff offers to tell it again"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0,
+    0,
+    0
+   ],
+   "note": "Tell it again; start New Game+ (a free slot keeps the won game)"
+  },
+  {
+   "until": "s.ng === 1 && s.map === 'c0-downs'",
+   "timeout": 20000,
+   "note": "New Game+ starts after the script ends"
+  },
+  {
+   "talkthrough": true,
+   "note": "Woodruff's line, then the intro"
+  },
+  {
+   "until": "s.members.bramble && s.members.bramble.lvl >= 27",
+   "timeout": 5000
+  },
+  {
+   "done": true
+  }
+ ]
+}

@@ -1,0 +1,74 @@
+{
+ "segment": "fullrun-join",
+ "note": "Chapter 4 done: save, then Ninefold + Jade Rabbit travel for the dream (the Nightmare of Flintcomb counters: Cure; Ninefold)",
+ "steps": [
+  {
+   "until": "s.dialog.open || s.screen === 'chapter'",
+   "timeout": 8000,
+   "note": "after the Finale card: the gathering"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "every warren comes down; Yarrow speaks the rhyme"
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "note": "Chapter 4 done: save in slot 3",
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'pause'",
+   "timeout": 3000
+  },
+  {
+   "button": "Save"
+  },
+  {
+   "button": "Slot 3"
+  },
+  {
+   "wait": 400
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'explore'",
+   "timeout": 3000
+  },
+  {
+   "press": "Tab",
+   "note": "Ninefold (row 8) in: from [Rumble, Jade] this drops Rumble"
+  },
+  {
+   "until": "s.screen === 'camp'",
+   "timeout": 3000
+  },
+  {
+   "press": "ArrowDown",
+   "times": 8
+  },
+  {
+   "press": "Space"
+  },
+  {
+   "button": "Auto-equip best"
+  },
+  {
+   "press": "Tab"
+  },
+  {
+   "until": "s.screen === 'explore' && s.party.includes('ninefold') && s.party.includes('jade-rabbit')",
+   "timeout": 3000
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "segment": "fullrun-retry",
+ "note": "only after losing to the Tidewarden (happened at L14; headless L14 0-6/30, L15 23/30). A real player's way to a level: the two pool wanderers the plan walks past (enemies never respawn, so this is the XP there is). As run: a first version walked near them without a fight; then clicked them",
+ "steps": [
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "engage": "dwe2",
+   "note": "the moving carving"
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    5,
+    13
+   ],
+   "note": "back past the stone (the north side is reached from the west)"
+  },
+  {
+   "engage": "dwe1",
+   "note": "the cold ripple"
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  }
+ ]
+}

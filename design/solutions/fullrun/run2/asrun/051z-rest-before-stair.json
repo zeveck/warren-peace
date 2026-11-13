@@ -1,0 +1,45 @@
+{
+ "segment": "fullrun-join",
+ "steps": [
+  {
+   "goto": [
+    15,
+    14
+   ],
+   "note": "round the edge of the Underway (a straight goto crosses the dust whirl in the middle, which blows you back to Oz: happened once)"
+  },
+  {
+   "goto": [
+    12,
+    15
+   ]
+  },
+  {
+   "click": [
+    12,
+    16
+   ]
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "Stay here (listed first now)"
+  },
+  {
+   "until": "s.map === 'c3-underway' && s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "goto": [
+    15,
+    8
+   ]
+  }
+ ]
+}

@@ -1,0 +1,279 @@
+{
+ "segment": "fullrun-join",
+ "steps": [
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "note": "Chapter 3 done: save in slot 3",
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'pause'",
+   "timeout": 3000
+  },
+  {
+   "button": "Save"
+  },
+  {
+   "button": "Slot 3"
+  },
+  {
+   "wait": 400
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'explore'",
+   "timeout": 3000
+  },
+  {
+   "note": "home: back up the Stair, through Wheatsheaf, to Sorrel Down",
+   "goto": [
+    3,
+    2
+   ]
+  },
+  {
+   "click": [
+    2,
+    2
+   ]
+  },
+  {
+   "until": "s.map === 'c3-underway'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-underway' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    2,
+    3
+   ]
+  },
+  {
+   "click": [
+    1,
+    2
+   ]
+  },
+  {
+   "until": "s.map === 'c3-wheatsheaf-warren'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-wheatsheaf-warren' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    11,
+    1
+   ]
+  },
+  {
+   "click": [
+    11,
+    0
+   ]
+  },
+  {
+   "until": "s.map === 'c3-wheatsheaf'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-wheatsheaf' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    28,
+    15
+   ]
+  },
+  {
+   "click": [
+    29,
+    15
+   ]
+  },
+  {
+   "until": "s.map === 'c0-downs'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c0-downs' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    18,
+    19
+   ]
+  },
+  {
+   "click": [
+    18,
+    18
+   ]
+  },
+  {
+   "until": "s.map === 'c0-warren'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c0-warren' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "note": "Tansy and Jade Rabbit travel (the Flintcomb plan); Mallow's tier-5 gear for Tansy (she has none)",
+   "press": "Tab"
+  },
+  {
+   "until": "s.screen === 'camp'",
+   "timeout": 3000
+  },
+  {
+   "button": "tab:Party"
+  },
+  {
+   "button": "member:Tansy"
+  },
+  {
+   "button": "member:Jade Rabbit"
+  },
+  {
+   "press": "Tab"
+  },
+  {
+   "until": "s.screen === 'explore'",
+   "timeout": 3000
+  },
+  {
+   "goto": [
+    22,
+    4
+   ]
+  },
+  {
+   "talk": "mallow"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "until": "s.screen === 'shop'",
+   "timeout": 5000
+  },
+  {
+   "button": "buy:Digging Claw V"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "buy:Waistcoat V"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "Leave"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 5000
+  },
+  {
+   "goto": [
+    5,
+    23
+   ],
+   "note": "Comfrey: rest"
+  },
+  {
+   "talk": "comfrey"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "goto": [
+    3,
+    2
+   ]
+  },
+  {
+   "click": [
+    3,
+    1
+   ]
+  },
+  {
+   "until": "s.map === 'c0-downs'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c0-downs' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    30,
+    12
+   ],
+   "note": "the Lookout Stone: Flintcomb"
+  },
+  {
+   "click": [
+    30,
+    10
+   ]
+  },
+  {
+   "spaceUntil": "s.screen === 'chapter' || s.screen === 'rts-preview'",
+   "timeout": 30000,
+   "shot": "/workspaces/gg-test3/design/screenshots/fullrun-ch4-card.png",
+   "note": "as run the card closed before the runner took its screenshot (ch2 and ch4 cards missed); shot added afterwards"
+  }
+ ]
+}

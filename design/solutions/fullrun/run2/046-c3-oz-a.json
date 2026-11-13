@@ -1,0 +1,293 @@
+{
+ "segment": "c3-oz-a",
+ "steps": [
+  {
+   "walk": [
+    10,
+    12
+   ]
+  },
+  {
+   "walk": [
+    10,
+    10
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-munchkin'",
+   "timeout": 40000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talk": "good-witch"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "walk": [
+    20,
+    12
+   ]
+  },
+  {
+   "walk": [
+    26,
+    12
+   ]
+  },
+  {
+   "walk": [
+    27,
+    12
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-forest' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    11
+   ]
+  },
+  {
+   "walk": [
+    10,
+    9
+   ]
+  },
+  {
+   "click": [
+    9,
+    5
+   ]
+  },
+  {
+   "until": "s.dialog.open || s.screen !== 'explore' || s.busy",
+   "timeout": 6000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "!s.busy",
+   "timeout": 8000
+  },
+  {
+   "talk": "tin-woodman"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talk": "tin-woodman"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    11
+   ]
+  },
+  {
+   "walk": [
+    18,
+    11
+   ]
+  },
+  {
+   "walk": [
+    22,
+    11
+   ]
+  },
+  {
+   "walk": [
+    23,
+    11
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "walk": [
+    30,
+    11
+   ]
+  },
+  {
+   "walk": [
+    35,
+    11
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-river' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    9
+   ]
+  },
+  {
+   "talk": "stork"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "walk": [
+    12,
+    12
+   ]
+  },
+  {
+   "walk": [
+    17,
+    12
+   ]
+  },
+  {
+   "walk": [
+    20,
+    12
+   ]
+  },
+  {
+   "walk": [
+    22,
+    12
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    22,
+    12
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    30,
+    12
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "walk": [
+    30,
+    12
+   ]
+  },
+  {
+   "walk": [
+    31,
+    12
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-poppies' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    13,
+    12
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    13,
+    12
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "!s.busy",
+   "timeout": 20000
+  },
+  {
+   "until": "s.flags['g_recruit_tin-woodman'] && s.flags.g_recruit_scarecrow && s.flags['g_recruit_cowardly-lion'] && s.flags['g_recruit_mouse-queen']",
+   "timeout": 15000,
+   "note": "segment done: c3-oz-a"
+  }
+ ]
+}

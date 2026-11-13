@@ -1,0 +1,10 @@
+{"segment": "fullrun-resume", "steps": [
+ {"note": "ONLY after a tool crash or a data fix (page reloaded): resume from the game's own save in slot 2", "until": "s.screen === 'title'", "timeout": 15000},
+ {"wait": 800},
+ {"press": "Space"},
+ {"wait": 600},
+ {"button": "Load"},
+ {"button": "Slot 2"},
+ {"until": "s.screen === 'explore' && !s.busy", "timeout": 15000},
+ {"wait": 500}
+]}

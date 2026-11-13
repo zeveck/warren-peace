@@ -1,0 +1,157 @@
+{
+ "segment": "fullrun-join",
+ "steps": [
+  {
+   "note": "Toad Hall done; Ratty rowed us back to the River Bank's door. Save in slot 2 (River Bank done).",
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'pause'",
+   "timeout": 3000
+  },
+  {
+   "button": "Save"
+  },
+  {
+   "button": "Slot 2"
+  },
+  {
+   "wait": 400
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'explore'",
+   "timeout": 3000
+  },
+  {
+   "note": "the quest says: visit home (Burdock wants to see the nursery). Back through the river door",
+   "click": [
+    4,
+    25
+   ]
+  },
+  {
+   "until": "s.map === 'c1-underway' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    16,
+    8
+   ],
+   "note": "to the Depths door"
+  },
+  {
+   "click": [
+    17,
+    8
+   ]
+  },
+  {
+   "until": "s.map === 'c1-depths' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    4,
+    1
+   ],
+   "note": "up through the Depths to the sealed door"
+  },
+  {
+   "click": [
+    4,
+    0
+   ]
+  },
+  {
+   "until": "s.map === 'c0-warren' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    25,
+    25
+   ],
+   "note": "into the deep passage: Home, briefly"
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy && s.flags.c1_home_brief",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    19,
+    28
+   ],
+   "note": "back down through the sealed door"
+  },
+  {
+   "click": [
+    18,
+    28
+   ]
+  },
+  {
+   "until": "s.dialog.open || s.map === 'c1-depths'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c1-depths' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    20,
+    36
+   ],
+   "note": "down through the Depths to the Underway"
+  },
+  {
+   "click": [
+    20,
+    37
+   ]
+  },
+  {
+   "until": "s.map === 'c1-underway' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    4,
+    4
+   ],
+   "note": "the keyhole door"
+  },
+  {
+   "click": [
+    3,
+    3
+   ]
+  },
+  {
+   "spaceUntil": "s.map === 'c1w-hall'",
+   "timeout": 30000,
+   "note": "peer through the keyhole... and fall"
+  }
+ ]
+}

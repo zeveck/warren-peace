@@ -1,0 +1,499 @@
+{
+ "segment": "ng-c2-moon-b",
+ "steps": [
+  {
+   "wait": 500
+  },
+  {
+   "walk": [
+    14,
+    6
+   ]
+  },
+  {
+   "walk": [
+    13,
+    4
+   ]
+  },
+  {
+   "walk": [
+    13,
+    3
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map==='c2-moon-palace'",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    13,
+    12
+   ]
+  },
+  {
+   "walk": [
+    14,
+    5
+   ],
+   "note": "(13,6) sits 84% hidden behind the lantern at (15,8): a click there is a click on the lantern"
+  },
+  {
+   "talk": "change"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    13,
+    12
+   ]
+  },
+  {
+   "walk": [
+    13,
+    22
+   ]
+  },
+  {
+   "walk": [
+    13,
+    24
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map==='c2-moon'",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    14,
+    8
+   ]
+  },
+  {
+   "walk": [
+    18,
+    12
+   ]
+  },
+  {
+   "walk": [
+    22,
+    12
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    26,
+    10
+   ]
+  },
+  {
+   "walk": [
+    30,
+    9
+   ]
+  },
+  {
+   "walk": [
+    32,
+    9
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map==='c2-moon-craters'",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    8,
+    18
+   ]
+  },
+  {
+   "walk": [
+    12,
+    14
+   ]
+  },
+  {
+   "talk": "hare-elder"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    16,
+    10
+   ]
+  },
+  {
+   "walk": [
+    20,
+    10
+   ]
+  },
+  {
+   "walk": [
+    26,
+    10
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    26,
+    10
+   ]
+  },
+  {
+   "walk": [
+    27,
+    6
+   ]
+  },
+  {
+   "walk": [
+    28,
+    2
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map==='c2-moon-grove'",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    23,
+    24
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    23,
+    24
+   ]
+  },
+  {
+   "walk": [
+    23,
+    20
+   ]
+  },
+  {
+   "walk": [
+    20,
+    20
+   ]
+  },
+  {
+   "walk": [
+    16,
+    20
+   ]
+  },
+  {
+   "walk": [
+    16,
+    17
+   ]
+  },
+  {
+   "walk": [
+    16,
+    14
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    16,
+    17
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    16,
+    17
+   ]
+  },
+  {
+   "walk": [
+    16,
+    20
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    16,
+    20
+   ]
+  },
+  {
+   "walk": [
+    20,
+    20
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    20,
+    20
+   ]
+  },
+  {
+   "walk": [
+    23,
+    20
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    23,
+    20
+   ]
+  },
+  {
+   "walk": [
+    23,
+    24
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    23,
+    24
+   ]
+  },
+  {
+   "click": [
+    23,
+    25
+   ],
+   "note": "rest stone before the Moth Queen (boss fix: she is tuned for a rested party)"
+  },
+  {
+   "until": "s.dialog.open || s.screen!==\"explore\"",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    23,
+    20
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    23,
+    20
+   ]
+  },
+  {
+   "walk": [
+    20,
+    20
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    20,
+    20
+   ]
+  },
+  {
+   "walk": [
+    16,
+    20
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    16,
+    20
+   ]
+  },
+  {
+   "walk": [
+    16,
+    17
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    16,
+    17
+   ]
+  },
+  {
+   "walk": [
+    16,
+    14
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    16,
+    14
+   ]
+  },
+  {
+   "walk": [
+    13,
+    14
+   ]
+  },
+  {
+   "fight": "maybe"
+  },
+  {
+   "walk": [
+    13,
+    14
+   ]
+  },
+  {
+   "walk": [
+    13,
+    14
+   ]
+  },
+  {
+   "walk": [
+    11,
+    14
+   ]
+  },
+  {
+   "walk": [
+    9,
+    9
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    9,
+    9
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "done": true
+  },
+  {
+   "done": true
+  }
+ ]
+}

@@ -1,0 +1,15 @@
+{"segment": "fullrun-retry", "note": "as run: Captain Quarry was lost (L20; the plan does not rest at the lip's stone after three fights). Back at the warren top: walk down, rest at the stone, try again", "steps": [
+ {"until": "s.screen === 'explore' && !s.busy", "timeout": 10000},
+ {"goto": [12, 17]},
+ {"click": [12, 18], "note": "rest at the mossy stone by the lip"},
+ {"until": "s.dialog.open", "timeout": 10000},
+ {"talkthrough": true},
+ {"until": "s.screen === 'explore' && !s.busy", "timeout": 10000},
+ {"walk": [13, 16]},
+ {"talk": "captain-quarry"},
+ {"talkthrough": true},
+ {"fight": "auto", "note": "BOSS: Captain Quarry (retry)"},
+ {"talkthrough": true},
+ {"until": "s.screen === 'explore' && !s.busy", "timeout": 30000},
+ {"until": "s.flags.g_freed_flintcomb", "timeout": 15000}
+]}

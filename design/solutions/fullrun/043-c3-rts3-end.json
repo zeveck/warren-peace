@@ -1,0 +1,20 @@
+{
+ "segment": "c3-rts3 (end)",
+ "steps": [
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-wheatsheaf' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.flags['g_c3-rts3_won']",
+   "timeout": 15000,
+   "note": "segment done: c3-rts3"
+  }
+ ]
+}

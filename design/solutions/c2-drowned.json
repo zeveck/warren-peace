@@ -1,0 +1,290 @@
+{
+ "segment": "c2-drowned",
+ "steps": [
+  {
+   "wait": 500
+  },
+  {
+   "walk": [
+    12,
+    20
+   ]
+  },
+  {
+   "walk": [
+    12,
+    23
+   ]
+  },
+  {
+   "walk": [
+    12,
+    24
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map==='c2-drowned'",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    36,
+    28
+   ]
+  },
+  {
+   "walk": [
+    22,
+    28
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    22,
+    28
+   ]
+  },
+  {
+   "walk": [
+    8,
+    21
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    8,
+    21
+   ]
+  },
+  {
+   "walk": [
+    8,
+    13
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    8,
+    13
+   ]
+  },
+  {
+   "walk": [
+    8,
+    11
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    8,
+    11
+   ]
+  },
+  {
+   "walk": [
+    10,
+    11
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    11
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    11
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    11
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    11
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    11
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    11
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    11
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talk": "tansy"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    16,
+    8
+   ]
+  },
+  {
+   "walk": [
+    25,
+    8
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    25,
+    8
+   ]
+  },
+  {
+   "walk": [
+    31,
+    7
+   ]
+  },
+  {
+   "walk": [
+    32,
+    7
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map==='c2-drowned-pool'",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "click": [
+    4,
+    13
+   ]
+  },
+  {
+   "until": "s.dialog.open || s.screen !== 'explore' || s.busy",
+   "timeout": 15000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    8,
+    15
+   ]
+  },
+  {
+   "walk": [
+    11,
+    15
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "done": true
+  },
+  {
+   "done": true
+  }
+ ]
+}

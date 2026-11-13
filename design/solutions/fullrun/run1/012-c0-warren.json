@@ -1,0 +1,41 @@
+{
+ "segment": "c0-warren",
+ "steps": [
+  {
+   "walk": [
+    13,
+    7
+   ],
+   "note": "into the Great Burrow"
+  },
+  {
+   "talk": "woodruff",
+   "note": "the Long Thump"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    13,
+    15
+   ],
+   "note": "Yarrow's den"
+  },
+  {
+   "talk": "yarrow",
+   "note": "Yarrow's errand"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "until": "!!s.flags.c0_yarrow_asked",
+   "timeout": 15000,
+   "note": "segment done: c0-warren"
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+{"segment": "fullrun-join", "steps": [
+ {"click": [8, 8], "note": "rest at the Underway's mossy stone (PL was low after the Depths)"},
+ {"until": "s.dialog.open || s.busy", "timeout": 15000},
+ {"talkthrough": true},
+ {"until": "s.screen === 'explore' && !s.busy", "timeout": 10000},
+ {"goto": [2, 8], "note": "to the river door"}
+]}

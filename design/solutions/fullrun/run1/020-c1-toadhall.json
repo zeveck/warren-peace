@@ -1,0 +1,564 @@
+{
+ "segment": "c1-toadhall",
+ "steps": [
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    0,
+    6
+   ],
+   "note": "west to the road"
+  },
+  {
+   "until": "s.map===\"c1-road\"",
+   "timeout": 10000
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "talk": "toad"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 30000
+  },
+  {
+   "walk": [
+    27,
+    12
+   ]
+  },
+  {
+   "walk": [
+    24,
+    9
+   ]
+  },
+  {
+   "walk": [
+    24,
+    7
+   ]
+  },
+  {
+   "click": [
+    24,
+    5
+   ],
+   "note": "the ferret"
+  },
+  {
+   "until": "s.screen===\"battle\"",
+   "timeout": 10000
+  },
+  {
+   "until": "b && b.menu && b.menu.mode === 'cmd'",
+   "timeout": 20000,
+   "note": "let the battle intro finish"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "fight": "auto",
+   "note": "ferret and stoat"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "click": [
+    33,
+    3
+   ],
+   "note": "chest"
+  },
+  {
+   "until": "s.dialog.open || s.screen!==\"explore\"",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    34,
+    12
+   ]
+  },
+  {
+   "walk": [
+    35,
+    12
+   ],
+   "note": "back to the River Bank"
+  },
+  {
+   "until": "s.map===\"c1-riverbank\"",
+   "timeout": 10000
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    12,
+    6
+   ]
+  },
+  {
+   "walk": [
+    24,
+    6
+   ]
+  },
+  {
+   "walk": [
+    26,
+    11
+   ]
+  },
+  {
+   "walk": [
+    26,
+    17
+   ]
+  },
+  {
+   "talk": "washerwoman"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    1
+   ]
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 30000
+  },
+  {
+   "walk": [
+    26,
+    11
+   ]
+  },
+  {
+   "walk": [
+    27,
+    7
+   ]
+  },
+  {
+   "walk": [
+    37,
+    6
+   ]
+  },
+  {
+   "fight": "maybe",
+   "note": "fullrun: the bank-path stoat was already beaten earlier in this run (not there): fight only if it comes"
+  },
+  {
+   "walk": [
+    37,
+    6
+   ]
+  },
+  {
+   "walk": [
+    39,
+    6
+   ],
+   "note": "into the Wild Wood"
+  },
+  {
+   "until": "s.map===\"c1-wildwood\" && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "walk": [
+    8,
+    18
+   ]
+  },
+  {
+   "walk": [
+    8,
+    15
+   ]
+  },
+  {
+   "fightIf": 4000,
+   "note": "fullrun: Wild Wood weasels, already beaten during the River Bank in this run"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    8,
+    12
+   ]
+  },
+  {
+   "walk": [
+    5,
+    12
+   ]
+  },
+  {
+   "walk": [
+    5,
+    4
+   ]
+  },
+  {
+   "click": [
+    4,
+    1
+   ],
+   "note": "Badger s door"
+  },
+  {
+   "until": "s.map===\"c1-badger\"",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "click": [
+    5,
+    4
+   ],
+   "note": "rest on the settle"
+  },
+  {
+   "until": "s.dialog.open || s.screen!==\"explore\"",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    14,
+    8
+   ]
+  },
+  {
+   "walk": [
+    15,
+    8
+   ],
+   "note": "down to the buried city"
+  },
+  {
+   "until": "s.map===\"c1-buried-city\" && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "walk": [
+    4,
+    6
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    9,
+    7
+   ]
+  },
+  {
+   "click": [
+    12,
+    7
+   ],
+   "note": "the stoat"
+  },
+  {
+   "until": "s.screen===\"battle\"",
+   "timeout": 10000
+  },
+  {
+   "until": "b && b.menu && b.menu.mode === 'cmd'",
+   "timeout": 20000,
+   "note": "let the battle intro finish"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "fight": "auto",
+   "note": "weasel scouts"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "click": [
+    8,
+    15
+   ],
+   "note": "chest"
+  },
+  {
+   "until": "s.dialog.open || s.screen!==\"explore\"",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    12,
+    9
+   ]
+  },
+  {
+   "walk": [
+    18,
+    10
+   ]
+  },
+  {
+   "click": [
+    23,
+    14
+   ],
+   "note": "the ferret"
+  },
+  {
+   "until": "s.screen===\"battle\"",
+   "timeout": 10000
+  },
+  {
+   "until": "b && b.menu && b.menu.mode === 'cmd'",
+   "timeout": 20000,
+   "note": "let the battle intro finish"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "fight": "auto",
+   "note": "three scouts"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "click": [
+    21,
+    17
+   ],
+   "note": "rest stone"
+  },
+  {
+   "until": "s.dialog.open || s.screen!==\"explore\"",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    24,
+    19
+   ]
+  },
+  {
+   "walk": [
+    25,
+    19
+   ],
+   "note": "the secret tunnel"
+  },
+  {
+   "until": "s.map===\"c1-toadhall-in\"",
+   "timeout": 10000
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    4,
+    11
+   ]
+  },
+  {
+   "click": [
+    6,
+    9
+   ],
+   "note": "weasel with drumsticks"
+  },
+  {
+   "until": "s.screen===\"battle\"",
+   "timeout": 10000
+  },
+  {
+   "until": "b && b.menu && b.menu.mode === 'cmd'",
+   "timeout": 20000,
+   "note": "let the battle intro finish"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "fight": "auto",
+   "note": "pantry weasels"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "walk": [
+    12,
+    10
+   ]
+  },
+  {
+   "walk": [
+    18,
+    10
+   ]
+  },
+  {
+   "click": [
+    16,
+    7
+   ],
+   "note": "the stoat"
+  },
+  {
+   "until": "s.screen===\"battle\"",
+   "timeout": 10000
+  },
+  {
+   "until": "b && b.menu && b.menu.mode === 'cmd'",
+   "timeout": 20000,
+   "note": "let the battle intro finish"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "fight": "auto",
+   "note": "stoat, ferret, weasel"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "talk": "chief-weasel"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "b && b.menu && b.menu.mode === 'cmd'",
+   "timeout": 20000,
+   "note": "let the battle intro finish"
+  },
+  {
+   "wait": 300
+  },
+  {
+   "fight": "auto",
+   "note": "BOSS: the Chief Weasel"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0,
+    0
+   ]
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 30000
+  },
+  {
+   "until": "!!s.flags.g_c1_riverbank_done",
+   "timeout": 15000,
+   "note": "segment done: c1-toadhall"
+  }
+ ]
+}

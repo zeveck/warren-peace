@@ -1,0 +1,213 @@
+{
+ "segment": "fullrun-join",
+ "steps": [
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "note": "save in slot 2 (Jade Rabbit recruited, on the moon)",
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'pause'",
+   "timeout": 3000
+  },
+  {
+   "button": "Save"
+  },
+  {
+   "button": "Slot 2"
+  },
+  {
+   "wait": 400
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'explore'",
+   "timeout": 3000
+  },
+  {
+   "goto": [
+    26,
+    27
+   ],
+   "note": "out of the grove"
+  },
+  {
+   "click": [
+    26,
+    28
+   ]
+  },
+  {
+   "until": "s.map === 'c2-moon-craters'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c2-moon-craters' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    20,
+    7
+   ],
+   "note": "the Moon Toad again: gear for Jade Rabbit and Badger (the Drowned Halls pair)"
+  },
+  {
+   "talk": "moon-toad"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'shop'",
+   "timeout": 5000
+  },
+  {
+   "button": "buy:Pestle III"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "buy:Moon-silk Coat III"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "buy:Walking Stick III"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "Leave"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 5000
+  },
+  {
+   "goto": [
+    4,
+    26
+   ]
+  },
+  {
+   "click": [
+    3,
+    27
+   ]
+  },
+  {
+   "until": "s.map === 'c2-moon' && (s.dialog.open || s.screen === 'explore')",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c2-moon' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    25,
+    32
+   ],
+   "note": "down the moonbeam stair"
+  },
+  {
+   "click": [
+    25,
+    33
+   ]
+  },
+  {
+   "until": "s.map === 'c2-underway'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c2-underway' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "note": "Jade Rabbit and Badger travel (the Drowned Halls plan)",
+   "press": "Tab"
+  },
+  {
+   "until": "s.screen === 'camp'",
+   "timeout": 3000
+  },
+  {
+   "button": "tab:Party"
+  },
+  {
+   "button": "member:Jade Rabbit"
+  },
+  {
+   "button": "member:Badger"
+  },
+  {
+   "button": "Auto-equip best"
+  },
+  {
+   "press": "Tab"
+  },
+  {
+   "until": "s.screen === 'explore'",
+   "timeout": 3000
+  },
+  {
+   "goto": [
+    12,
+    13
+   ],
+   "note": "rest at the Underway stone"
+  },
+  {
+   "click": [
+    12,
+    12
+   ]
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "Stay here (listed first)"
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "goto": [
+    12,
+    4
+   ]
+  }
+ ]
+}

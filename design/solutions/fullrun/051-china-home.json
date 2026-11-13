@@ -1,0 +1,83 @@
+{
+ "segment": "fullrun-join",
+ "steps": [
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "goto": [
+    19,
+    2
+   ],
+   "note": "out by the lawn gate next to the Princess (as run: walked back over the china instead, the floor broke and dropped Bramble at the wall gate, which also works)"
+  },
+  {
+   "click": [
+    19,
+    1
+   ]
+  },
+  {
+   "until": "s.map === 'c3-south'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-south' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    16,
+    20
+   ],
+   "note": "Glinda: now the shoes"
+  },
+  {
+   "talk": "glinda"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    1
+   ],
+   "note": "Glinda: 'Back to Wheatsheaf's Underway' (Not yet is listed first now)"
+  },
+  {
+   "until": "s.map === 'c3-underway' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "click": [
+    12,
+    16
+   ],
+   "note": "the shoes land Bramble by the Underway stone: rest before the Stair of Eyes"
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "Stay here (listed first)"
+  },
+  {
+   "until": "s.map === 'c3-underway' && s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "goto": [
+    15,
+    8
+   ],
+   "note": "to the Stair of Eyes"
+  }
+ ]
+}

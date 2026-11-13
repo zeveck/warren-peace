@@ -1,0 +1,145 @@
+{
+ "segment": "fullrun-asrun",
+ "note": "AS-RUN detour of run 2: 051z's goto to the Underway stone walked over the dust whirl and blew Bramble back to Oz; walk to Glinda again and take the shoes home",
+ "steps": [
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "goto": [
+    26,
+    12
+   ]
+  },
+  {
+   "click": [
+    27,
+    12
+   ]
+  },
+  {
+   "until": "s.map === 'c3-forest'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-forest' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    34,
+    11
+   ]
+  },
+  {
+   "click": [
+    35,
+    11
+   ]
+  },
+  {
+   "until": "s.map === 'c3-river'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-river' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    30,
+    12
+   ]
+  },
+  {
+   "click": [
+    31,
+    12
+   ]
+  },
+  {
+   "until": "s.map === 'c3-poppies'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-poppies' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    32,
+    12
+   ]
+  },
+  {
+   "click": [
+    33,
+    12
+   ]
+  },
+  {
+   "until": "s.map === 'c3-emerald'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-emerald' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    1,
+    26
+   ]
+  },
+  {
+   "click": [
+    0,
+    26
+   ]
+  },
+  {
+   "until": "s.map === 'c3-south'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-south' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    16,
+    20
+   ],
+   "note": "Glinda again: the shoes home"
+  },
+  {
+   "talk": "glinda"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "until": "s.map === 'c3-underway' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  }
+ ]
+}

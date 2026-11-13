@@ -1,0 +1,7 @@
+{"segment":"c6-stone","steps":[
+{"wait":1200},{"talkthrough":true},
+{"hop":"ArrowLeft","n":1,"note":"onto the lip's edge by the gap: everyone has come down with the stone"},
+{"until":"s.dialog.open","timeout":8000},{"talkthrough":true,"note":"three thumps, the purr, up to the feast, the picture, Knapper's flint"},
+{"until":"s.screen==='explore' && !s.busy","timeout":30000},
+{"done":true}
+]}

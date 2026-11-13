@@ -1,0 +1,227 @@
+{
+ "segment": "c1w-wonder-a",
+ "steps": [
+  {
+   "talkthrough": true,
+   "note": "the fall"
+  },
+  {
+   "click": [
+    5,
+    8
+   ]
+  },
+  {
+   "until": "s.dialog.open"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    1
+   ],
+   "note": "eat: big"
+  },
+  {
+   "until": "s.size === 'big'"
+  },
+  {
+   "click": [
+    8,
+    6
+   ]
+  },
+  {
+   "until": "s.dialog.open"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "the key, the tears"
+  },
+  {
+   "click": [
+    5,
+    8
+   ]
+  },
+  {
+   "until": "s.dialog.open"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "drink: small"
+  },
+  {
+   "walk": [
+    11,
+    3
+   ]
+  },
+  {
+   "walk": [
+    11,
+    2
+   ],
+   "note": "through the tiny door"
+  },
+  {
+   "until": "s.map === 'c1w-pool' && s.dialog.open"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    12,
+    2
+   ],
+   "note": "along the shore first: (20,8) sits under the quest line from the tiny door now that the camera keeps Bramble off the top edge"
+  },
+  {
+   "walk": [
+    20,
+    8
+   ]
+  },
+  {
+   "until": "s.screen === 'battle' && window.__game.buttons().some(x => x.label === 'Skill')",
+   "timeout": 20000
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "walk": [
+    20,
+    8
+   ]
+  },
+  {
+   "talk": "dodo"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    16,
+    12
+   ]
+  },
+  {
+   "walk": [
+    19,
+    15
+   ]
+  },
+  {
+   "walk": [
+    15,
+    16
+   ]
+  },
+  {
+   "until": "s.dialog.open"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    22,
+    21
+   ],
+   "note": "down the lane"
+  },
+  {
+   "until": "s.map === 'c1w-lane' && s.dialog.open"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talk": "white-rabbit"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "walk": [
+    9,
+    3
+   ]
+  },
+  {
+   "walk": [
+    9,
+    2
+   ],
+   "note": "into the house"
+  },
+  {
+   "until": "s.map === 'c1w-rabbit-house' && s.dialog.open"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "click": [
+    3,
+    1
+   ]
+  },
+  {
+   "until": "s.dialog.open"
+  },
+  {
+   "talkthrough": true,
+   "note": "gloves and fan"
+  },
+  {
+   "click": [
+    6,
+    4
+   ]
+  },
+  {
+   "until": "s.dialog.open"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0,
+    0
+   ],
+   "note": "the bottle: stuck"
+  },
+  {
+   "click": [
+    8,
+    6
+   ]
+  },
+  {
+   "until": "s.dialog.open"
+  },
+  {
+   "talkthrough": true,
+   "note": "a cake: out, and the White Rabbit joins"
+  },
+  {
+   "until": "s.flags['g_recruit_white-rabbit'] && !s.busy"
+  },
+  {
+   "until": "!!s.flags['g_recruit_white-rabbit']",
+   "timeout": 15000,
+   "note": "segment done: c1w-wonder-a"
+  }
+ ]
+}

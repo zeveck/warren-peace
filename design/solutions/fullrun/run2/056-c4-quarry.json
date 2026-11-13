@@ -1,0 +1,213 @@
+{
+ "segment": "c4-quarry",
+ "steps": [
+  {
+   "until": "s.dialog.open || (s.screen === 'explore' && !s.busy)",
+   "timeout": 15000,
+   "note": "arrival narration (may already have played at the end of RTS4)"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    5,
+    19
+   ]
+  },
+  {
+   "walk": [
+    12,
+    16
+   ]
+  },
+  {
+   "walk": [
+    19,
+    6
+   ]
+  },
+  {
+   "fight": "auto",
+   "note": "raider on the quarry floor"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    19,
+    6
+   ]
+  },
+  {
+   "walk": [
+    20,
+    8
+   ]
+  },
+  {
+   "fight": "auto",
+   "note": "digger"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    19,
+    5
+   ]
+  },
+  {
+   "walk": [
+    19,
+    4
+   ],
+   "note": "the warren mouth"
+  },
+  {
+   "until": "s.map === 'c4-warren' && s.dialog.open"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    13,
+    16
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === \"explore\" && !s.busy"
+  },
+  {
+   "walk": [
+    13,
+    16
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === \"explore\" && !s.busy"
+  },
+  {
+   "walk": [
+    13,
+    16
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === \"explore\" && !s.busy"
+  },
+  {
+   "walk": [
+    13,
+    16
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === \"explore\" && !s.busy"
+  },
+  {
+   "walk": [
+    13,
+    16
+   ]
+  },
+  {
+   "talkthrough": true,
+   "note": "the lip"
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    13,
+    16
+   ]
+  },
+  {
+   "goto": [
+    12,
+    17
+   ]
+  },
+  {
+   "click": [
+    12,
+    18
+   ],
+   "note": "fullrun: rest at the mossy stone by the lip first (Bramble says so)"
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 15000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "walk": [
+    13,
+    16
+   ]
+  },
+  {
+   "talk": "captain-quarry"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto",
+   "note": "Captain Quarry"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 30000
+  },
+  {
+   "until": "s.flags.g_freed_flintcomb",
+   "timeout": 15000,
+   "note": "segment done: c4-quarry"
+  }
+ ]
+}

@@ -1,0 +1,8 @@
+{"segment": "fullrun-join", "steps": [
+ {"goto": [11, 15], "note": "rest at the Underway stone before the Stair of Eyes"},
+ {"click": [12, 16]},
+ {"until": "s.dialog.open", "timeout": 10000},
+ {"talkthrough": true, "choose": [2], "note": "Stay here"},
+ {"until": "s.map === 'c3-underway' && s.screen === 'explore' && !s.busy", "timeout": 10000},
+ {"goto": [15, 8]}
+]}

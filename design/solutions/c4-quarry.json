@@ -1,0 +1,187 @@
+{
+ "segment": "c4-quarry",
+ "steps": [
+  {
+   "until": "s.dialog.open",
+   "note": "arrival narration"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    5,
+    19
+   ]
+  },
+  {
+   "walk": [
+    12,
+    16
+   ]
+  },
+  {
+   "walk": [
+    19,
+    6
+   ]
+  },
+  {
+   "fight": "auto",
+   "note": "raider on the quarry floor"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    19,
+    6
+   ]
+  },
+  {
+   "walk": [
+    20,
+    8
+   ]
+  },
+  {
+   "fight": "auto",
+   "note": "digger"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    19,
+    5
+   ]
+  },
+  {
+   "walk": [
+    19,
+    4
+   ],
+   "note": "the warren mouth"
+  },
+  {
+   "until": "s.map === 'c4-warren' && s.dialog.open"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    9
+   ],
+   "note": "halfway down the warren: with the centred camera (13,16) is below the view from the mouth"
+  },
+  {
+   "walk": [
+    13,
+    16
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === \"explore\" && !s.busy"
+  },
+  {
+   "walk": [
+    13,
+    16
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === \"explore\" && !s.busy"
+  },
+  {
+   "walk": [
+    13,
+    16
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === \"explore\" && !s.busy"
+  },
+  {
+   "walk": [
+    13,
+    16
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === \"explore\" && !s.busy"
+  },
+  {
+   "walk": [
+    13,
+    16
+   ]
+  },
+  {
+   "talkthrough": true,
+   "note": "the lip"
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    13,
+    16
+   ]
+  },
+  {
+   "talk": "captain-quarry"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto",
+   "note": "Captain Quarry"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 30000
+  },
+  {
+   "done": true
+  }
+ ]
+}

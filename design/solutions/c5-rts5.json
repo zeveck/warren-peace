@@ -1,0 +1,59 @@
+{
+ "segment": "c5-rts5",
+ "steps": [
+  {
+   "until": "s.dialog.open || s.screen === 'chapter'",
+   "timeout": 8000,
+   "note": "the gathering starts"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "every warren comes down; Yarrow speaks the rhyme"
+  },
+  {
+   "walk": [
+    12,
+    12
+   ]
+  },
+  {
+   "walk": [
+    17,
+    17
+   ]
+  },
+  {
+   "talk": "yarrow",
+   "note": "Yarrow at the Thump Stones"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "begin the Long Thump"
+  },
+  {
+   "army": "auto",
+   "note": "hold all three stones for 60"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0,
+    0
+   ],
+   "note": "I'll go; three steps into the dream"
+  },
+  {
+   "until": "s.map === 'c5-dream'",
+   "timeout": 8000
+  },
+  {
+   "done": true
+  }
+ ]
+}

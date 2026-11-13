@@ -1,0 +1,446 @@
+{
+ "segment": "c4-root",
+ "steps": [
+  {
+   "until": "s.dialog.open",
+   "note": "stars in the rock"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    7,
+    4
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    8
+   ]
+  },
+  {
+   "walk": [
+    11,
+    13
+   ]
+  },
+  {
+   "walk": [
+    13,
+    13
+   ]
+  },
+  {
+   "talkthrough": true,
+   "note": "roots that move"
+  },
+  {
+   "walk": [
+    17,
+    16
+   ],
+   "note": "star-stone 1"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    20,
+    10
+   ]
+  },
+  {
+   "walk": [
+    21,
+    6
+   ]
+  },
+  {
+   "walk": [
+    25,
+    5
+   ],
+   "note": "star-things"
+  },
+  {
+   "fightIf": 8000,
+   "note": "a Root wanderer (fight if it comes)"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    28,
+    3
+   ],
+   "note": "star-stone 2"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    31,
+    8
+   ]
+  },
+  {
+   "walk": [
+    32,
+    12
+   ]
+  },
+  {
+   "walk": [
+    31,
+    13
+   ],
+   "note": "moving roots"
+  },
+  {
+   "fightIf": 8000,
+   "note": "a Root wanderer (fight if it comes)"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    34,
+    13
+   ]
+  },
+  {
+   "talkthrough": true,
+   "note": "a stall in the dark"
+  },
+  {
+   "talk": "elevenfold"
+  },
+  {
+   "talkthrough": true,
+   "note": "Elevenfold"
+  },
+  {
+   "until": "s.screen === 'shop'"
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    32,
+    17
+   ]
+  },
+  {
+   "walk": [
+    30,
+    20
+   ]
+  },
+  {
+   "walk": [
+    26,
+    22
+   ],
+   "note": "star-things"
+  },
+  {
+   "fightIf": 8000,
+   "note": "a Root wanderer (fight if it comes)"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    22,
+    26
+   ]
+  },
+  {
+   "walk": [
+    18,
+    29
+   ]
+  },
+  {
+   "walk": [
+    12,
+    31
+   ],
+   "note": "star-stone 3"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    21,
+    28
+   ]
+  },
+  {
+   "walk": [
+    22,
+    21
+   ]
+  },
+  {
+   "walk": [
+    31,
+    18
+   ]
+  },
+  {
+   "walk": [
+    34,
+    13
+   ]
+  },
+  {
+   "talk": "elevenfold"
+  },
+  {
+   "talkthrough": true,
+   "note": "three star-stones (mem-stars)"
+  },
+  {
+   "until": "s.screen === 'shop'"
+  },
+  {
+   "button": "buy:Mastodon-hide Coat VI",
+   "note": "Elevenfold's tier 6: coat and pick for Rumble, Lantern for Jade, a Pearl Pendant (stops Hummed)"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "buy:Flint Pick VI"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "buy:Lantern VI"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "buy:Pearl Pendant VI"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "Leave"
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    31,
+    18
+   ]
+  },
+  {
+   "walk": [
+    29,
+    22
+   ]
+  },
+  {
+   "walk": [
+    27,
+    29
+   ]
+  },
+  {
+   "walk": [
+    31,
+    29
+   ]
+  },
+  {
+   "talkthrough": true,
+   "note": "the carved gate"
+  },
+  {
+   "goto": [
+    31,
+    30
+   ],
+   "note": "fullrun: goto (fights on the way) to the rest stone"
+  },
+  {
+   "walk": [
+    32,
+    31
+   ],
+   "note": "rest stone"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    35,
+    30
+   ]
+  },
+  {
+   "walk": [
+    37,
+    30
+   ]
+  },
+  {
+   "until": "s.map === 'c4-deepdelve' && s.dialog.open"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    6,
+    17
+   ],
+   "note": "hollow rabbits"
+  },
+  {
+   "fightIf": 8000,
+   "note": "a Root wanderer (fight if it comes)"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    10,
+    22
+   ]
+  },
+  {
+   "walk": [
+    10,
+    27
+   ],
+   "note": "the mural"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    10,
+    18
+   ]
+  },
+  {
+   "walk": [
+    13,
+    19
+   ],
+   "note": "rest stone"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    17,
+    17
+   ]
+  },
+  {
+   "walk": [
+    18,
+    17
+   ]
+  },
+  {
+   "talkthrough": true,
+   "note": "the Hollow Rabbits"
+  },
+  {
+   "fight": "auto",
+   "note": "boss: the Hollow Rabbits"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 30000
+  },
+  {
+   "walk": [
+    31,
+    18
+   ]
+  },
+  {
+   "walk": [
+    33,
+    18
+   ],
+   "note": "the way down"
+  },
+  {
+   "until": "s.dialog.open && s.dialog.choices && s.dialog.full",
+   "timeout": 20000
+  },
+  {
+   "press": "Space",
+   "note": "down the stair"
+  },
+  {
+   "spaceUntil": "s.screen === 'chapter'",
+   "timeout": 40000,
+   "note": "stop on the Finale card"
+  },
+  {
+   "shot": "/workspaces/gg-test3/design/screenshots/fullrun3-ch5-card.png",
+   "delay": 700
+  },
+  {
+   "until": "s.flags.g_ch4_done",
+   "timeout": 15000,
+   "note": "segment done: c4-root"
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+{ "segment": "c0-warren", "steps": [
+  {"walk": [13, 7], "note": "into the Great Burrow"},
+  {"talk": "woodruff", "note": "the Long Thump"}, {"talkthrough": true},
+  {"walk": [13, 15], "note": "Yarrow's den"},
+  {"talk": "yarrow", "note": "Yarrow's errand"}, {"talkthrough": true, "choose": [0]},
+  {"done": true}
+]}

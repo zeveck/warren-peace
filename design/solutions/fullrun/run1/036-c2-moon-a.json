@@ -1,0 +1,257 @@
+{
+ "segment": "c2-moon-a",
+ "steps": [
+  {
+   "wait": 500
+  },
+  {
+   "walk": [
+    3,
+    9
+   ]
+  },
+  {
+   "walk": [
+    1,
+    9
+   ]
+  },
+  {
+   "walk": [
+    1,
+    13
+   ]
+  },
+  {
+   "walk": [
+    2,
+    15
+   ]
+  },
+  {
+   "click": [
+    2,
+    14
+   ]
+  },
+  {
+   "until": "s.dialog.open || s.screen !== 'explore' || s.busy",
+   "timeout": 15000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map==='c2-depths'",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    4,
+    11
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    4,
+    11
+   ]
+  },
+  {
+   "walk": [
+    10,
+    12
+   ]
+  },
+  {
+   "walk": [
+    10,
+    8
+   ]
+  },
+  {
+   "walk": [
+    16,
+    8
+   ]
+  },
+  {
+   "walk": [
+    16,
+    15
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    16,
+    15
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    16,
+    15
+   ]
+  },
+  {
+   "walk": [
+    22,
+    16
+   ]
+  },
+  {
+   "walk": [
+    22,
+    22
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    22,
+    22
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    22,
+    22
+   ]
+  },
+  {
+   "walk": [
+    26,
+    22
+   ]
+  },
+  {
+   "walk": [
+    26,
+    28
+   ]
+  },
+  {
+   "walk": [
+    26,
+    29
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map==='c2-underway'",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    12,
+    4
+   ]
+  },
+  {
+   "walk": [
+    12,
+    2
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map==='c2-moon'",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    25,
+    24
+   ]
+  },
+  {
+   "walk": [
+    25,
+    19
+   ]
+  },
+  {
+   "talk": "jade-rabbit",
+   "fightOk": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talk": "wu-gang"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talk": "traveller"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talk": "jade-rabbit"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "!!s.flags.c2_jadeTold",
+   "timeout": 15000,
+   "note": "segment done: c2-moon-a"
+  },
+  {
+   "until": "!!s.flags.c2_jadeTold",
+   "timeout": 15000,
+   "note": "segment done: c2-moon-a"
+  }
+ ]
+}

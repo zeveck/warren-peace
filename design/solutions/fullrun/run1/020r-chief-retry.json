@@ -1,0 +1,14 @@
+{"segment": "fullrun-retry", "note": "only used after losing the Chief Weasel (it happened once in the run, L7, half the party ungeared): back from the hall door, walk up and try again", "steps": [
+ {"until": "s.screen === 'explore' && !s.busy", "timeout": 10000},
+ {"walk": [12, 10]},
+ {"walk": [18, 10]},
+ {"fightIf": 3000},
+ {"talk": "chief-weasel"},
+ {"talkthrough": true},
+ {"until": "b && b.menu && b.menu.mode === 'cmd'", "timeout": 20000},
+ {"wait": 300},
+ {"fight": "auto", "note": "BOSS: the Chief Weasel (retry)"},
+ {"talkthrough": true, "choose": [0, 0]},
+ {"until": "s.screen===\"explore\" && !s.busy", "timeout": 30000},
+ {"until": "!!s.flags.g_c1_riverbank_done", "timeout": 15000}
+]}

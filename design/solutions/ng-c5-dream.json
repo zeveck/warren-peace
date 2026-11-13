@@ -1,0 +1,97 @@
+{
+ "segment": "ng-c5-dream",
+ "steps": [
+  {
+   "until": "s.dialog.open",
+   "timeout": 8000,
+   "note": "arrival in the upside-down down"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    9,
+    8
+   ],
+   "note": "down the chalk path"
+  },
+  {
+   "walk": [
+    9,
+    9
+   ],
+   "note": "the Nightmare of Deepdelve rises"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    15
+   ]
+  },
+  {
+   "walk": [
+    10,
+    20
+   ],
+   "note": "the Nightmare of Flintcomb"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    1
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    27
+   ]
+  },
+  {
+   "walk": [
+    10,
+    31
+   ],
+   "note": "the Eye"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    1
+   ]
+  },
+  {
+   "fight": "auto",
+   "note": "one story a round, five stories"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c5-sunset'",
+   "timeout": 8000
+  },
+  {
+   "done": true
+  }
+ ]
+}

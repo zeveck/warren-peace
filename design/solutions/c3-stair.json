@@ -1,0 +1,112 @@
+{
+"segment": "c3-stair",
+"steps": [
+{
+"walk": [
+16,
+6
+]
+},
+{
+"walk": [
+16,
+5
+]
+},
+{
+"talkthrough": true
+},
+{
+"until": "s.map === 'c3-stair' && !s.busy",
+"timeout": 15000
+},
+{
+"talkthrough": true
+},
+{
+"walk": [
+9,
+3
+]
+},
+{
+"fight": "auto"
+},
+{
+"walk": [
+9,
+7
+]
+},
+{
+"walk": [
+4,
+8
+]
+},
+{
+"walk": [
+4,
+12
+]
+},
+{
+"talkthrough": true
+},
+{
+"talkthrough": true
+},
+{
+"walk": [
+10,
+14
+]
+},
+{
+"fight": "auto"
+},
+{
+"walk": [
+10,
+14
+]
+},
+{
+"walk": [
+17,
+15
+]
+},
+{
+"fight": "auto"
+},
+{
+"walk": [
+17,
+15
+]
+},
+{
+"walk": [
+17,
+20
+],
+"note": "clicks on the Watcher (tall sprite): talk and fight"
+},
+{
+"talkthrough": true
+},
+{
+"fight": "auto"
+},
+{
+"talkthrough": true
+},
+{
+"note": "the walk toward the hall clicks the Watcher's tall sprite, which starts the fight"
+},
+{
+"done": true
+}
+]
+}

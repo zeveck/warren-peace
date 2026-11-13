@@ -1,0 +1,159 @@
+{
+ "segment": "c2-aster",
+ "steps": [
+  {
+   "until": "s.dialog.open || s.screen === 'chapter'",
+   "timeout": 8000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    31,
+    26
+   ]
+  },
+  {
+   "walk": [
+    25,
+    26
+   ]
+  },
+  {
+   "walk": [
+    25,
+    16
+   ]
+  },
+  {
+   "walk": [
+    17,
+    16
+   ]
+  },
+  {
+   "walk": [
+    17,
+    4
+   ]
+  },
+  {
+   "walk": [
+    17,
+    3
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map==='c2-silverdown-warren' && (s.dialog.open||!s.busy)",
+   "timeout": 8000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    27,
+    26
+   ]
+  },
+  {
+   "walk": [
+    27,
+    21
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    27,
+    21
+   ]
+  },
+  {
+   "walk": [
+    13,
+    21
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    13,
+    21
+   ]
+  },
+  {
+   "walk": [
+    13,
+    12
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    13,
+    12
+   ]
+  },
+  {
+   "walk": [
+    12,
+    9
+   ]
+  },
+  {
+   "walk": [
+    10,
+    9
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "!!s.flags.g_freed_silverdown",
+   "timeout": 15000,
+   "note": "segment done: c2-aster"
+  }
+ ]
+}

@@ -1,0 +1,325 @@
+{
+ "segment": "c4-hole",
+ "steps": [
+  {
+   "until": "s.dialog.open || (s.screen === 'explore' && !s.busy)",
+   "note": "Flintcomb's Underway (may already have played)",
+   "timeout": 8000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    17,
+    9
+   ]
+  },
+  {
+   "walk": [
+    19,
+    9
+   ],
+   "note": "the tube door"
+  },
+  {
+   "until": "s.map === 'c4-tubes' && s.dialog.open"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    12,
+    4
+   ]
+  },
+  {
+   "talkthrough": true,
+   "note": "fork 1: A.S."
+  },
+  {
+   "walk": [
+    15,
+    7
+   ]
+  },
+  {
+   "walk": [
+    15,
+    9
+   ]
+  },
+  {
+   "walk": [
+    16,
+    11
+   ],
+   "note": "cave lizards"
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    15,
+    16
+   ]
+  },
+  {
+   "walk": [
+    21,
+    16
+   ]
+  },
+  {
+   "walk": [
+    25,
+    16
+   ]
+  },
+  {
+   "talkthrough": true,
+   "note": "the whispering gallery"
+  },
+  {
+   "walk": [
+    26,
+    20
+   ]
+  },
+  {
+   "walk": [
+    25,
+    23
+   ],
+   "note": "trilobites"
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    26,
+    29
+   ]
+  },
+  {
+   "walk": [
+    26,
+    33
+   ]
+  },
+  {
+   "walk": [
+    22,
+    35
+   ]
+  },
+  {
+   "walk": [
+    20,
+    35
+   ]
+  },
+  {
+   "talkthrough": true,
+   "note": "the Hansbach"
+  },
+  {
+   "walk": [
+    17,
+    35
+   ]
+  },
+  {
+   "walk": [
+    13,
+    34
+   ],
+   "note": "stream fight"
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    8,
+    35
+   ]
+  },
+  {
+   "walk": [
+    6,
+    35
+   ],
+   "note": "out to the sea"
+  },
+  {
+   "until": "s.map === 'c4-sea' && s.screen === 'picture'"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    5,
+    15
+   ],
+   "note": "trilobites on the beach"
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    8,
+    20
+   ]
+  },
+  {
+   "walk": [
+    9,
+    20
+   ]
+  },
+  {
+   "talkthrough": true,
+   "note": "the raft"
+  },
+  {
+   "walk": [
+    11,
+    20
+   ],
+   "note": "onto the raft"
+  },
+  {
+   "press": "Space"
+  },
+  {
+   "talkthrough": true,
+   "note": "push off; the sea monsters"
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 30000
+  },
+  {
+   "walk": [
+    28,
+    21
+   ]
+  },
+  {
+   "talkthrough": true,
+   "note": "geyser"
+  },
+  {
+   "walk": [
+    27,
+    24
+   ]
+  },
+  {
+   "walk": [
+    31,
+    24
+   ],
+   "note": "island lizards"
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    33,
+    20
+   ]
+  },
+  {
+   "talkthrough": true,
+   "note": "Quarry carries the raft over"
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy"
+  },
+  {
+   "walk": [
+    35,
+    20
+   ]
+  },
+  {
+   "press": "Space"
+  },
+  {
+   "talkthrough": true,
+   "note": "push off east: the storm"
+  },
+  {
+   "fight": "auto",
+   "note": "eel-clouds in the storm"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 30000
+  },
+  {
+   "walk": [
+    53,
+    20
+   ]
+  },
+  {
+   "walk": [
+    55,
+    20
+   ]
+  },
+  {
+   "until": "s.map === 'c4-mushrooms' && s.dialog.open"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.flags.c4_reached_mushrooms",
+   "timeout": 15000,
+   "note": "segment done: c4-hole"
+  }
+ ]
+}

@@ -1,0 +1,55 @@
+{
+ "segment": "fullrun-join",
+ "steps": [
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "note": "Tin Woodman and Jade Rabbit travel (the Emerald City plan)",
+   "press": "Tab"
+  },
+  {
+   "until": "s.screen === 'camp'",
+   "timeout": 3000
+  },
+  {
+   "button": "tab:Party"
+  },
+  {
+   "button": "member:Bramble",
+   "note": "select the top row, then down to Tin Woodman (13th: the list shows 12)"
+  },
+  {
+   "press": "ArrowDown",
+   "times": 12
+  },
+  {
+   "button": "member:Tin Woodman"
+  },
+  {
+   "press": "Tab"
+  },
+  {
+   "until": "s.screen === 'explore'",
+   "timeout": 3000
+  },
+  {
+   "goto": [
+    32,
+    12
+   ],
+   "note": "east along the road to the Emerald City"
+  },
+  {
+   "click": [
+    33,
+    12
+   ]
+  },
+  {
+   "until": "s.map === 'c3-emerald'",
+   "timeout": 20000
+  }
+ ]
+}

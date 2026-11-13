@@ -1,0 +1,316 @@
+{
+ "segment": "fullrun-join",
+ "steps": [
+  {
+   "note": "Ninefold wants a dandelion from the surface: back up out of the Deep",
+   "goto": [
+    2,
+    2
+   ]
+  },
+  {
+   "click": [
+    1,
+    1
+   ]
+  },
+  {
+   "until": "s.map === 'c1w-shallows' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    2,
+    3
+   ]
+  },
+  {
+   "click": [
+    2,
+    1
+   ],
+   "note": "the eye-stair up"
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "until": "s.map === 'c1-underway' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    16,
+    8
+   ]
+  },
+  {
+   "click": [
+    17,
+    8
+   ]
+  },
+  {
+   "until": "s.map === 'c1-depths' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    4,
+    1
+   ],
+   "note": "up through the Depths"
+  },
+  {
+   "click": [
+    4,
+    0
+   ]
+  },
+  {
+   "until": "s.map === 'c0-warren' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    3,
+    2
+   ],
+   "note": "through the warren to the mouth"
+  },
+  {
+   "click": [
+    3,
+    1
+   ]
+  },
+  {
+   "until": "s.map === 'c0-downs' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "click": [
+    17,
+    21
+   ],
+   "note": "the dandelions by the warren mouth"
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy && s.items['ninefold-dandelion'] > 0",
+   "timeout": 10000
+  },
+  {
+   "goto": [
+    18,
+    19
+   ],
+   "note": "back down to Ninefold"
+  },
+  {
+   "click": [
+    18,
+    18
+   ]
+  },
+  {
+   "until": "s.map === 'c0-warren' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    19,
+    28
+   ]
+  },
+  {
+   "click": [
+    18,
+    28
+   ]
+  },
+  {
+   "until": "s.map === 'c1-depths' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    20,
+    36
+   ]
+  },
+  {
+   "click": [
+    20,
+    37
+   ]
+  },
+  {
+   "until": "s.map === 'c1-underway' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    8,
+    2
+   ]
+  },
+  {
+   "click": [
+    8,
+    1
+   ]
+  },
+  {
+   "until": "s.map === 'c1w-shallows' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    19,
+    3
+   ]
+  },
+  {
+   "click": [
+    19,
+    2
+   ]
+  },
+  {
+   "until": "s.map === 'c1w-deep' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    3,
+    10
+   ]
+  },
+  {
+   "talk": "ninefold"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "the dandelion: Ninefold joins (mem-dandelion)"
+  },
+  {
+   "until": "s.flags.g_recruit_ninefold && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "note": "and back up to the Lookout Stone",
+   "goto": [
+    2,
+    2
+   ]
+  },
+  {
+   "click": [
+    1,
+    1
+   ]
+  },
+  {
+   "until": "s.map === 'c1w-shallows' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    2,
+    3
+   ]
+  },
+  {
+   "click": [
+    2,
+    1
+   ]
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "until": "s.map === 'c1-underway' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    16,
+    8
+   ]
+  },
+  {
+   "click": [
+    17,
+    8
+   ]
+  },
+  {
+   "until": "s.map === 'c1-depths' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    4,
+    1
+   ]
+  },
+  {
+   "click": [
+    4,
+    0
+   ]
+  },
+  {
+   "until": "s.map === 'c0-warren' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    3,
+    2
+   ]
+  },
+  {
+   "click": [
+    3,
+    1
+   ]
+  },
+  {
+   "until": "s.map === 'c0-downs' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    30,
+    13
+   ],
+   "note": "to the Lookout Stone"
+  }
+ ]
+}

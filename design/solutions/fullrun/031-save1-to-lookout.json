@@ -1,0 +1,75 @@
+{
+ "segment": "fullrun-join",
+ "steps": [
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "note": "Chapter 1 done: save in slot 1",
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'pause'",
+   "timeout": 3000
+  },
+  {
+   "button": "Save"
+  },
+  {
+   "button": "Slot 1"
+  },
+  {
+   "wait": 400
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'explore'",
+   "timeout": 3000
+  },
+  {
+   "goto": [
+    3,
+    2
+   ],
+   "note": "out of the warren"
+  },
+  {
+   "click": [
+    3,
+    1
+   ]
+  },
+  {
+   "until": "s.map === 'c0-downs' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    30,
+    12
+   ],
+   "note": "the Lookout Stone: Silverdown is next"
+  },
+  {
+   "click": [
+    30,
+    10
+   ]
+  },
+  {
+   "spaceUntil": "s.screen === 'chapter'",
+   "timeout": 30000,
+   "note": "stop on the Chapter 2 card"
+  },
+  {
+   "shot": "/workspaces/gg-test3/design/screenshots/fullrun3-ch2-card.png",
+   "delay": 700
+  }
+ ]
+}

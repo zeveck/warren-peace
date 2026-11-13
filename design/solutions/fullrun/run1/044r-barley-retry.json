@@ -1,0 +1,18 @@
+{"segment": "fullrun-retry", "note": "as run: Barley was lost (party hurt from the Tidewarden + RTS3, no rest); the solution walked on outside. Back into the warren, rest, Barley again, then 044 from its step 20 (after the fight)", "steps": [
+ {"goto": [10, 8], "note": "back to the warren mouth"},
+ {"click": [10, 7]},
+ {"until": "s.map === 'c3-wheatsheaf-warren' && s.screen === 'explore' && !s.busy", "timeout": 20000},
+ {"goto": [10, 10]},
+ {"click": [10, 9], "note": "rest at the warren's stone"},
+ {"until": "s.dialog.open", "timeout": 15000},
+ {"talkthrough": true},
+ {"until": "s.screen === 'explore' && !s.busy", "timeout": 10000},
+ {"walk": [11, 11]},
+ {"talk": "barley"},
+ {"talkthrough": true},
+ {"fight": "auto", "note": "BOSS: Barley (retry)"},
+ {"talkthrough": true},
+ {"talkthrough": true, "choose": [0]},
+ {"talkthrough": true},
+ {"until": "s.flags.c3_barleyWoken", "timeout": 5000}
+]}

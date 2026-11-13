@@ -1,0 +1,47 @@
+{
+ "segment": "pg-revisits",
+ "steps": [
+  {
+   "until": "s.screen===\"title\"",
+   "timeout": 15000,
+   "note": "after a page reload: run with --no-jump"
+  },
+  {
+   "press": "Space",
+   "note": "press any key"
+  },
+  {
+   "wait": 800
+  },
+  {
+   "button": "Continue"
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy && s.map === 'c5-sunset'",
+   "timeout": 20000
+  },
+  {
+   "click": [
+    6,
+    24
+   ],
+   "note": "the stone again: straight to the menu this time"
+  },
+  {
+   "until": "s.screen===\"revisits\"",
+   "timeout": 15000
+  },
+  {
+   "until": "window.__game.buttons().some(b => b.label.startsWith('Sorrel Down: best ')) && window.__game.buttons().some(b => b.label.startsWith('Flintcomb: best ')) && window.__game.buttons().some(b => b.label === 'Silverdown: not yet')",
+   "timeout": 3000,
+   "note": "both best times survived the reload"
+  },
+  {
+   "button": "Back"
+  },
+  {
+   "until": "s.screen===\"explore\" && !s.busy",
+   "timeout": 8000
+  }
+ ]
+}

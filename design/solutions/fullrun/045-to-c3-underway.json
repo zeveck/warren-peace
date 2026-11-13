@@ -1,0 +1,131 @@
+{
+ "segment": "fullrun-join",
+ "steps": [
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "note": "save in slot 1 (Barley woken, Pip joined)",
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'pause'",
+   "timeout": 3000
+  },
+  {
+   "button": "Save"
+  },
+  {
+   "button": "Slot 1"
+  },
+  {
+   "wait": 400
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'explore'",
+   "timeout": 3000
+  },
+  {
+   "note": "Pip and Jade Rabbit travel (the Oz plan)",
+   "press": "Tab"
+  },
+  {
+   "until": "s.screen === 'camp'",
+   "timeout": 3000
+  },
+  {
+   "button": "tab:Party"
+  },
+  {
+   "button": "member:Pip"
+  },
+  {
+   "button": "member:Jade Rabbit"
+  },
+  {
+   "button": "Auto-equip best"
+  },
+  {
+   "press": "Tab"
+  },
+  {
+   "until": "s.screen === 'explore'",
+   "timeout": 3000
+  },
+  {
+   "goto": [
+    10,
+    8
+   ],
+   "note": "into the warren and through the deep door"
+  },
+  {
+   "click": [
+    10,
+    7
+   ]
+  },
+  {
+   "until": "s.map === 'c3-wheatsheaf-warren' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    21,
+    22
+   ]
+  },
+  {
+   "click": [
+    22,
+    22
+   ]
+  },
+  {
+   "until": "s.map === 'c3-underway'",
+   "timeout": 20000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-underway' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000
+  },
+  {
+   "goto": [
+    11,
+    15
+   ]
+  },
+  {
+   "click": [
+    12,
+    16
+   ],
+   "note": "rest at the Underway stone"
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 10000
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "Stay here (listed first now)"
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  }
+ ]
+}

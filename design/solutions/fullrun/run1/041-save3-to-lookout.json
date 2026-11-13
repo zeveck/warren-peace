@@ -1,0 +1,13 @@
+{"segment": "fullrun-join", "steps": [
+ {"until": "s.screen === 'explore' && !s.busy", "timeout": 10000},
+ {"note": "Chapter 2 done: save in slot 3", "press": "Escape"},
+ {"until": "s.screen === 'pause'", "timeout": 3000},
+ {"button": "Save"},
+ {"button": "Slot 3"},
+ {"wait": 400},
+ {"press": "Escape"},
+ {"press": "Escape"},
+ {"until": "s.screen === 'explore'", "timeout": 3000},
+ {"goto": [30, 12], "note": "the Lookout Stone: Wheatsheaf is next"},
+ {"click": [30, 10]}
+]}

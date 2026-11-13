@@ -1,0 +1,134 @@
+{
+ "segment": "c3-china",
+ "steps": [
+  {
+   "walk": [
+    7,
+    13
+   ]
+  },
+  {
+   "walk": [
+    7,
+    5
+   ]
+  },
+  {
+   "walk": [
+    7,
+    4
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-china' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    4,
+    17
+   ]
+  },
+  {
+   "walk": [
+    6,
+    15
+   ]
+  },
+  {
+   "walk": [
+    9,
+    15
+   ]
+  },
+  {
+   "walk": [
+    9,
+    13
+   ]
+  },
+  {
+   "walk": [
+    6,
+    13
+   ]
+  },
+  {
+   "walk": [
+    6,
+    10
+   ]
+  },
+  {
+   "walk": [
+    12,
+    10
+   ]
+  },
+  {
+   "walk": [
+    12,
+    12
+   ]
+  },
+  {
+   "walk": [
+    15,
+    12
+   ]
+  },
+  {
+   "walk": [
+    15,
+    8
+   ]
+  },
+  {
+   "walk": [
+    13,
+    8
+   ]
+  },
+  {
+   "walk": [
+    13,
+    5
+   ]
+  },
+  {
+   "walk": [
+    16,
+    5
+   ]
+  },
+  {
+   "walk": [
+    17,
+    4
+   ]
+  },
+  {
+   "talk": "china-princess"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 15000,
+   "note": "segment done (mem-china: state() has no memories)"
+  }
+ ]
+}

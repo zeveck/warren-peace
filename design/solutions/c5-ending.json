@@ -1,0 +1,68 @@
+{
+ "segment": "c5-ending",
+ "steps": [
+  {
+   "until": "s.dialog.open",
+   "timeout": 8000,
+   "note": "home at sunset"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talk": "burdock",
+   "note": "a last line from Burdock"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    12,
+    16
+   ]
+  },
+  {
+   "talk": "mole"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    19
+   ]
+  },
+  {
+   "talk": "tansy",
+   "note": "Tansy on the Lookout Stone"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "until": "!s.scenes.includes('ending') && (!s.busy || s.dialog.open)",
+   "timeout": 180000,
+   "note": "credits"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talk": "yarrow",
+   "note": "wandering afterwards"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "done": true
+  }
+ ]
+}

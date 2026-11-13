@@ -1,0 +1,31 @@
+{
+ "segment": "fullrun-join",
+ "steps": [
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "until": "s.map === 'c1w-lane' && s.screen === 'explore' && !s.busy",
+   "timeout": 20000,
+   "note": "the cake pushes Bramble out of the house: already on the lane"
+  },
+  {
+   "goto": [
+    20,
+    17
+   ],
+   "note": "down the lane to the Mushroom Wood"
+  },
+  {
+   "click": [
+    21,
+    17
+   ]
+  },
+  {
+   "until": "s.map === 'c1w-wood' && (s.dialog.open || !s.busy)",
+   "timeout": 20000
+  }
+ ]
+}

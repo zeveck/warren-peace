@@ -1,0 +1,10 @@
+{
+ "segment": "c2-rts2",
+ "steps": [
+  { "until": "s.screen === 'rts-preview' || s.dialog.open || s.screen === 'chapter'", "timeout": 8000 },
+  { "talkthrough": true },
+  { "army": "auto" },
+  { "talkthrough": true, "choose": [1] },
+  { "done": true }
+ ]
+}

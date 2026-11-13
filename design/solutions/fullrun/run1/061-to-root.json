@@ -1,0 +1,22 @@
+{"segment": "fullrun-join", "steps": [
+ {"until": "s.screen === 'explore' && !s.busy", "timeout": 10000},
+ {"note": "save in slot 2 (the herd home, Rumble joined)", "press": "Escape"},
+ {"until": "s.screen === 'pause'", "timeout": 3000},
+ {"button": "Save"},
+ {"button": "Slot 2"},
+ {"wait": 400},
+ {"press": "Escape"},
+ {"press": "Escape"},
+ {"until": "s.screen === 'explore'", "timeout": 3000},
+ {"note": "Rumble and Jade Rabbit travel (the Root plan): Quarry (row 13) out, Jade (row 9) in, by keyboard", "press": "Tab"},
+ {"until": "s.screen === 'camp'", "timeout": 3000},
+ {"press": "ArrowDown", "times": 13},
+ {"press": "Space"},
+ {"press": "ArrowUp", "times": 4},
+ {"press": "Space"},
+ {"press": "Tab"},
+ {"until": "s.screen === 'explore' && s.party.includes('rumble') && s.party.includes('jade-rabbit')", "timeout": 3000},
+ {"goto": [32, 19], "note": "down the tunnel behind the fallen rock"},
+ {"click": [33, 19]},
+ {"until": "s.map === 'c4-root'", "timeout": 20000}
+]}

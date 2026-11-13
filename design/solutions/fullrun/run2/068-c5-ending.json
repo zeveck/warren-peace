@@ -1,0 +1,105 @@
+{
+ "segment": "c5-ending",
+ "steps": [
+  {
+   "until": "s.dialog.open || (s.screen === 'explore' && !s.busy)",
+   "timeout": 8000,
+   "note": "home at sunset (may already have played)"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talk": "burdock",
+   "note": "a last line from Burdock"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    12,
+    16
+   ]
+  },
+  {
+   "talk": "mole"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    19
+   ]
+  },
+  {
+   "talk": "tansy",
+   "note": "Tansy on the Lookout Stone"
+  },
+  {
+   "spaceUntil": "(s.dialog.open && s.dialog.choices && s.dialog.full) || s.screen === 'ending'",
+   "timeout": 60000,
+   "note": "Tansy's questions one by one (answer 1), so the run can stop on the ending picture"
+  },
+  {
+   "press": "Space"
+  },
+  {
+   "wait": 400
+  },
+  {
+   "spaceUntil": "(s.dialog.open && s.dialog.choices && s.dialog.full) || s.screen === 'ending'",
+   "timeout": 60000
+  },
+  {
+   "press": "Space"
+  },
+  {
+   "wait": 400
+  },
+  {
+   "spaceUntil": "(s.dialog.open && s.dialog.choices && s.dialog.full) || s.screen === 'ending'",
+   "timeout": 60000
+  },
+  {
+   "press": "Space"
+  },
+  {
+   "wait": 400
+  },
+  {
+   "spaceUntil": "s.screen === 'ending'",
+   "timeout": 60000
+  },
+  {
+   "shot": "/workspaces/gg-test3/design/screenshots/fullrun2-ending.png",
+   "delay": 3500
+  },
+  {
+   "talkthrough": true,
+   "note": "the ending pictures and the credits"
+  },
+  {
+   "until": "!s.scenes.includes('ending') && (!s.busy || s.dialog.open)",
+   "timeout": 180000,
+   "note": "credits"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talk": "yarrow",
+   "note": "wandering afterwards"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.flags.g_won",
+   "timeout": 15000,
+   "note": "segment done: c5-ending"
+  }
+ ]
+}

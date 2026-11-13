@@ -1,0 +1,430 @@
+{
+ "segment": "ng-c3-oz-b",
+ "steps": [
+  {
+   "wait": 1500
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    15,
+    20
+   ]
+  },
+  {
+   "walk": [
+    15,
+    6
+   ]
+  },
+  {
+   "walk": [
+    15,
+    3
+   ]
+  },
+  {
+   "walk": [
+    15,
+    2
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-palace' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talk": "great-head"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    7,
+    16
+   ]
+  },
+  {
+   "walk": [
+    7,
+    17
+   ]
+  },
+  {
+   "until": "s.map === 'c3-emerald' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "walk": [
+    15,
+    16
+   ]
+  },
+  {
+   "walk": [
+    1,
+    16
+   ]
+  },
+  {
+   "walk": [
+    0,
+    16
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-winkie' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    26,
+    18
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "walk": [
+    26,
+    18
+   ]
+  },
+  {
+   "walk": [
+    20,
+    18
+   ]
+  },
+  {
+   "walk": [
+    20,
+    14
+   ]
+  },
+  {
+   "walk": [
+    20,
+    10
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "walk": [
+    20,
+    10
+   ]
+  },
+  {
+   "walk": [
+    14,
+    10
+   ]
+  },
+  {
+   "walk": [
+    8,
+    10
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "walk": [
+    8,
+    10
+   ]
+  },
+  {
+   "walk": [
+    8,
+    6
+   ]
+  },
+  {
+   "walk": [
+    8,
+    5
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-castle' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "click": [
+    9,
+    17
+   ]
+  },
+  {
+   "until": "s.dialog.open || s.screen !== 'explore' || s.busy",
+   "timeout": 6000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "click": [
+    12,
+    17
+   ]
+  },
+  {
+   "until": "s.dialog.open || s.screen !== 'explore' || s.busy",
+   "timeout": 6000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    10
+   ]
+  },
+  {
+   "walk": [
+    5,
+    5
+   ]
+  },
+  {
+   "click": [
+    4,
+    4
+   ]
+  },
+  {
+   "until": "s.dialog.open || s.screen !== 'explore' || s.busy",
+   "timeout": 6000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    8
+   ]
+  },
+  {
+   "talk": "wicked-witch"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "click": [
+    17,
+    2
+   ]
+  },
+  {
+   "until": "s.dialog.open || s.screen !== 'explore' || s.busy",
+   "timeout": 6000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "until": "s.map === 'c3-emerald' && !s.busy",
+   "timeout": 30000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    15,
+    6
+   ]
+  },
+  {
+   "walk": [
+    15,
+    3
+   ]
+  },
+  {
+   "walk": [
+    15,
+    2
+   ]
+  },
+  {
+   "until": "s.map === 'c3-palace' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "talk": "great-head"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "walk": [
+    7,
+    16
+   ]
+  },
+  {
+   "walk": [
+    7,
+    17
+   ]
+  },
+  {
+   "until": "s.map === 'c3-emerald' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "walk": [
+    15,
+    20
+   ]
+  },
+  {
+   "walk": [
+    15,
+    26
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    15,
+    26
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    15,
+    26
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    2,
+    26
+   ]
+  },
+  {
+   "walk": [
+    0,
+    26
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-south' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    16,
+    14
+   ]
+  },
+  {
+   "walk": [
+    16,
+    22
+   ]
+  },
+  {
+   "talk": "glinda"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    1
+   ],
+   "note": "Glinda; the shoes prompt comes in this talkthrough: Yes (index 1; Not yet is first)"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-underway' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "done": true
+  }
+ ]
+}

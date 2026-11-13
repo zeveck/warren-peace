@@ -1,0 +1,91 @@
+{
+ "segment": "fullrun-join",
+ "steps": [
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "note": "save in slot 1 (Quarry woken)",
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'pause'",
+   "timeout": 3000
+  },
+  {
+   "button": "Save"
+  },
+  {
+   "button": "Slot 1"
+  },
+  {
+   "wait": 400
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "press": "Escape"
+  },
+  {
+   "until": "s.screen === 'explore'",
+   "timeout": 3000
+  },
+  {
+   "note": "Captain Quarry and Jade Rabbit travel (the hole plan); Quarry is 14th in the list",
+   "press": "Tab"
+  },
+  {
+   "until": "s.screen === 'camp'",
+   "timeout": 3000
+  },
+  {
+   "button": "tab:Party"
+  },
+  {
+   "note": "corrected after the run: keyboard rows (as run, mouse clicks in the scrolled list dropped Jade and missed Quarry; fixed in 058r)",
+   "press": "ArrowDown",
+   "times": 13
+  },
+  {
+   "press": "Space"
+  },
+  {
+   "press": "ArrowUp",
+   "times": 4
+  },
+  {
+   "press": "Space"
+  },
+  {
+   "button": "Auto-equip best"
+  },
+  {
+   "press": "Tab"
+  },
+  {
+   "until": "s.screen === 'explore'",
+   "timeout": 3000
+  },
+  {
+   "walk": [
+    18,
+    13
+   ],
+   "note": "Quarry's rope over the lip"
+  },
+  {
+   "until": "s.dialog.open && s.dialog.choices && s.dialog.full",
+   "timeout": 10000
+  },
+  {
+   "press": "Space",
+   "note": "Climb down."
+  },
+  {
+   "spaceUntil": "s.map === 'c4-underway'",
+   "timeout": 30000
+  }
+ ]
+}

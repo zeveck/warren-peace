@@ -1,0 +1,286 @@
+{
+"segment": "c6-burrows",
+"steps": [
+{
+"wait": 1000
+},
+{
+"walk": [
+2,
+9
+],
+"note": "the new burrow door in the west bank"
+},
+{
+"hop": "ArrowUp",
+"n": 1
+},
+{
+"until": "s.map==='c6-upburrow'",
+"timeout": 8000
+},
+{
+"wait": 1200
+},
+{
+"talkthrough": true
+},
+{
+"walk": [
+10,
+6
+]
+},
+{
+"click": [
+8,
+6
+],
+"note": "the tally-stone's clues"
+},
+{
+"until": "s.dialog.open",
+"timeout": 8000
+},
+{
+"talkthrough": true
+},
+{
+"walk": [
+6,
+9
+]
+},
+{
+"click": [
+5,
+11
+],
+"note": "a solid alcove: thock"
+},
+{
+"until": "s.dialog.open",
+"timeout": 8000
+},
+{
+"talkthrough": true
+},
+{
+"walk": [
+4,
+7
+]
+},
+{
+"walk": [
+4,
+6
+]
+},
+{
+"press": "Space",
+"note": "beside the warm: the den"
+},
+{
+"until": "s.dialog.open",
+"timeout": 8000
+},
+{
+"talkthrough": true
+},
+{
+"walk": [
+12,
+9
+]
+},
+{
+"click": [
+12,
+11
+],
+"note": "where the chalk weeps: the larder"
+},
+{
+"until": "s.dialog.open",
+"timeout": 8000
+},
+{
+"talkthrough": true
+},
+{
+"walk": [
+15,
+7
+]
+},
+{
+"click": [
+15,
+5
+],
+"note": "where the morning comes in: the nursery"
+},
+{
+"until": "s.dialog.open",
+"timeout": 8000
+},
+{
+"talkthrough": true
+},
+{
+"talk": "c6-chip"
+},
+{
+"talkthrough": true,
+"choose": [
+0
+]
+},
+{
+"walk": [
+10,
+4
+]
+},
+{
+"walk": [
+10,
+1
+],
+"note": "the stair up"
+},
+{
+"until": "s.map==='c4-flintcomb'",
+"timeout": 8000
+},
+{
+"wait": 800
+},
+{
+"walk": [
+4,
+19
+]
+},
+{
+"walk": [
+5,
+19
+]
+},
+{
+"walk": [
+12,
+16
+]
+},
+{
+"walk": [
+19,
+6
+]
+},
+{
+"walk": [
+19,
+5
+]
+},
+{
+"walk": [
+19,
+4
+],
+"note": "the warren mouth"
+},
+{
+"until": "s.map==='c4-warren'",
+"timeout": 8000
+},
+{
+"wait": 800
+},
+{
+"walk": [
+10,
+9
+]
+},
+{
+"click": [
+13,
+16
+]
+},
+{
+"note": "walking to the lip stops on the gap (ch4's once lip trigger)",
+"until": "s.tile && s.tile.x===11 && s.tile.y>=15 && s.tile.y<=16 && !s.moving",
+"timeout": 40000
+},
+{
+"until": "s.screen==='explore' && !s.busy"
+},
+{
+"wait": 500
+},
+{
+"hop": "ArrowRight",
+"n": 1,
+"note": "onto the lip, by key (a click there can land on a follower)"
+},
+{
+"until": "!s.busy"
+},
+{
+"wait": 500
+},
+{
+"hop": "ArrowRight",
+"n": 1
+},
+{
+"until": "!s.busy"
+},
+{
+"wait": 500
+},
+{
+"hop": "ArrowRight",
+"n": 1
+},
+{
+"until": "s.tile.x>=12",
+"timeout": 4000
+},
+{
+"walk": [
+17,
+12
+]
+},
+{
+"walk": [
+21,
+13
+]
+},
+{
+"talk": "c6-gault",
+"note": "Chip and his dad"
+},
+{
+"talkthrough": true,
+"choose": [
+0
+]
+},
+{
+"until": "s.screen==='explore' && !s.busy",
+"timeout": 30000
+},
+{
+"done": true
+}
+]
+}

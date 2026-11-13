@@ -1,0 +1,19 @@
+{ "segment": "c0-attack", "steps": [
+  {"walk": [22, 18], "note": "the sweetgrass: the attack"},
+  {"talkthrough": true, "choose": [0]},
+  {"fight": "auto", "note": "two dazed raiders; Burdock joins"},
+  {"talkthrough": true},
+  {"until": "!s.busy && s.screen === 'explore'", "timeout": 20000},
+  {"walk": [30, 14]}, {"walk": [30, 12]},
+  {"click": [30, 10], "note": "the Lookout Stone"}, {"until": "s.dialog.open", "timeout": 20000},
+  {"talkthrough": true, "choose": [1]},
+  {"army": "auto", "note": "the guided Lookout battle"},
+  {"talkthrough": true},
+  {"until": "!s.busy && s.screen === 'explore'", "timeout": 20000},
+  {"walk": [20, 20]}, {"walk": [19, 19]}, {"walk": [19, 18], "note": "down the warren mouth"},
+  {"talkthrough": true},
+  {"until": "s.map === 'c0-warren'", "timeout": 20000}, {"talkthrough": true},
+  {"walk": [14, 7], "note": "the wrecked Great Burrow"},
+  {"talk": "yarrow", "note": "the Old Key"}, {"talkthrough": true, "choose": [0, 0]},
+  {"done": true}
+]}

@@ -1,0 +1,367 @@
+{
+ "segment": "c1w-wonder-b",
+ "steps": [
+  {
+   "talkthrough": true,
+   "note": "the wood"
+  },
+  {
+   "click": [
+    5,
+    5
+   ]
+  },
+  {
+   "until": "s.dialog.open"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "drink: small"
+  },
+  {
+   "walk": [
+    8,
+    11
+   ]
+  },
+  {
+   "walk": [
+    8,
+    13
+   ]
+  },
+  {
+   "talk": "caterpillar"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "click": [
+    8,
+    15
+   ]
+  },
+  {
+   "until": "s.dialog.open"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "grow"
+  },
+  {
+   "walk": [
+    14,
+    6
+   ]
+  },
+  {
+   "walk": [
+    16,
+    6
+   ]
+  },
+  {
+   "until": "s.dialog.open"
+  },
+  {
+   "talkthrough": true,
+   "note": "Serpent!"
+  },
+  {
+   "walk": [
+    18,
+    7
+   ]
+  },
+  {
+   "click": [
+    20,
+    9
+   ]
+  },
+  {
+   "until": "s.screen === 'battle' && window.__game.buttons().some(x => x.label === 'Skill')",
+   "timeout": 20000
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "click": [
+    20,
+    9
+   ]
+  },
+  {
+   "until": "s.dialog.open"
+  },
+  {
+   "talkthrough": true,
+   "note": "normal size"
+  },
+  {
+   "walk": [
+    22,
+    4
+   ]
+  },
+  {
+   "walk": [
+    22,
+    3
+   ]
+  },
+  {
+   "talkthrough": true,
+   "note": "knock, kitchen"
+  },
+  {
+   "talk": "duchess"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    5,
+    9
+   ]
+  },
+  {
+   "until": "s.map === 'c1w-wood' && !s.busy"
+  },
+  {
+   "walk": [
+    22,
+    12
+   ]
+  },
+  {
+   "walk": [
+    22,
+    19
+   ]
+  },
+  {
+   "fight": "maybe",
+   "note": "a wanderer that came back on revisit (enemies respawn) may catch the party here"
+  },
+  {
+   "talk": "pig"
+  },
+  {
+   "fight": "maybe",
+   "note": "a wanderer that came back on revisit (enemies respawn) may catch the party here"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "talk": "pig",
+   "note": "again: if a wanderer interrupted the first talk, this one recruits the Cat"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "the Cat comes along"
+  },
+  {
+   "walk": [
+    26,
+    14
+   ]
+  },
+  {
+   "fight": "maybe",
+   "note": "a wanderer that came back on revisit (enemies respawn) may catch the party here"
+  },
+  {
+   "walk": [
+    26,
+    14
+   ]
+  },
+  {
+   "fight": "maybe",
+   "note": "a wanderer that came back on revisit (enemies respawn) may catch the party here"
+  },
+  {
+   "walk": [
+    27,
+    14
+   ]
+  },
+  {
+   "until": "s.map === 'c1w-tea' && s.dialog.open"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talk": "hatter"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    2
+   ]
+  },
+  {
+   "talk": "dormouse"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "click": [
+    16,
+    4
+   ]
+  },
+  {
+   "until": "s.dialog.open"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "drink: small"
+  },
+  {
+   "walk": [
+    18,
+    6
+   ]
+  },
+  {
+   "walk": [
+    18,
+    5
+   ]
+  },
+  {
+   "until": "s.map === 'c1w-garden' && s.dialog.open"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talk": "seven-of-spades"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "roses (optional)"
+  },
+  {
+   "click": [
+    5,
+    5
+   ]
+  },
+  {
+   "until": "s.dialog.open"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "click": [
+    8,
+    5
+   ]
+  },
+  {
+   "until": "s.dialog.open"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "click": [
+    11,
+    5
+   ]
+  },
+  {
+   "until": "s.dialog.open"
+  },
+  {
+   "talkthrough": true,
+   "note": "Seven joins"
+  },
+  {
+   "until": "s.flags['g_recruit_seven-of-spades'] && !s.busy"
+  },
+  {
+   "walk": [
+    12,
+    10
+   ]
+  },
+  {
+   "until": "s.screen === 'battle' && window.__game.buttons().some(x => x.label === 'Skill')",
+   "timeout": 20000
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "walk": [
+    12,
+    10
+   ]
+  },
+  {
+   "talk": "queen-of-hearts"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "croquet!"
+  },
+  {
+   "until": "s.screen === 'battle' && window.__game.buttons().some(x => x.label === 'Skill')",
+   "timeout": 20000
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "pardoned; the trial"
+  },
+  {
+   "until": "s.flags.g_c1_wonder_done && !s.busy"
+  },
+  {
+   "done": true
+  }
+ ]
+}

@@ -1,0 +1,6 @@
+{"segment": "fullrun-join", "steps": [
+ {"walk": [3, 3], "note": "back through the warren to the mouth"},
+ {"click": [3, 1], "note": "out of the mouth onto the down"},
+ {"until": "s.map === 'c0-downs' && s.screen === 'explore' && !s.busy && !s.moving", "timeout": 20000},
+ {"wait": 300}
+]}

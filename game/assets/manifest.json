@@ -1,0 +1,2519 @@
+{
+"anim-battle": {
+"anim-bramble-thump": [
+45,
+64,
+4
+],
+"anim-cheshire-vanish": [
+46,
+64,
+5
+],
+"anim-monkey-flap": [
+60,
+64,
+4
+],
+"anim-moth-flutter": [
+60,
+64,
+4
+],
+"anim-witch-melt": [
+67,
+96,
+5
+]
+},
+"anim-big": {
+"anim-bramble-hop-ne": [
+44,
+64,
+4
+],
+"anim-bramble-hop-nw": [
+47,
+64,
+4
+],
+"anim-bramble-hop-se": [
+63,
+64,
+4
+],
+"anim-bramble-hop-sw": [
+62,
+64,
+4
+]
+},
+"anim-kid": {
+"anim-rabbit-hop-ne": [
+18,
+24,
+4
+],
+"anim-rabbit-hop-se": [
+24,
+24,
+4
+]
+},
+"anim-map": {
+"anim-bramble-hop-ne": [
+22,
+32,
+4
+],
+"anim-bramble-hop-nw": [
+24,
+32,
+4
+],
+"anim-bramble-hop-se": [
+32,
+32,
+4
+],
+"anim-bramble-hop-sw": [
+31,
+32,
+4
+],
+"anim-bramble-idle": [
+20,
+32,
+4
+],
+"anim-bramble-nibble": [
+26,
+32,
+4
+],
+"anim-monkey-flap": [
+30,
+32,
+4
+],
+"anim-moth-flutter": [
+30,
+32,
+4
+],
+"anim-rabbit-hop-ne": [
+24,
+32,
+4
+],
+"anim-rabbit-hop-se": [
+32,
+32,
+4
+],
+"anim-raider-hop-ne": [
+24,
+32,
+4
+],
+"anim-raider-hop-se": [
+32,
+32,
+4
+]
+},
+"anim-small": {
+"anim-bramble-hop-ne": [
+11,
+16,
+4
+],
+"anim-bramble-hop-nw": [
+12,
+16,
+4
+],
+"anim-bramble-hop-se": [
+16,
+16,
+4
+],
+"anim-bramble-hop-sw": [
+15,
+16,
+4
+]
+},
+"battle": {
+"aster": [
+30,
+64
+],
+"badger": [
+48,
+96
+],
+"badger-act": [
+69,
+96
+],
+"barley": [
+34,
+64
+],
+"bill-lizard": [
+35,
+64
+],
+"bramble-se": [
+37,
+64
+],
+"burdock": [
+37,
+64
+],
+"burdock-act": [
+45,
+64
+],
+"burrowing-beetle": [
+64,
+61
+],
+"burrowing-beetle-act": [
+64,
+61
+],
+"captain-quarry": [
+31,
+64
+],
+"captain-quarry-act": [
+39,
+64
+],
+"card-soldier": [
+40,
+96
+],
+"card-soldier-act": [
+77,
+96
+],
+"caroller": [
+41,
+64
+],
+"caterpillar": [
+35,
+64
+],
+"caterpillar-act": [
+44,
+64
+],
+"cave-lizard": [
+96,
+96
+],
+"cave-lizard-act": [
+79,
+96
+],
+"change": [
+44,
+96
+],
+"chert": [
+42,
+64
+],
+"cheshire-cat": [
+46,
+64
+],
+"cheshire-cat-act": [
+47,
+64
+],
+"chief-weasel": [
+43,
+100
+],
+"chief-weasel-act": [
+57,
+100
+],
+"china-princess": [
+23,
+64
+],
+"choir": [
+240,
+100
+],
+"cold-ripple": [
+48,
+64
+],
+"cold-ripple-act": [
+42,
+64
+],
+"comfrey": [
+27,
+64
+],
+"cook": [
+46,
+96
+],
+"cowardly-lion": [
+61,
+96
+],
+"crow-west": [
+50,
+64
+],
+"crow-west-act": [
+49,
+64
+],
+"dazed-earthworm": [
+35,
+64
+],
+"dazed-earthworm-act": [
+48,
+64
+],
+"dodo": [
+38,
+64
+],
+"dormouse": [
+52,
+64
+],
+"drowned-eye": [
+44,
+64
+],
+"drowned-eye-act": [
+46,
+64
+],
+"duchess": [
+47,
+96
+],
+"dust-hopper": [
+64,
+60
+],
+"dust-hopper-act": [
+64,
+60
+],
+"eel-cloud": [
+42,
+64
+],
+"eel-cloud-act": [
+41,
+64
+],
+"elevenfold": [
+43,
+80
+],
+"ferret-sentry": [
+31,
+64
+],
+"ferret-sentry-act": [
+54,
+64
+],
+"flamingo": [
+39,
+96
+],
+"flying-teapot": [
+64,
+53
+],
+"flying-teapot-act": [
+55,
+64
+],
+"glinda": [
+43,
+96
+],
+"good-witch": [
+39,
+96
+],
+"great-head": [
+85,
+120
+],
+"guardian": [
+41,
+96
+],
+"hammer-head": [
+62,
+96
+],
+"hammer-head-act": [
+67,
+96
+],
+"hatter": [
+42,
+96
+],
+"hedgehog": [
+35,
+64
+],
+"hum-digger": [
+49,
+64
+],
+"hum-lookout": [
+23,
+64
+],
+"jade-rabbit": [
+30,
+64
+],
+"jade-rabbit-act": [
+37,
+64
+],
+"kalidah": [
+61,
+96
+],
+"kalidah-act": [
+79,
+96
+],
+"king-of-hearts": [
+44,
+96
+],
+"knave": [
+45,
+96
+],
+"lantern-moth": [
+58,
+64
+],
+"late-footstep": [
+37,
+64
+],
+"late-footstep-act": [
+52,
+64
+],
+"mallow": [
+34,
+64
+],
+"march-hare": [
+23,
+64
+],
+"mastodon": [
+63,
+96
+],
+"mastodon-act": [
+82,
+96
+],
+"mole": [
+40,
+64
+],
+"mole-act": [
+53,
+64
+],
+"monkey-king": [
+37,
+64
+],
+"moon-hare": [
+26,
+64
+],
+"moon-toad": [
+60,
+64
+],
+"moth-queen": [
+56,
+110
+],
+"moth-queen-act": [
+71,
+110
+],
+"mouse-queen": [
+36,
+64
+],
+"moving-carving": [
+37,
+64
+],
+"moving-carving-act": [
+48,
+64
+],
+"moving-root": [
+53,
+96
+],
+"moving-root-act": [
+57,
+96
+],
+"munchkin": [
+35,
+64
+],
+"nightmare-deepdelve": [
+113,
+160
+],
+"nightmare-flintcomb": [
+112,
+160
+],
+"ninefold": [
+67,
+80
+],
+"ninefold-act": [
+52,
+80
+],
+"otter": [
+36,
+64
+],
+"pepper-cloud": [
+62,
+64
+],
+"pepper-cloud-act": [
+55,
+64
+],
+"pig-baby": [
+34,
+64
+],
+"pigeon": [
+49,
+64
+],
+"pigeon-rider": [
+35,
+64
+],
+"pip": [
+25,
+48
+],
+"pip-act": [
+26,
+48
+],
+"quarryman": [
+29,
+64
+],
+"queen-of-hearts": [
+64,
+110
+],
+"queen-of-hearts-act": [
+66,
+110
+],
+"rabbit-buck": [
+38,
+64
+],
+"rabbit-doe": [
+36,
+64
+],
+"rabbit-kit": [
+32,
+48
+],
+"raider": [
+36,
+64
+],
+"ratty": [
+36,
+64
+],
+"ratty-act": [
+55,
+64
+],
+"rook": [
+43,
+64
+],
+"root-tangler": [
+52,
+64
+],
+"root-tangler-act": [
+52,
+64
+],
+"rumble": [
+85,
+96
+],
+"rumble-act": [
+70,
+96
+],
+"scarecrow": [
+39,
+96
+],
+"shepherd": [
+87,
+160
+],
+"shut-eye": [
+64,
+57
+],
+"shut-eye-act": [
+64,
+63
+],
+"star-thing": [
+73,
+96
+],
+"star-thing-act": [
+66,
+96
+],
+"stoat": [
+36,
+64
+],
+"stoat-act": [
+37,
+64
+],
+"stork": [
+42,
+96
+],
+"tansy": [
+29,
+64
+],
+"tansy-act": [
+52,
+64
+],
+"tin-woodman": [
+48,
+96
+],
+"tin-woodman-act": [
+51,
+96
+],
+"toad": [
+40,
+64
+],
+"toad-act": [
+52,
+64
+],
+"toad-washerwoman": [
+48,
+96
+],
+"toad-washerwoman-act": [
+79,
+96
+],
+"traveller": [
+46,
+96
+],
+"trilobite-swarm": [
+64,
+60
+],
+"trilobite-swarm-act": [
+59,
+64
+],
+"watcher": [
+77,
+200
+],
+"weasel": [
+29,
+64
+],
+"weasel-act": [
+43,
+64
+],
+"whisper": [
+32,
+64
+],
+"whisper-act": [
+45,
+64
+],
+"white-rabbit": [
+30,
+64
+],
+"wick": [
+46,
+64
+],
+"wick-2": [
+64,
+64
+],
+"wicked-witch": [
+53,
+110
+],
+"wicked-witch-act": [
+70,
+110
+],
+"wildcat": [
+37,
+64
+],
+"winkie": [
+29,
+64
+],
+"winkie-guard": [
+42,
+96
+],
+"winkie-guard-act": [
+72,
+96
+],
+"wizard": [
+38,
+96
+],
+"wolf-west": [
+69,
+96
+],
+"wolf-west-act": [
+60,
+96
+],
+"woodruff": [
+25,
+64
+],
+"wu-gang": [
+42,
+96
+],
+"yarrow": [
+28,
+64
+]
+},
+"bg": {
+"bg-attack": [
+640,
+360
+],
+"bg-battle-depths": [
+640,
+360
+],
+"bg-battle-downs": [
+640,
+360
+],
+"bg-battle-dream": [
+640,
+360
+],
+"bg-battle-drowned": [
+640,
+360
+],
+"bg-battle-emerald": [
+640,
+360
+],
+"bg-battle-lidenbrock": [
+640,
+360
+],
+"bg-battle-moon": [
+640,
+360
+],
+"bg-battle-mushroom": [
+640,
+360
+],
+"bg-battle-oz-road": [
+640,
+360
+],
+"bg-battle-riverbank": [
+640,
+360
+],
+"bg-battle-root": [
+640,
+360
+],
+"bg-battle-shallows": [
+640,
+360
+],
+"bg-battle-stair": [
+640,
+360
+],
+"bg-battle-warren": [
+640,
+360
+],
+"bg-battle-wildwood": [
+640,
+360
+],
+"bg-battle-winkie": [
+640,
+360
+],
+"bg-battle-wonder-garden": [
+640,
+360
+],
+"bg-battle-wonder-hall": [
+640,
+360
+],
+"bg-ending": [
+640,
+360
+],
+"bg-epilogue": [
+640,
+360
+],
+"bg-intro-1": [
+640,
+360
+],
+"bg-intro-2": [
+640,
+360
+],
+"bg-intro-3": [
+640,
+360
+],
+"bg-mural": [
+640,
+360
+],
+"bg-sea": [
+640,
+360
+],
+"bg-title": [
+640,
+360
+],
+"boss-eye": [
+640,
+360
+],
+"boss-tidewarden": [
+640,
+360
+]
+},
+"big": {
+"bramble-ne": [
+29,
+64
+],
+"bramble-nw": [
+33,
+64
+],
+"bramble-se": [
+37,
+64
+],
+"bramble-sw": [
+39,
+64
+]
+},
+"icons": {
+"ico-afraid": [
+16,
+16
+],
+"ico-asleep": [
+16,
+16
+],
+"ico-banner": [
+16,
+16
+],
+"ico-barleys-bell": [
+24,
+24
+],
+"ico-button": [
+16,
+16
+],
+"ico-camp": [
+16,
+16
+],
+"ico-carrot-cake": [
+24,
+24
+],
+"ico-chalk-pebble": [
+24,
+24
+],
+"ico-clover-bunch": [
+24,
+24
+],
+"ico-clover-charm": [
+24,
+24
+],
+"ico-comfits": [
+24,
+24
+],
+"ico-courage-biscuit": [
+24,
+24
+],
+"ico-courage-ribbon": [
+24,
+24
+],
+"ico-dandelion": [
+24,
+24
+],
+"ico-depths-key": [
+24,
+24
+],
+"ico-digging-claw": [
+24,
+24
+],
+"ico-drink-me": [
+24,
+24
+],
+"ico-eat-me": [
+24,
+24
+],
+"ico-eerie": [
+16,
+16
+],
+"ico-emerald-cloak": [
+24,
+24
+],
+"ico-emerald-lozenge": [
+24,
+24
+],
+"ico-emerald-specs": [
+24,
+24
+],
+"ico-flint-pick": [
+24,
+24
+],
+"ico-glow-mushroom": [
+24,
+24
+],
+"ico-golden-cap": [
+24,
+24
+],
+"ico-grown": [
+16,
+16
+],
+"ico-hummed": [
+16,
+16
+],
+"ico-jade-elixir": [
+24,
+24
+],
+"ico-jade-pestle": [
+24,
+24
+],
+"ico-lantern": [
+24,
+24
+],
+"ico-light": [
+16,
+16
+],
+"ico-little-axe": [
+24,
+24
+],
+"ico-mail": [
+16,
+16
+],
+"ico-mastodon-coat": [
+24,
+24
+],
+"ico-monkey-drop": [
+16,
+16
+],
+"ico-moon-silk-coat": [
+24,
+24
+],
+"ico-mooncake": [
+24,
+24
+],
+"ico-moonlight": [
+16,
+16
+],
+"ico-motor-goggles": [
+24,
+24
+],
+"ico-mushroom-halves": [
+24,
+24
+],
+"ico-mute-off": [
+16,
+16
+],
+"ico-mute-on": [
+16,
+16
+],
+"ico-nibble": [
+16,
+16
+],
+"ico-ninefold-dandelion": [
+24,
+24
+],
+"ico-oilskin-coat": [
+24,
+24
+],
+"ico-old-key": [
+24,
+24
+],
+"ico-pause": [
+16,
+16
+],
+"ico-pearl": [
+24,
+24
+],
+"ico-pearl-pendant": [
+24,
+24
+],
+"ico-pestle": [
+24,
+24
+],
+"ico-pips-button": [
+24,
+24
+],
+"ico-pluck-berry": [
+24,
+24
+],
+"ico-poppy-ward": [
+24,
+24
+],
+"ico-quest": [
+16,
+16
+],
+"ico-quill": [
+24,
+24
+],
+"ico-rally": [
+16,
+16
+],
+"ico-ration": [
+16,
+16
+],
+"ico-reinforce": [
+16,
+16
+],
+"ico-save": [
+16,
+16
+],
+"ico-shielded": [
+16,
+16
+],
+"ico-shrunk": [
+16,
+16
+],
+"ico-silver-bell": [
+24,
+24
+],
+"ico-silver-shoes": [
+24,
+24
+],
+"ico-sling": [
+24,
+24
+],
+"ico-smelling-salts": [
+24,
+24
+],
+"ico-star-amulet": [
+24,
+24
+],
+"ico-star-stone": [
+24,
+24
+],
+"ico-stout": [
+16,
+16
+],
+"ico-straw-vest": [
+24,
+24
+],
+"ico-stunned": [
+16,
+16
+],
+"ico-supply": [
+16,
+16
+],
+"ico-sweetgrass": [
+24,
+24
+],
+"ico-swift": [
+16,
+16
+],
+"ico-talk": [
+16,
+16
+],
+"ico-thimble-armour": [
+24,
+24
+],
+"ico-tin-vest": [
+24,
+24
+],
+"ico-tunnel": [
+16,
+16
+],
+"ico-waistcoat": [
+24,
+24
+],
+"ico-walking-stick": [
+24,
+24
+],
+"ico-water-pail": [
+24,
+24
+],
+"ico-wing": [
+16,
+16
+]
+},
+"map": {
+"aster": [
+15,
+32
+],
+"badger": [
+24,
+48
+],
+"badger-back": [
+22,
+48
+],
+"barley": [
+17,
+32
+],
+"bill-lizard": [
+18,
+32
+],
+"bramble-ne": [
+15,
+32
+],
+"bramble-nw": [
+17,
+32
+],
+"bramble-se": [
+18,
+32
+],
+"bramble-sw": [
+19,
+32
+],
+"burdock": [
+19,
+32
+],
+"burdock-back": [
+13,
+32
+],
+"burrowing-beetle": [
+32,
+31
+],
+"captain-quarry": [
+15,
+32
+],
+"captain-quarry-back": [
+12,
+32
+],
+"card-soldier": [
+20,
+48
+],
+"caroller": [
+20,
+32
+],
+"caterpillar": [
+17,
+32
+],
+"caterpillar-back": [
+16,
+32
+],
+"cave-lizard": [
+48,
+48
+],
+"change": [
+22,
+48
+],
+"chert": [
+21,
+32
+],
+"cheshire-cat": [
+23,
+32
+],
+"cheshire-cat-back": [
+20,
+32
+],
+"chief-weasel": [
+21,
+48
+],
+"china-cow": [
+20,
+14
+],
+"china-princess": [
+12,
+32
+],
+"cold-ripple": [
+24,
+32
+],
+"comfrey": [
+13,
+32
+],
+"cook": [
+23,
+48
+],
+"cowardly-lion": [
+30,
+48
+],
+"crow-west": [
+25,
+32
+],
+"dazed-earthworm": [
+18,
+32
+],
+"dodo": [
+19,
+32
+],
+"dormouse": [
+26,
+32
+],
+"drowned-eye": [
+22,
+32
+],
+"duchess": [
+24,
+48
+],
+"dust-hopper": [
+32,
+30
+],
+"eel-cloud": [
+21,
+32
+],
+"elevenfold": [
+21,
+40
+],
+"ferret-sentry": [
+15,
+32
+],
+"flamingo": [
+20,
+48
+],
+"flying-teapot": [
+32,
+27
+],
+"glinda": [
+21,
+48
+],
+"good-witch": [
+19,
+48
+],
+"great-head": [
+34,
+48
+],
+"guardian": [
+20,
+48
+],
+"hammer-head": [
+31,
+48
+],
+"hatter": [
+21,
+48
+],
+"hedgehog": [
+18,
+32
+],
+"hum-digger": [
+24,
+32
+],
+"hum-lookout": [
+12,
+32
+],
+"jade-rabbit": [
+15,
+32
+],
+"jade-rabbit-back": [
+13,
+32
+],
+"kalidah": [
+30,
+48
+],
+"king-of-hearts": [
+22,
+48
+],
+"knave": [
+22,
+48
+],
+"lantern-moth": [
+29,
+32
+],
+"late-footstep": [
+19,
+32
+],
+"mallow": [
+17,
+32
+],
+"march-hare": [
+11,
+32
+],
+"mastodon": [
+42,
+64
+],
+"mole": [
+20,
+32
+],
+"mole-back": [
+19,
+32
+],
+"monkey-king": [
+18,
+32
+],
+"moon-hare": [
+13,
+32
+],
+"moon-toad": [
+30,
+32
+],
+"moth-queen": [
+24,
+48
+],
+"mouse-queen": [
+18,
+32
+],
+"moving-carving": [
+19,
+32
+],
+"moving-root": [
+27,
+48
+],
+"munchkin": [
+17,
+32
+],
+"ninefold": [
+34,
+40
+],
+"ninefold-back": [
+28,
+40
+],
+"otter": [
+18,
+32
+],
+"pepper-cloud": [
+31,
+32
+],
+"pig-baby": [
+17,
+32
+],
+"pigeon": [
+24,
+32
+],
+"pigeon-rider": [
+18,
+32
+],
+"pip": [
+12,
+24
+],
+"pip-back": [
+11,
+24
+],
+"quarryman": [
+14,
+32
+],
+"queen-of-hearts": [
+28,
+48
+],
+"rabbit-buck": [
+19,
+32
+],
+"rabbit-buck-back": [
+17,
+32
+],
+"rabbit-doe": [
+18,
+32
+],
+"rabbit-kit": [
+16,
+24
+],
+"raider": [
+18,
+32
+],
+"raider-back": [
+17,
+32
+],
+"ratty": [
+18,
+32
+],
+"ratty-back": [
+17,
+32
+],
+"rook": [
+21,
+32
+],
+"root-tangler": [
+26,
+32
+],
+"rumble": [
+42,
+48
+],
+"rumble-back": [
+27,
+48
+],
+"scarecrow": [
+19,
+48
+],
+"sea-monsters": [
+45,
+64
+],
+"shepherd": [
+52,
+96
+],
+"shut-eye": [
+32,
+29
+],
+"star-thing": [
+37,
+48
+],
+"stoat": [
+18,
+32
+],
+"stork": [
+21,
+48
+],
+"tansy": [
+15,
+32
+],
+"tansy-back": [
+11,
+32
+],
+"tin-woodman": [
+24,
+48
+],
+"tin-woodman-back": [
+23,
+48
+],
+"toad": [
+20,
+32
+],
+"toad-back": [
+18,
+32
+],
+"toad-washerwoman": [
+24,
+48
+],
+"traveller": [
+23,
+48
+],
+"trilobite-swarm": [
+32,
+30
+],
+"watcher": [
+38,
+100
+],
+"weasel": [
+15,
+32
+],
+"whisper": [
+16,
+32
+],
+"white-rabbit": [
+15,
+32
+],
+"wick": [
+23,
+32
+],
+"wick-2": [
+32,
+32
+],
+"wicked-witch": [
+23,
+48
+],
+"wildcat": [
+18,
+32
+],
+"winkie": [
+15,
+32
+],
+"winkie-guard": [
+21,
+48
+],
+"wizard": [
+19,
+48
+],
+"wolf-west": [
+34,
+48
+],
+"woodruff": [
+12,
+32
+],
+"wu-gang": [
+21,
+48
+],
+"yarrow": [
+14,
+32
+]
+},
+"portraits": {
+"por-aster": [
+80,
+80
+],
+"por-badger": [
+80,
+80
+],
+"por-barley": [
+80,
+80
+],
+"por-bill-lizard": [
+80,
+80
+],
+"por-bramble": [
+80,
+80
+],
+"por-bramble-happy": [
+80,
+80
+],
+"por-bramble-worried": [
+80,
+80
+],
+"por-burdock": [
+80,
+80
+],
+"por-captain-quarry": [
+80,
+80
+],
+"por-caterpillar": [
+80,
+80
+],
+"por-change": [
+80,
+80
+],
+"por-chert": [
+80,
+80
+],
+"por-cheshire-cat": [
+80,
+80
+],
+"por-chief-weasel": [
+80,
+80
+],
+"por-china-princess": [
+80,
+80
+],
+"por-choir": [
+80,
+80
+],
+"por-comfrey": [
+80,
+80
+],
+"por-cook": [
+80,
+80
+],
+"por-cowardly-lion": [
+80,
+80
+],
+"por-dodo": [
+80,
+80
+],
+"por-dormouse": [
+80,
+80
+],
+"por-duchess": [
+80,
+80
+],
+"por-elevenfold": [
+80,
+80
+],
+"por-generic-buck": [
+80,
+80
+],
+"por-generic-doe": [
+80,
+80
+],
+"por-generic-kit": [
+80,
+80
+],
+"por-glinda": [
+80,
+80
+],
+"por-good-witch": [
+80,
+80
+],
+"por-guardian": [
+80,
+80
+],
+"por-hatter": [
+80,
+80
+],
+"por-hedgehog": [
+80,
+80
+],
+"por-hollow-rabbit": [
+80,
+80
+],
+"por-hum-digger": [
+80,
+80
+],
+"por-jade-rabbit": [
+80,
+80
+],
+"por-king-of-hearts": [
+80,
+80
+],
+"por-knave": [
+80,
+80
+],
+"por-mallow": [
+80,
+80
+],
+"por-march-hare": [
+80,
+80
+],
+"por-mole": [
+80,
+80
+],
+"por-monkey-king": [
+80,
+80
+],
+"por-moon-hare": [
+80,
+80
+],
+"por-moon-toad": [
+80,
+80
+],
+"por-moth-queen": [
+80,
+80
+],
+"por-mouse-queen": [
+80,
+80
+],
+"por-munchkin": [
+80,
+80
+],
+"por-ninefold": [
+80,
+80
+],
+"por-old-yarrow": [
+80,
+80
+],
+"por-otter": [
+80,
+80
+],
+"por-pigeon": [
+80,
+80
+],
+"por-pigeon-rider": [
+80,
+80
+],
+"por-pip": [
+80,
+80
+],
+"por-quarryman": [
+80,
+80
+],
+"por-queen-of-hearts": [
+80,
+80
+],
+"por-raider": [
+80,
+80
+],
+"por-ratty": [
+80,
+80
+],
+"por-rumble": [
+80,
+80
+],
+"por-scarecrow": [
+80,
+80
+],
+"por-seven-of-spades": [
+80,
+80
+],
+"por-shepherd": [
+80,
+80
+],
+"por-stork": [
+80,
+80
+],
+"por-tansy": [
+80,
+80
+],
+"por-tin-woodman": [
+80,
+80
+],
+"por-toad": [
+80,
+80
+],
+"por-traveller": [
+80,
+80
+],
+"por-watcher": [
+80,
+80
+],
+"por-white-rabbit": [
+80,
+80
+],
+"por-wick": [
+80,
+80
+],
+"por-wicked-witch": [
+80,
+80
+],
+"por-winkie": [
+80,
+80
+],
+"por-wizard": [
+80,
+80
+],
+"por-woodruff": [
+80,
+80
+],
+"por-wu-gang": [
+80,
+80
+]
+},
+"props": {
+"prop-armchair": [
+32,
+39
+],
+"prop-badger-door": [
+51,
+43
+],
+"prop-banquet-table": [
+32,
+32
+],
+"prop-bell-post": [
+39,
+84
+],
+"prop-boat": [
+48,
+40
+],
+"prop-bones": [
+48,
+31
+],
+"prop-brick-bits": [
+32,
+24
+],
+"prop-button-shelves": [
+50,
+84
+],
+"prop-carved-pillar": [
+44,
+108
+],
+"prop-carved-rock": [
+32,
+46
+],
+"prop-cassia-tree": [
+73,
+95
+],
+"prop-caucus-rock": [
+32,
+24
+],
+"prop-cauldron": [
+30,
+60
+],
+"prop-cellar-baskets": [
+32,
+32
+],
+"prop-chalk-boulder": [
+32,
+28
+],
+"prop-chest": [
+32,
+31
+],
+"prop-chest-open": [
+32,
+41
+],
+"prop-china-house": [
+32,
+45
+],
+"prop-city-column": [
+51,
+90
+],
+"prop-corn-stook": [
+32,
+53
+],
+"prop-crater-rock": [
+32,
+21
+],
+"prop-dandelion-clock": [
+32,
+43
+],
+"prop-dandelions": [
+32,
+25
+],
+"prop-ditch-rock": [
+32,
+23
+],
+"prop-door-eye": [
+51,
+85
+],
+"prop-door-keyhole": [
+51,
+87
+],
+"prop-door-river": [
+51,
+87
+],
+"prop-dovecote": [
+46,
+108
+],
+"prop-dresser": [
+51,
+91
+],
+"prop-drink-stand": [
+32,
+52
+],
+"prop-drowned-column": [
+47,
+120
+],
+"prop-elevenfold-stall": [
+55,
+63
+],
+"prop-emerald-gate": [
+73,
+99
+],
+"prop-eye-stair": [
+73,
+74
+],
+"prop-fallen-rock": [
+73,
+67
+],
+"prop-feast-spread": [
+64,
+38
+],
+"prop-fence": [
+32,
+32
+],
+"prop-flint-doorway": [
+64,
+54
+],
+"prop-flint-wall": [
+51,
+62
+],
+"prop-geyser-vent": [
+29,
+42
+],
+"prop-giant-mushroom": [
+73,
+93
+],
+"prop-giant-root": [
+55,
+46
+],
+"prop-glass-table": [
+32,
+39
+],
+"prop-glass-table-empty": [
+32,
+39
+],
+"prop-glow-crystal": [
+32,
+42
+],
+"prop-golden-cap": [
+32,
+29
+],
+"prop-gorse": [
+32,
+28
+],
+"prop-green-throne": [
+51,
+98
+],
+"prop-hare-burrow": [
+32,
+24
+],
+"prop-hawthorn": [
+51,
+53
+],
+"prop-hay-cart": [
+48,
+42
+],
+"prop-heart-throne": [
+42,
+96
+],
+"prop-hearth": [
+55,
+82
+],
+"prop-hedge": [
+32,
+31
+],
+"prop-herb-rack": [
+32,
+39
+],
+"prop-hollow-log": [
+48,
+38
+],
+"prop-hoop-card": [
+32,
+38
+],
+"prop-jury-box": [
+48,
+49
+],
+"prop-lantern": [
+32,
+60
+],
+"prop-lantern-mushroom": [
+32,
+38
+],
+"prop-lantern-tree": [
+51,
+72
+],
+"prop-lookout-stone": [
+51,
+82
+],
+"prop-mole-end-door": [
+32,
+42
+],
+"prop-mortar": [
+32,
+47
+],
+"prop-moss-bed": [
+48,
+36
+],
+"prop-motor-car": [
+48,
+42
+],
+"prop-mouse-throne": [
+32,
+44
+],
+"prop-munchkin-fence": [
+32,
+34
+],
+"prop-munchkin-house": [
+73,
+103
+],
+"prop-mural-wall": [
+73,
+86
+],
+"prop-node-burrow": [
+32,
+26
+],
+"prop-node-clover": [
+32,
+29
+],
+"prop-node-flag": [
+32,
+42
+],
+"prop-nursery-nest": [
+32,
+25
+],
+"prop-oz-tree": [
+51,
+70
+],
+"prop-palace-gate": [
+73,
+98
+],
+"prop-palace-screen": [
+55,
+77
+],
+"prop-pool-rock": [
+32,
+21
+],
+"prop-poppies": [
+32,
+27
+],
+"prop-rabbit-house": [
+73,
+94
+],
+"prop-raft": [
+46,
+48
+],
+"prop-ratty-hole": [
+32,
+30
+],
+"prop-reeds": [
+32,
+52
+],
+"prop-rest-stone": [
+32,
+23
+],
+"prop-rim-stones": [
+32,
+22
+],
+"prop-root-pillar": [
+45,
+96
+],
+"prop-rose-bush": [
+32,
+31
+],
+"prop-rubble": [
+32,
+21
+],
+"prop-ruin-arch": [
+51,
+61
+],
+"prop-ruin-seat": [
+32,
+34
+],
+"prop-scarecrow-pole": [
+27,
+84
+],
+"prop-sealed-door": [
+51,
+83
+],
+"prop-settle": [
+48,
+69
+],
+"prop-signpost": [
+32,
+46
+],
+"prop-snow-stump": [
+32,
+26
+],
+"prop-snow-tree": [
+51,
+110
+],
+"prop-spoil-heap": [
+48,
+29
+],
+"prop-sprout-patch": [
+64,
+47
+],
+"prop-star-rock": [
+32,
+30
+],
+"prop-star-stone": [
+32,
+27
+],
+"prop-stone-face": [
+32,
+51
+],
+"prop-stone-mouth": [
+32,
+34
+],
+"prop-store-counter": [
+48,
+43
+],
+"prop-storyteller-seat": [
+32,
+38
+],
+"prop-stove": [
+34,
+84
+],
+"prop-table": [
+32,
+29
+],
+"prop-tea-table": [
+64,
+51
+],
+"prop-thump-stone": [
+32,
+43
+],
+"prop-tiny-door": [
+32,
+47
+],
+"prop-toad-hall": [
+110,
+124
+],
+"prop-tree-bridge": [
+64,
+43
+],
+"prop-tube-mouth": [
+55,
+45
+],
+"prop-tunnel-heap": [
+48,
+35
+],
+"prop-warren-entrance": [
+64,
+47
+],
+"prop-wash-bucket": [
+32,
+37
+],
+"prop-weir-logs": [
+48,
+29
+],
+"prop-willow": [
+51,
+81
+],
+"prop-winkie-pillar": [
+36,
+120
+],
+"prop-winkie-tower": [
+73,
+196
+],
+"prop-witch-cupboard": [
+47,
+96
+],
+"prop-wonder-mushroom": [
+73,
+98
+]
+},
+"small": {
+"bramble-ne": [
+7,
+16
+],
+"bramble-nw": [
+8,
+16
+],
+"bramble-se": [
+9,
+16
+],
+"bramble-sw": [
+10,
+16
+]
+}
+}

@@ -1,0 +1,8 @@
+{"segment": "fullrun-retry", "note": "as run: a fight on the stair was lost (back at the top, full Heart); walk down again (fights on the way are fought) and finish 052 from its step 17", "steps": [
+ {"goto": [17, 15]},
+ {"walk": [17, 20], "note": "clicks on the Watcher (tall sprite): talk and fight"},
+ {"talkthrough": true},
+ {"fight": "auto", "note": "BOSS: the Watcher"},
+ {"talkthrough": true},
+ {"until": "s.flags.g_ch3_done", "timeout": 15000}
+]}

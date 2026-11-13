@@ -1,0 +1,506 @@
+{
+ "segment": "c3-oz-b",
+ "steps": [
+  {
+   "wait": 1500
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "goto": [
+    7,
+    6
+   ],
+   "note": "fullrun: the Emerald City Market"
+  },
+  {
+   "talk": "c3-trader"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'shop'",
+   "timeout": 5000
+  },
+  {
+   "button": "buy:Little Axe IV",
+   "note": "Emerald Market (667 buttons): Little Axe IV and Emerald Cloak III for the Tin Woodman (no gear)"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "buy:Emerald Cloak III"
+  },
+  {
+   "button": "Yes"
+  },
+  {
+   "button": "Leave"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 5000
+  },
+  {
+   "walk": [
+    15,
+    20
+   ]
+  },
+  {
+   "walk": [
+    15,
+    6
+   ]
+  },
+  {
+   "walk": [
+    15,
+    3
+   ]
+  },
+  {
+   "walk": [
+    15,
+    2
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-palace' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talk": "great-head"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    7,
+    16
+   ]
+  },
+  {
+   "walk": [
+    7,
+    17
+   ]
+  },
+  {
+   "until": "s.map === 'c3-emerald' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "walk": [
+    15,
+    16
+   ]
+  },
+  {
+   "walk": [
+    1,
+    16
+   ]
+  },
+  {
+   "walk": [
+    0,
+    16
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-winkie' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    26,
+    18
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "walk": [
+    26,
+    18
+   ]
+  },
+  {
+   "walk": [
+    20,
+    18
+   ]
+  },
+  {
+   "walk": [
+    20,
+    14
+   ]
+  },
+  {
+   "walk": [
+    20,
+    10
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "walk": [
+    20,
+    10
+   ]
+  },
+  {
+   "walk": [
+    14,
+    10
+   ]
+  },
+  {
+   "walk": [
+    8,
+    10
+   ]
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "walk": [
+    8,
+    10
+   ]
+  },
+  {
+   "walk": [
+    8,
+    6
+   ]
+  },
+  {
+   "walk": [
+    8,
+    5
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-castle' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "click": [
+    9,
+    17
+   ]
+  },
+  {
+   "until": "s.dialog.open || s.screen !== 'explore' || s.busy",
+   "timeout": 6000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "click": [
+    12,
+    17
+   ]
+  },
+  {
+   "until": "s.dialog.open || s.screen !== 'explore' || s.busy",
+   "timeout": 6000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    10
+   ]
+  },
+  {
+   "walk": [
+    5,
+    5
+   ]
+  },
+  {
+   "click": [
+    4,
+    4
+   ]
+  },
+  {
+   "until": "s.dialog.open || s.screen !== 'explore' || s.busy",
+   "timeout": 6000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    10,
+    8
+   ]
+  },
+  {
+   "goto": [
+    2,
+    16
+   ]
+  },
+  {
+   "click": [
+    2,
+    17
+   ],
+   "note": "run 2: rest at the new stone by the castle door before the Witch (data fix after the loss)"
+  },
+  {
+   "until": "s.dialog.open",
+   "timeout": 15000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.screen === 'explore' && !s.busy",
+   "timeout": 10000
+  },
+  {
+   "goto": [
+    10,
+    8
+   ]
+  },
+  {
+   "talk": "wicked-witch"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "fight": "auto"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "click": [
+    17,
+    2
+   ]
+  },
+  {
+   "until": "s.dialog.open || s.screen !== 'explore' || s.busy",
+   "timeout": 6000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "until": "s.map === 'c3-emerald' && !s.busy",
+   "timeout": 30000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    15,
+    6
+   ]
+  },
+  {
+   "walk": [
+    15,
+    3
+   ]
+  },
+  {
+   "walk": [
+    15,
+    2
+   ]
+  },
+  {
+   "until": "s.map === 'c3-palace' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "talk": "great-head"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ]
+  },
+  {
+   "walk": [
+    7,
+    16
+   ]
+  },
+  {
+   "walk": [
+    7,
+    17
+   ]
+  },
+  {
+   "until": "s.map === 'c3-emerald' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "walk": [
+    15,
+    20
+   ]
+  },
+  {
+   "walk": [
+    15,
+    26
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    15,
+    26
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    15,
+    26
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    2,
+    26
+   ]
+  },
+  {
+   "walk": [
+    0,
+    26
+   ]
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-south' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "walk": [
+    16,
+    14
+   ]
+  },
+  {
+   "walk": [
+    16,
+    22
+   ]
+  },
+  {
+   "talk": "glinda"
+  },
+  {
+   "talkthrough": true,
+   "choose": [
+    0
+   ],
+   "note": "Glinda: Not yet (see the China Country first). As run, this talkthrough answered Yes (the shoes prompt is in this first talkthrough), so the run took asrun/048b-cyclone-back-to-oz.json"
+  },
+  {
+   "talkthrough": true
+  },
+  {
+   "until": "s.map === 'c3-south' && s.screen === 'explore' && !s.busy",
+   "timeout": 15000
+  },
+  {
+   "until": "s.flags.g_c3_oz_done",
+   "timeout": 15000,
+   "note": "segment done: c3-oz-b"
+  }
+ ]
+}
