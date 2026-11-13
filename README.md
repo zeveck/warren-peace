@@ -67,6 +67,10 @@ Then, to put it online:
 
 > When the changes are all done, go ahead with /gamegen --publish.
 
+Then, after it was online, to fix a flicker in the opening:
+
+> `/gamegen --change What I take to be the town map kept flashing between rendering other scenes during the opening. I've seen that happen with other games a bit, so (1) we should fix it and (2) figure out what to file against gamegen so games know to avoid it -- making sure the opening screens render properly without flicker is critical to initial impressions.`
+
 gamegen designed the game, had review agents polish the design, made the art, animation, music and sound with these plugins, built it chapter by chapter, and play-tested it, including full playthroughs from New Game to the ending:
 
 - [imagegen2](https://github.com/zeveck/imagegen2): Bramble (the style anchor), the party with back views, about 400 figures, portraits, props, icons, the key art and the epilogue's closing picture.

@@ -8,7 +8,7 @@ import { P } from '../data/core/palette.js';
 
 export class PictureScene {
   // lines: array of strings shown one at a time (any key advances); o.skippable: Escape skips all
-  constructor(bgId, lines, done, o = {}) { this.kind = 'picture'; this.opaque = true; this.bgId = bgId; this.lines = lines; this.done = done; this.i = 0; this.t = 0; this.o = o; }
+  constructor(bgId, lines, done, o = {}) { this.kind = 'picture'; this.opaque = true; this.cover = true; this.bgId = bgId; this.lines = lines; this.done = done; this.i = 0; this.t = 0; this.o = o; }
   update(dt) {
     this.t += dt;
     if (this.o.skippable && input.back()) { this.finish(); return; }
@@ -28,7 +28,7 @@ export class PictureScene {
   }
 }
 export class ChapterCard {
-  constructor(title, sub, bgId, done) { this.kind = 'chapter'; this.opaque = true; this.title = title; this.sub = sub; this.bgId = bgId; this.done = done; this.t = 0; }
+  constructor(title, sub, bgId, done) { this.kind = 'chapter'; this.opaque = true; this.cover = true; this.title = title; this.sub = sub; this.bgId = bgId; this.done = done; this.t = 0; }
   update(dt) { this.t += dt; if ((input.anyPressed && this.t > 0.8) || this.t > 4) { input.eatAll(); popScene(this); this.done(); } }
   draw(c) {
     const b = bg(this.bgId);
@@ -50,7 +50,7 @@ export class ChapterCard {
 // the party is back at the last door with full Heart (world/script.js upYouGet). Waits for a key or click.
 // o: { bg: backdrop name, who: party id saying it, place: where they are now }
 export class DefeatCard {
-  constructor(o, done) { this.kind = 'defeat'; this.opaque = true; this.o = o || {}; this.done = done; this.t = 0; }
+  constructor(o, done) { this.kind = 'defeat'; this.opaque = true; this.cover = true; this.o = o || {}; this.done = done; this.t = 0; }
   update(dt) {
     this.t += dt;
     if ((input.act() || input.click()) && this.t > 0.6) { input.eatAll(); audio.synth('confirm'); popScene(this); this.done(); }

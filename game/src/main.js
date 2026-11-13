@@ -1,5 +1,5 @@
 // Boot, scaling, the fixed-step loop and the layer compositor.
-import { G, W, H, ui, hits, topScene, findScene, tickWaiters, pushScene, noLig, setTextScale } from './core.js';
+import { G, W, H, ui, hits, topScene, findScene, tickWaiters, pushScene, noLig, setTextScale, HOLD_FRAMES } from './core.js';
 import { input, initInput } from './engine/input.js';
 import { audio } from './engine/audio.js';
 import { loadSettings } from './engine/save.js';
@@ -86,6 +86,18 @@ function draw() {
   // find the lowest scene that needs drawing (the top opaque one)
   let start = 0;
   for (let i = G.scenes.length - 1; i >= 0; i--) if (G.scenes[i].opaque) { start = i; break; }
+  // a cover that just closed stays on screen until the next cover opens (see core.js pushScene), never the map between
+  if (G.hold) {
+    if (++G.hold.frames > (G.hold.max || HOLD_FRAMES) || (G.scenes[start] && G.scenes[start].cover)) G.hold = null;
+    else {
+      G.drawingTop = false;
+      px.setTransform(1, 0, 0, 1, 0, 0); px.clearRect(0, 0, W, H); px.imageSmoothingEnabled = false;
+      G.hold.scene.draw(px, false);
+      ctx.drawImage(off, 0, 0, W, H, OX, OY, W * K, H * K);
+      flushText();
+      return;
+    }
+  }
   for (let i = start; i < G.scenes.length; i++) {
     const s = G.scenes[i];
     G.drawingTop = i === G.scenes.length - 1;

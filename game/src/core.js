@@ -13,11 +13,17 @@ export const G = {
   flash: null,      // short toast messages
 };
 
-export function pushScene(s) { G.scenes.push(s); s.enter && s.enter(); return s; }
+// Full-screen covers (intro and story pictures, chapter cards, the title) set cover = true. When one closes, the
+// next cover usually arrives a frame or more later (a script continues after the frame is drawn, or loads a module or
+// a map first), and for those frames whatever was underneath (the map) would flash through. So the closed cover keeps
+// being drawn, frozen, until another cover opens or HOLD_FRAMES pass (main.js draw()).
+export const HOLD_FRAMES = 20;
+export function pushScene(s) { if (s.cover) G.hold = null; G.scenes.push(s); s.enter && s.enter(); return s; }
 export function popScene(s) {
   const i = s ? G.scenes.lastIndexOf(s) : G.scenes.length - 1;
   if (i < 0) return;
   const [gone] = G.scenes.splice(i, 1);
+  if (gone.cover) G.hold = { scene: gone, frames: 0 };
   gone.exit && gone.exit();
   const top = G.scenes[G.scenes.length - 1];
   top && top.resume && top.resume();

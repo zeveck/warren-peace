@@ -20,12 +20,14 @@ export async function startGame(saveState) {
     if (!await loadOrFallBack(ex, G.s.map, G.s.x, G.s.y, G.s.facing)) return null;
     if (G.data.resumeScript) ex.queueScript(G.data.resumeScript);
     // a save made before the intro finished (New Game autosaves on arrival) plays the intro again, so the quest is set
-    else if (!G.s.flags.c0_intro && G.data.start && G.data.start.script) ex.queueScript(G.data.start.script);
+    else if (!G.s.flags.c0_intro && G.data.start && G.data.start.script) { if (G.hold) G.hold.max = 180; ex.queueScript(G.data.start.script); }
   } else {
     keepPreviousAutosave();   // the last run's autosave stays loadable as "Previous autosave"
     newGame();
     const st = G.data.start;
     G.s.lastDoor = { map: st.map, x: st.x, y: st.y, f: st.facing };
+    // the title stays up (frozen) while the map loads, until the intro's first picture covers it: no map flash
+    if (st.script && G.hold) G.hold.max = 180;
     await ex.load(st.map, st.x, st.y, st.facing, { noEnter: true });
     if (st.script) ex.queueScript(st.script);
   }
@@ -92,7 +94,7 @@ function oldSaveEscorts(s) {
 }
 
 export class TitleScene {
-  constructor() { this.kind = 'title'; this.opaque = true; this.t = 0; this.started = false; this.sel = 0; this.fadeA = 0; }
+  constructor() { this.kind = 'title'; this.opaque = true; this.cover = true; this.t = 0; this.started = false; this.sel = 0; this.fadeA = 0; }
   enter() { if (audio.ctx) audio.music('m-title'); }
   resume() { this.items = null; }
   menu() {
