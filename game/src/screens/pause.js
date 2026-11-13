@@ -1,4 +1,5 @@
 // Pause, save/load slots, settings, and a yes/no confirm.
+import { reportAvailable, openReport, snapshot } from '../engine/feedback.js';
 import { G, W, H, ui, pushScene, popScene, findScene, toast } from '../core.js';
 import { input } from '../engine/input.js';
 import { audio } from '../engine/audio.js';
@@ -26,12 +27,14 @@ class Menu {
 export class PauseScene {
   constructor(o = {}) {
     this.kind = 'pause'; this.o = o; G.paused = true;
+    snapshot();   // a bug report's picture is the game as it was, before the pause menu is drawn over it
     const inBattle = !!o.army;
     const items = [{ label: 'Resume', fn: () => this.close() }];
     if (!inBattle) items.push({ label: 'Save', fn: () => pushScene(new LoadScene(true)) });
     items.push({ label: 'Load', fn: () => pushScene(new LoadScene(false)) });
     items.push({ label: 'Settings', fn: () => pushScene(new SettingsScene()) });
     if (o.retreat) items.push({ label: 'Retreat', fn: () => { this.close(); o.retreat(); } });
+    if (reportAvailable()) items.push({ label: 'Report a bug', fn: () => openReport() });
     items.push({ label: 'Quit to title', fn: () => pushScene(new ConfirmScene('Quit to the title? Progress since your last save will be lost (the game autosaves at every doorway).', ok => { if (ok) quitToTitle(); })) });
     this.menu = new Menu('Paused', items);
   }
@@ -148,6 +151,7 @@ export class SettingsScene {
       { label: 'Army edge-scroll', val: s.edgeScroll ? 'On' : 'Off', adj: () => { s.edgeScroll = !s.edgeScroll; } },
       { label: 'Army auto-pause', val: { off: 'Off', every10: 'Every 10 s', contact: 'On first contact' }[s.autoPause], adj: d => { s.autoPause = AUTOP[(AUTOP.indexOf(s.autoPause) + d + 3) % 3]; } },
       { label: 'Controller...', val: '', open: true, adj: () => pushScene(new SettingsScene('pad')) },
+      ...(reportAvailable() ? [{ label: 'Report a bug...', val: '', open: true, adj: () => openReport() }] : []),
       { label: 'Back', val: '', adj: null },
     ];
   }
@@ -165,10 +169,11 @@ export class SettingsScene {
   draw(c) {
     c.fillStyle = 'rgba(10,8,16,0.7)'; c.fillRect(0, 0, W, H);
     const pg = this.page === 'pad';
-    panel(c, 150, 24, 340, pg ? 160 : 312);
-    ui.text(pg ? 'Controller' : 'Settings', W / 2, 46, { align: 'center', size: 14, color: P.gold });
+    const extra = !pg && this.rows().length > 12 ? 22 : 0;   // the 'Report a bug...' row, when it shows
+    panel(c, 150, 24 - extra / 2, 340, (pg ? 160 : 312) + extra);
+    ui.text(pg ? 'Controller' : 'Settings', W / 2, 46 - extra / 2, { align: 'center', size: 14, color: P.gold });
     this.rows().forEach((r, i) => {
-      const y = 56 + i * 22, sel = i === this.sel;
+      const y = 56 - extra / 2 + i * 22, sel = i === this.sel;
       if (!r.adj) { if (button(c, 'Back', W / 2 - 50, y + 2, 100, 20, { sel, size: 10 })) this.close(); return; }
       if (r.open) { if (button(c, r.label, 164, y, 316, 20, { sel, size: 9, hitLabel: r.label })) { this.sel = i; r.adj(1); } return; }
       if (button(c, r.label, 164, y, 150, 20, { sel, size: 9, hitLabel: r.label })) { this.sel = i; r.adj(1); this.changed(); }

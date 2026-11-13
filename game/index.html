@@ -34,6 +34,7 @@
   #tl-gallery { left: max(12px, env(safe-area-inset-left)); }
   #tl-github { right: max(12px, env(safe-area-inset-right)); }
   @media (max-width: 700px), (max-height: 420px) { .tlink { font-size: 11px; } }
+  gh-feedback { -webkit-user-select: text; user-select: text; touch-action: auto; }
 </style>
 </head>
 <body>
@@ -49,6 +50,8 @@
     requestAnimationFrame(tick);
   })();
 </script>
+<script type="module" src="vendor/gh-feedback.js"></script>
+<gh-feedback id="report" trigger="none" repo="" template="bug.yml" types="bug,feature" theme="dark" color="#e0a030"></gh-feedback>
 <script type="module" src="src/main.js"></script>
 <script>
   const local = ['localhost', '127.0.0.1'].includes(location.hostname);

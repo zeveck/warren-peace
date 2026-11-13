@@ -1,3 +1,4 @@
+import { fromReport } from './feedback.js';
 // Input: keys and mouse into "held" and "just pressed" sets. Just-pressed survives until the next
 // update reads it (then input.endFrame() clears it), so taps shorter than a frame still count.
 const USED = new Set(['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'Tab', 'Enter', 'Escape',
@@ -64,6 +65,7 @@ export function useKeyboard() {
 
 export function initInput(canvas) {
   window.addEventListener('keydown', e => {
+    if (fromReport(e)) return;   // the bug-report form is open: the player is typing, the game ignores it (no preventDefault)
     if (USED.has(e.code)) e.preventDefault();
     first(); useKeyboard();
     input.shift = e.shiftKey;
@@ -71,6 +73,7 @@ export function initInput(canvas) {
     input.held.add(e.code);
   }, { capture: true });
   window.addEventListener('keyup', e => {
+    if (fromReport(e)) return;
     if (USED.has(e.code)) e.preventDefault();
     input.shift = e.shiftKey; input.held.delete(e.code);
   }, { capture: true });
@@ -83,8 +86,9 @@ export function initInput(canvas) {
     if (input.device === 'pad') { const a = input.padAnchor; if (!a || Math.hypot(p.x - a.x, p.y - a.y) >= 3) useKeyboard(); }
     input.mouse.inside = p.inside && input.device !== 'pad';
   };
-  canvas.addEventListener('pointermove', e => { pos(e); if (input.device !== 'pad') input.mouse.moved = true; });
+  canvas.addEventListener('pointermove', e => { if (fromReport(e)) return; pos(e); if (input.device !== 'pad') input.mouse.moved = true; });
   canvas.addEventListener('pointerdown', e => {
+    if (fromReport(e)) return;
     e.preventDefault(); canvas.focus(); first(); useKeyboard(); pos(e);
     const b = e.button === 1 ? 1 : e.button === 2 ? 2 : 0;
     input.mouse.down[b] = true; input.mouse.pressed[b] = true; input.anyPressed = true;
@@ -94,10 +98,11 @@ export function initInput(canvas) {
     try { canvas.setPointerCapture(e.pointerId); } catch (_) { /* ignore */ }
   });
   canvas.addEventListener('pointerup', e => {
+    if (fromReport(e)) return;
     pos(e); const b = e.button === 1 ? 1 : e.button === 2 ? 2 : 0;
     input.mouse.down[b] = false; input.mouse.released[b] = true;
   });
   canvas.addEventListener('pointerleave', () => { input.mouse.inside = false; });
   canvas.addEventListener('contextmenu', e => e.preventDefault());
-  canvas.addEventListener('wheel', e => { e.preventDefault(); input.mouse.wheel += Math.sign(e.deltaY); }, { passive: false });
+  canvas.addEventListener('wheel', e => { if (fromReport(e)) return; e.preventDefault(); input.mouse.wheel += Math.sign(e.deltaY); }, { passive: false });
 }

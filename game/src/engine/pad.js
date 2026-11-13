@@ -4,6 +4,7 @@
 // button first with onPad(name) (return true to eat it), or read the pad itself with padNative = true (the army battle).
 // The layer can never break the loop: no API, or the first error (a permissions policy, an insecure page), and it turns
 // itself off for the session.
+import { reportOpen } from './feedback.js';
 import { G, topScene, toast } from '../core.js';
 import { input } from './input.js';
 
@@ -79,6 +80,7 @@ export const pad = {
 
   poll(now) {
     if (this.off) return;
+    if (reportOpen()) { this.lastT = now; return; }   // the bug-report form is open: controllers do nothing
     if (typeof navigator === 'undefined' || typeof navigator.getGamepads !== 'function') { this.off = true; return; }
     const dt = this.lastT ? Math.min(0.25, (now - this.lastT) / 1000) : 0; this.lastT = now;
     try {
