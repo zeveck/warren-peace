@@ -21,7 +21,7 @@ node_modules/
 .DS_Store
 Thumbs.db
 
-# Not published: source art (large) and local build tools
+# Not published: source art (large) and generator scratch
 /art-src/
-/tools/
 /assets/
+__pycache__/

@@ -96,6 +96,15 @@ Warren Peace is a plain web page with no build step. Serve the `game` folder wit
 
 then open http://localhost:8000. (Browsers won't run it from a double-clicked file.)
 
+## Replaying the tests
+
+Every part of the game has a recorded solution in `design/solutions/` (plus controller runs in `design/solutions/pad/` and the full New Game to ending run in `design/solutions/fullrun/`), replayed with real input in a browser by the tools in `tools/`. With [playwright-cli](https://www.npmjs.com/package/@playwright/cli) installed and the game served on port 8000 (`python3 tools/serve.py 8000 game`):
+
+    playwright-cli -s=test open 'http://127.0.0.1:8000/?debug=1'
+    bash tools/play.sh test design/solutions/c1-depths.json
+
+Each prints `{"ok": true}` when the part plays through. `node tools/reach.mjs` checks every map and door, and `node tools/balance.mjs --all` and `node tools/curve.mjs` check the battle balance and the level curve.
+
 ## Credits
 
 An idea by Rich Conlan.
