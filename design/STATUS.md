@@ -14,6 +14,7 @@
 8. `Do each of those three proposed changes and report when ready.` (2026-11-12; the three ideas from the report: `/gamegen --change add a New Game+ that keeps your party's levels and gives every boss a harder second phase`, `/gamegen --change let players revisit any army battle from the Lookout Stone after the ending, with a best-time score`, `/gamegen --change add a short epilogue chapter where Bramble helps rebuild Flintcomb`)
 9. `When the changes are all done, go ahead with /gamegen --publish.` (2026-11-12: publish after NG+ lands and the final regression passes)
 10. `/gamegen --change What I take to be the town map kept flashing between rendering other scenes during the opening. I've seen that happen with other games a bit, so (1) we should fix it and (2) figure out what to file against gamegen so games know to avoid it -- making sure the opening screens render properly without flicker is critical to initial impressions.`
+11. `/gamegen --publish --no-confirm`
 
 ## Settings
 
