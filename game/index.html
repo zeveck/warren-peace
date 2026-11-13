@@ -37,6 +37,17 @@
   gh-feedback { -webkit-user-select: text; user-select: text; touch-action: auto;
     /* the report form in the game's own panel colours (engine/gfx.js panel, data/core/palette.js) */
     --gh-feedback-bg: #2b2236; --gh-feedback-text: #efe8d6; --gh-feedback-border: #6b5a7e; --gh-feedback-input-bg: #1d1726; }
+  /* phones and tablets with touch only: the game is made for a computer, a controller or a keyboard */
+  #touchnote { position: fixed; inset: 0; z-index: 20; display: none; align-items: center; justify-content: center;
+    background: rgba(16,12,22,0.82); padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); }
+  #touchnote.show { display: flex; }
+  #touchnote .box { max-width: 30em; background: #2b2236; border: 2px solid #6e5c84; border-radius: 6px; padding: 18px 20px; color: #efe8d6;
+    font: 17px/1.45 'Pixelify', monospace; text-align: center; box-shadow: 0 6px 24px rgba(0,0,0,0.5); }
+  #touchnote h2 { margin: 0 0 10px; font: 26px 'Pixelify', monospace; color: #f6e7b8; font-weight: normal; }
+  #touchnote p { margin: 0 0 12px; }
+  #touchnote .btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 16px; }
+  #touchnote button { font: 17px 'Pixelify', monospace; color: #2b2236; background: #e0a030; border: 0; border-radius: 4px; padding: 10px 16px; min-height: 44px; cursor: pointer; }
+  #touchnote button.quiet { background: transparent; color: #e8dcc0; text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -64,6 +75,43 @@
     try { window.reportShortcut?.(); } catch {}   // the game pauses, if it still can
     fb.open();
   }, true);
+</script>
+<div id="touchnote" role="dialog" aria-modal="true" aria-labelledby="tn-title">
+  <div class="box">
+    <h2 id="tn-title">Warren Peace</h2>
+    <p>This game is made for a computer, or a device with a controller or keyboard.</p>
+    <p>With touch alone you can look around, but the army battles can't be played, and the text is small on a phone.</p>
+    <p>Press any button on a controller or any key to play.</p>
+    <div class="btns"><button id="tn-copy" type="button">Copy link for later</button><button id="tn-look" type="button" class="quiet">Look around anyway</button></div>
+  </div>
+</div>
+<script>
+  // shown only on touch-only devices (no mouse or trackpad anywhere), until the player dismisses it once
+  (function () {
+    const KEY = 'warren-peace-touchnote';
+    const fine = window.matchMedia && matchMedia('(any-pointer: fine)').matches;
+    const touch = (navigator.maxTouchPoints || 0) > 0 || 'ontouchstart' in window;
+    let seen = false; try { seen = localStorage.getItem(KEY) === '1'; } catch (e) {}
+    if (fine || !touch || seen) return;
+    const el = document.getElementById('touchnote'); el.classList.add('show');
+    let open = true;
+    const close = () => { if (!open) return; open = false; el.classList.remove('show'); try { localStorage.setItem(KEY, '1'); } catch (e) {} };
+    document.getElementById('tn-look').addEventListener('click', close);
+    const copy = document.getElementById('tn-copy');
+    copy.addEventListener('click', () => {
+      const url = location.origin + location.pathname;
+      const done = () => { copy.textContent = 'Link copied'; };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, () => { copy.textContent = url; });
+      else copy.textContent = url;
+    });
+    addEventListener('keydown', close, { capture: true });
+    // a controller press dismisses it too (guarded: some browsers block the Gamepad API)
+    (function poll() {
+      if (!open) return;
+      try { if (typeof navigator.getGamepads === 'function') for (const p of navigator.getGamepads()) if (p && p.buttons.some(b => b.pressed)) { close(); return; } } catch (e) { return; }
+      requestAnimationFrame(poll);
+    })();
+  })();
 </script>
 <script type="module" src="vendor/gh-feedback.js"></script>
 <gh-feedback id="report" trigger="none" repo="zeveck/warren-peace" template="bug.yml" types="bug,feature" theme="dark" color="#e8c95a" popup-color="#9a6a2a"></gh-feedback>
