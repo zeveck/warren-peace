@@ -52,7 +52,7 @@ Exploration, menus and RPG battles
 | Camp menu (party, talk, gear, items, army, quests, map, bestiary) | Tab or I (exploration only) | HUD button |
 | Pause / settings / save | Escape or P | HUD button |
 | Mute | M | HUD button |
-| Report a bug | Ctrl+Shift+Y, anywhere (Y because F is the army battle's speed key; the game's keys use every letter but O, U and Y). Keys pressed with Ctrl or Cmd held never reach the game | "Report a bug" in Pause and Settings |
+| Report a bug | Ctrl+Shift+F, anywhere (F alone is still the army battle's speed key; the shortcut needs Ctrl+Shift, and its listener stops it reaching the game). Keys pressed with Ctrl or Cmd held never reach the game | "Report a bug" in Pause and Settings |
 | RPG battle commands | Arrows + Space/Enter; Escape = back | Click command, then click target |
 
 Army battles (left-click only ever selects; right-click only ever orders)

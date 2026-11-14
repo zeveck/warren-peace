@@ -193,7 +193,7 @@ async function boot() {
   fill.style.width = '100%';
   installHook();
   initReport();
-  // Ctrl+Shift+Y (index.html) calls this before opening the report: pause the usual way (exploring, army battles), with
+  // Ctrl+Shift+F (index.html) calls this before opening the report: pause the usual way (exploring, army battles), with
   // the picture taken now, before the pause menu is drawn. Elsewhere (title, camp, dialog, RPG battle) nothing runs on
   // its own, so the form opens over the screen as it is.
   window.reportShortcut = () => {

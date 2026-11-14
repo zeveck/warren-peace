@@ -68,7 +68,7 @@ export function useKeyboard() {
 export function initInput(canvas) {
   window.addEventListener('keydown', e => {
     if (fromReport(e)) return;   // the bug-report form is open: the player is typing, the game ignores it (no preventDefault)
-    // keys pressed with Ctrl or Cmd held belong to the browser or the bug-report shortcut (Ctrl+Shift+Y), never the game
+    // keys pressed with Ctrl or Cmd held belong to the browser or the bug-report shortcut (Ctrl+Shift+F), never the game
     if (e.ctrlKey || e.metaKey) return;
     input.shift = e.shiftKey;
     // a modifier on its own is not a key press (Shift is read with the key or click it goes with): it never counts as

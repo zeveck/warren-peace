@@ -1,6 +1,6 @@
 // "Report a bug" (gamegen --feedback on): the <gh-feedback> form in index.html files a GitHub issue from the
 // player's own account. The button shows in Pause and Settings for everyone, once publishing has filled in the repo.
-// Ctrl+Shift+Y opens it from anywhere (index.html; Y because F is the army battle's speed key), calling
+// Ctrl+Shift+F opens it from anywhere (index.html; F alone stays the army battle's speed key), calling
 // window.reportShortcut first so the game pauses.
 const fb = () => document.getElementById('report');
 

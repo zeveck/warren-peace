@@ -32,7 +32,7 @@ A big story adventure, three hours or more: a prologue on the downs, four chapte
 - **Battles:** arrows and Space, or click a command and then a target. Escape goes back.
 - **Army battles:** left-click (or 1-9, B for all) selects squads; right-click a node (or press its letter) to send them. T reinforces, Q W E R use army abilities, Space pauses, F speeds up.
 - **Pause / settings / save:** Escape or P. **Mute:** M.
-- **Found a bug?** Pause and pick "Report a bug", or press Ctrl+Shift+Y (you'll need a GitHub account).
+- **Found a bug?** Pause and pick "Report a bug", or press Ctrl+Shift+F (you'll need a GitHub account).
 - **Controller:** a PS5 or Xbox controller works too (plug it in or pair it, then press a button). The stick or D-pad hops, ✕/A talks and confirms, ○/B goes back, △/Y opens camp, □/X nibbles, Options/Menu pauses. In army battles, move the node cursor with the stick and press ✕/A to send your squads; L1/R1 step through squads, □/X picks squads (twice for all), hold R2/RT plus a face button for abilities. On-screen prompts switch to your controller's buttons, and it rumbles (Settings → Controller turns that off).
 
 The game saves itself as you go between places and after battles, and has three save slots too. Losing a battle just sends you back to the door to try again.

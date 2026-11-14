@@ -53,10 +53,10 @@
   })();
 </script>
 <script>
-  // Ctrl+Shift+Y opens "Report a bug" from anywhere, even if the game is stuck (its own script, before the game's code).
-  // Y because F is the army battle's speed key; Ctrl on a Mac too.
+  // Ctrl+Shift+F opens "Report a bug" from anywhere, even if the game is stuck (its own script, before the game's code).
+  // Ctrl on a Mac too. F alone (the army battle's speed key) still reaches the game; Ctrl+Shift+F is stopped here.
   addEventListener('keydown', (e) => {
-    if (!e.ctrlKey || !e.shiftKey || e.altKey || e.metaKey || e.key.toLowerCase() !== 'y') return;
+    if (!e.ctrlKey || !e.shiftKey || e.altKey || e.metaKey || e.code !== 'KeyF') return;
     const fb = document.getElementById('report');
     if (!fb?.getAttribute('repo') || document.activeElement === fb) return;
     e.preventDefault();
