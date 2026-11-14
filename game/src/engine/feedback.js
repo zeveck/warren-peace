@@ -1,21 +1,10 @@
-// "Report a bug" (gamegen --feedback hidden): the <gh-feedback> form in index.html files a GitHub issue from the
-// player's own account. Hidden: the button shows only after the game was opened once with ?feedback (remembered
-// in localStorage until ?feedback=off), and only once publishing has filled in the repo.
-const KEY = 'warren-peace-feedback';
-const FEEDBACK = 'hidden';
+// "Report a bug" (gamegen --feedback on): the <gh-feedback> form in index.html files a GitHub issue from the
+// player's own account. The button shows in Pause and Settings for everyone, once publishing has filled in the repo.
+// Ctrl+Shift+Y opens it from anywhere (index.html; Y because F is the army battle's speed key), calling
+// window.reportShortcut first so the game pauses.
 const fb = () => document.getElementById('report');
 
-try {
-  const q = new URLSearchParams(location.search);
-  if (q.has('feedback')) { if (q.get('feedback') === 'off') localStorage.removeItem(KEY); else localStorage.setItem(KEY, '1'); }
-} catch { /* storage blocked: the button stays hidden */ }
-
-export function reportAvailable() {
-  const f = fb(); if (!f || !f.getAttribute('repo')) return false;
-  if (FEEDBACK === 'on') return true;
-  if (window.desktop) return false;
-  try { return localStorage.getItem(KEY) === '1'; } catch { return false; }
-}
+export function reportAvailable() { const f = fb(); return !!f && !!f.getAttribute('repo'); }
 // while the form has focus the game ignores every key, pointer and controller input (the player is typing)
 export const reportOpen = () => { const f = fb(); return !!f && document.activeElement === f; };
 export const fromReport = e => { const f = fb(); return !!f && ((e.composedPath && e.composedPath().includes(f)) || reportOpen()); };
@@ -26,6 +15,7 @@ export function snapshot() {
   const c = document.getElementById('screen');
   if (c) pauseShot = new Promise(r => { try { c.toBlob(r, 'image/png'); } catch { r(null); } });
 }
+export function clearSnapshot() { pauseShot = null; }   // on resume: an old picture is never sent
 export function openReport() { const f = fb(); if (f && f.open) f.open(); }
 
 const errors = [];

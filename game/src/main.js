@@ -1,5 +1,5 @@
 // Boot, scaling, the fixed-step loop and the layer compositor.
-import { initReport } from './engine/feedback.js';
+import { initReport, snapshot, clearSnapshot } from './engine/feedback.js';
 import { G, W, H, ui, hits, topScene, findScene, tickWaiters, pushScene, noLig, setTextScale, HOLD_FRAMES, LINGER_FRAMES } from './core.js';
 import { input, initInput } from './engine/input.js';
 import { pad } from './engine/pad.js';
@@ -193,6 +193,14 @@ async function boot() {
   fill.style.width = '100%';
   installHook();
   initReport();
+  // Ctrl+Shift+Y (index.html) calls this before opening the report: pause the usual way (exploring, army battles), with
+  // the picture taken now, before the pause menu is drawn. Elsewhere (title, camp, dialog, RPG battle) nothing runs on
+  // its own, so the form opens over the screen as it is.
+  window.reportShortcut = () => {
+    if (findScene('pause')) return;
+    const top = topScene();
+    if (top && top.openPause && !top.busy && !top.leaving) { snapshot(); top.openPause(); } else clearSnapshot();   // as Escape does
+  };
   // index.html applies a waiting service-worker update only while this says the title screen is up and no game is loaded
   window.__wpOnTitle = () => { const t = topScene(); return !G.s && !!t && t.kind === 'title' && !t.leaving; };
   pushScene(new TitleScene());

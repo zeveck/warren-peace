@@ -34,7 +34,9 @@
   #tl-gallery { left: max(12px, env(safe-area-inset-left)); }
   #tl-github { right: max(12px, env(safe-area-inset-right)); }
   @media (max-width: 700px), (max-height: 420px) { .tlink { font-size: 11px; } }
-  gh-feedback { -webkit-user-select: text; user-select: text; touch-action: auto; }
+  gh-feedback { -webkit-user-select: text; user-select: text; touch-action: auto;
+    /* the report form in the game's own panel colours (engine/gfx.js panel, data/core/palette.js) */
+    --gh-feedback-bg: #2b2236; --gh-feedback-text: #efe8d6; --gh-feedback-border: #6b5a7e; --gh-feedback-input-bg: #1d1726; }
 </style>
 </head>
 <body>
@@ -50,8 +52,21 @@
     requestAnimationFrame(tick);
   })();
 </script>
+<script>
+  // Ctrl+Shift+Y opens "Report a bug" from anywhere, even if the game is stuck (its own script, before the game's code).
+  // Y because F is the army battle's speed key; Ctrl on a Mac too.
+  addEventListener('keydown', (e) => {
+    if (!e.ctrlKey || !e.shiftKey || e.altKey || e.metaKey || e.key.toLowerCase() !== 'y') return;
+    const fb = document.getElementById('report');
+    if (!fb?.getAttribute('repo') || document.activeElement === fb) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    try { window.reportShortcut?.(); } catch {}   // the game pauses, if it still can
+    fb.open();
+  }, true);
+</script>
 <script type="module" src="vendor/gh-feedback.js"></script>
-<gh-feedback id="report" trigger="none" repo="zeveck/warren-peace" template="bug.yml" types="bug,feature" theme="dark" color="#e0a030"></gh-feedback>
+<gh-feedback id="report" trigger="none" repo="zeveck/warren-peace" template="bug.yml" types="bug,feature" theme="dark" color="#e8c95a" popup-color="#9a6a2a"></gh-feedback>
 <script type="module" src="src/main.js"></script>
 <script>
   const local = ['localhost', '127.0.0.1'].includes(location.hostname);

@@ -6,6 +6,8 @@ const USED = new Set(['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space'
   'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'KeyZ', 'KeyX', 'Backspace',
   'Digit0', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9']);
 
+const MODS = new Set(['Shift', 'Control', 'Alt', 'Meta', 'AltGraph', 'OS']);
+
 export const input = {
   held: new Set(), pressed: new Set(), order: [],   // order: key codes in press order this frame
   shift: false, shiftPressed: new Set(),   // keys pressed this frame with Shift down (a quick Shift+key tap can release Shift before the frame runs)
@@ -66,16 +68,22 @@ export function useKeyboard() {
 export function initInput(canvas) {
   window.addEventListener('keydown', e => {
     if (fromReport(e)) return;   // the bug-report form is open: the player is typing, the game ignores it (no preventDefault)
+    // keys pressed with Ctrl or Cmd held belong to the browser or the bug-report shortcut (Ctrl+Shift+Y), never the game
+    if (e.ctrlKey || e.metaKey) return;
+    input.shift = e.shiftKey;
+    // a modifier on its own is not a key press (Shift is read with the key or click it goes with): it never counts as
+    // "any key" on the title, pictures or recruit cards
+    if (MODS.has(e.key)) return;
     if (USED.has(e.code)) e.preventDefault();
     first(); useKeyboard();
-    input.shift = e.shiftKey;
     if (!e.repeat) { input.pressed.add(e.code); if (e.shiftKey) input.shiftPressed.add(e.code); input.order.push(e.code); input.anyPressed = true; }
     input.held.add(e.code);
   }, { capture: true });
   window.addEventListener('keyup', e => {
+    input.held.delete(e.code);   // always let go (a key held when the report form opened is released while it's open)
     if (fromReport(e)) return;
     if (USED.has(e.code)) e.preventDefault();
-    input.shift = e.shiftKey; input.held.delete(e.code);
+    input.shift = e.shiftKey;
   }, { capture: true });
   window.addEventListener('blur', () => { input.held.clear(); input.padHeld.clear(); input.mouse.down = [false, false, false]; });
   input.canvas = canvas;

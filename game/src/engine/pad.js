@@ -80,7 +80,7 @@ export const pad = {
 
   poll(now) {
     if (this.off) return;
-    if (reportOpen()) { this.lastT = now; return; }   // the bug-report form is open: controllers do nothing
+    if (reportOpen()) { this.lastT = now; this.whileReport(); return; }   // the bug-report form is open: the game sees no controller input
     if (typeof navigator === 'undefined' || typeof navigator.getGamepads !== 'function') { this.off = true; return; }
     const dt = this.lastT ? Math.min(0.25, (now - this.lastT) / 1000) : 0; this.lastT = now;
     try {
@@ -91,6 +91,24 @@ export const pad = {
       try { this.clearHeld(); } catch (_) { /* ignore */ }
       console.warn('Controllers are off for this session:', e && e.message);
     }
+  },
+
+  // While the report form is open the game gets nothing from the pad: no presses, no held keys. Circle/B (the usual
+  // "back") closes the form, so a controller player who opened it can always get back to the pause menu. Buttons are
+  // still tracked, so nothing pressed or let go meanwhile turns into a press once the form closes.
+  whileReport() {
+    input.padHeld.clear(); this.pressed.clear();
+    if (this.off || typeof navigator === 'undefined' || typeof navigator.getGamepads !== 'function') return;
+    try {
+      const gp = (navigator.getGamepads() || [])[this.index];
+      if (!gp || gp.connected === false) return;
+      const b = gp.buttons || [];
+      for (let i = 0; i < NAMES.length; i++) {
+        const on = btnDown(b, i, this.last[i]);
+        if (on && !this.last[i] && NAMES[i] === 'circle') { const f = document.getElementById('report'); if (f && f.close) f.close(); }
+        this.last[i] = on;
+      }
+    } catch (_) { /* never break the loop */ }
   },
 
   read(list, dt) {

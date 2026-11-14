@@ -52,6 +52,7 @@ Exploration, menus and RPG battles
 | Camp menu (party, talk, gear, items, army, quests, map, bestiary) | Tab or I (exploration only) | HUD button |
 | Pause / settings / save | Escape or P | HUD button |
 | Mute | M | HUD button |
+| Report a bug | Ctrl+Shift+Y, anywhere (Y because F is the army battle's speed key; the game's keys use every letter but O, U and Y). Keys pressed with Ctrl or Cmd held never reach the game | "Report a bug" in Pause and Settings |
 | RPG battle commands | Arrows + Space/Enter; Escape = back | Click command, then click target |
 
 Army battles (left-click only ever selects; right-click only ever orders)
@@ -78,6 +79,8 @@ The Gamepad API's "standard" mapping, polled once per frame. Most screens get th
 | RPG battles | The 2x3 command grid, lists, targets | Confirm | Back | | | | | |
 | Title, pause, save/load, settings, revisits | Rows (held: repeats); settings: left/right change a value | Choose | Back | | | Settings: change a value | Back | |
 | Pictures, recruit cards | | Continue | Skip | | | | | |
+
+"Report a bug" (Pause and Settings) is picked like any other row, with Cross/A. While the report form is open the game takes no controller input; Circle/B closes the form, back to the menu it came from.
 | Army preview | Squad list | Pick / unpick | Back | "The warren rallies" (when shown) | Start the battle | | | |
 | Credits | | Hold to speed up | | | | | | |
 

@@ -6,7 +6,7 @@
   {"pad": "down"}, {"pad": "cross", "note": "slot 2"}, {"expect": "s.toast === 'Saved in slot 2.'"},
   {"pad": "circle"}, {"until": "s.screen === 'pause'", "timeout": 3000},
   {"pad": "down", "times": 2}, {"pad": "cross", "note": "Settings"}, {"until": "s.screen === 'settings'", "timeout": 3000},
-  {"pad": "up", "times": 2, "note": "Controller..."}, {"pad": "cross"},
+  {"pad": "up", "times": 3, "note": "Controller... (above Report a bug... and Back)"}, {"pad": "cross"},
   {"js": "const { G } = await import('/src/core.js'); return G.scenes[G.scenes.length - 1].page === 'pad';"},
   {"pad": "cross", "note": "Vibration off"},
   {"js": "const { G } = await import('/src/core.js'); window.__n = window.__rumbles.length; const { pad } = await import('/src/engine/pad.js'); pad.rumble('hit'); return G.settings.vibration === false && window.__rumbles.length === window.__n;"},

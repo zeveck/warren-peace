@@ -1,5 +1,5 @@
 // Pause, save/load slots, settings, and a yes/no confirm.
-import { reportAvailable, openReport, snapshot } from '../engine/feedback.js';
+import { reportAvailable, openReport, snapshot, clearSnapshot } from '../engine/feedback.js';
 import { G, W, H, ui, pushScene, popScene, findScene, toast } from '../core.js';
 import { input } from '../engine/input.js';
 import { audio } from '../engine/audio.js';
@@ -39,7 +39,7 @@ export class PauseScene {
     this.menu = new Menu('Paused', items);
   }
   enter() { audio.duck(true); pad.stopRumble(); }
-  exit() { audio.duck(false); G.paused = false; }
+  exit() { audio.duck(false); G.paused = false; clearSnapshot(); }   // resumed: the next report takes a fresh picture
   close() { popScene(this); }
   update() { if (input.back() || input.isPressed('KeyP')) { this.close(); return; } this.menu.update(); }
   draw(c, isTop = true) {
