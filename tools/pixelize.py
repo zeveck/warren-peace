@@ -106,13 +106,18 @@ def do_anim(folder, manifest):
         sheet.save(os.path.join(d, name + '.png'))
         manifest.setdefault('anim-' + kind, {})[name] = [fw, fh, len(outs)]
 
+# Where to trim a backdrop that is taller than 16:9: 0 = keep the top, 1 = keep the bottom,
+# 0.5 (default) = trim equally. Set one when the centre trim cuts into something that matters.
+# bg-intro-1's source was extended upward (sky) so the rabbit on the hill has headroom.
+BG_FOCUS_Y = {'bg-intro-1': 0.0, 'bg-intro-3': 0.3}
+
 def do_bg(path, manifest):
     name = os.path.splitext(os.path.basename(path))[0]
     im = Image.open(path).convert('RGB')
     W, H = BG_SIZE
     k = max(W / im.width, H / im.height)
     im = im.resize((round(im.width * k), round(im.height * k)), Image.BOX)
-    x = (im.width - W) // 2; y = (im.height - H) // 2
+    x = (im.width - W) // 2; y = round((im.height - H) * BG_FOCUS_Y.get(name, 0.5))
     im = im.crop((x, y, x + W, y + H)).quantize(colors=64, method=Image.MEDIANCUT, dither=Image.NONE).convert('RGB')
     d = os.path.join(OUT, 'bg'); os.makedirs(d, exist_ok=True)
     im.save(os.path.join(d, name + '.png'))

@@ -19,6 +19,7 @@
 13. `When done, /gamegen --feedback hidden, then /gamegen --publish --no-confirm.` (2026-11-13: after the controller change lands and its regression passes)
 14. `/gamegen --feedback on --publish --no-confirm` (run for the owner on 2026-11-13)
 15. `Let's add a notice to make clear it's not meant for pure mobile. Also consider if gamegen should include this sort of consideration when a game is aimed at desktop or vice-versa.`
+16. `/gamegen --change #1` (2026-11-15) — #1: Rabbit cut off on intro screen (https://github.com/zeveck/warren-peace/issues/1), filed by the person; plus: `What you're calling "Short wide windows" is a full 16x9 high resolution desktop montior, so pretty standard.` and `The image is clipped exactly the same if I run the game full screen.`
 
 ## Settings
 
@@ -45,6 +46,8 @@
 - Plugins: up to date
 
 ## Phases
+
+- [x] Change 9 (issue #1, rabbit cut off on intro screen): cause was the art pipeline trimming 3:2 sources to 16:9 equally top and bottom (baked into the file, so every window size showed it). pixelize.py BG_FOCUS_Y per backdrop; bg-intro-1 source extended upward with a generated sky strip ($0.35) and trimmed from the top; bg-intro-3 trimmed at 0.3 for ear headroom; all 29 backdrop crops reviewed. Checked in game at 1920x898 and 1920x1080 (all three intro pictures, no console errors); c0-surface, c0-warren, c0-attack replay ok. Commit ends 'Fixes #1'; not pushed. Noted for the person: at 1920x898 the game scales 2x (1280x720) with wide borders; a fill-the-window scaling option is a possible follow-up.
 
 - [x] Preflight: all keys pass; Pillow installed.
 - [x] 1 Brief: written (design/BRIEF.md), title Warren Peace.

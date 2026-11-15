@@ -61,3 +61,11 @@ Epilogue (2026-11-12, design/changes/epilogue.md; its own $20 budget): imagegen2
 | prop sheet "rebuild": prop-flint-doorway (2x2), prop-sprout-patch (2x2 ground), prop-feast-spread (2x2 ground), prop-dandelion-clock (1x1) | art-src/sheets/prop-rebuild.png (+ -split.png: the patch and the cloth touched, so a 120 px gap was inserted before cut_sheet) -> game/assets/sprites/props/ | imagegen2 low 1536x1024, transparent (native alpha) | four props in a row: flint-framed burrow doorway in a grassy bank with a lantern; a staked patch of clover shoots and dandelions; a picnic cloth of clover, carrots and cakes; dandelion seed clocks | 1 | $0.06 |
 
 Sizes added to tools/sizes.py (PROPS). Epilogue spend: $0.41 of its $20. Overall running total: $38.97 ($38.56 + $0.41).
+
+Issue #1 fix (2026-11-15, "Rabbit cut off on intro screen"; its own $20 budget): the 3:2 backdrop sources were trimmed to 16:9 equally top and bottom, which cut the hilltop rabbit's ears off bg-intro-1. tools/pixelize.py now takes a per-backdrop trim focus (BG_FOCUS_Y: bg-intro-1 top, bg-intro-3 0.3 for ear headroom; everything else centred as before). All 29 backdrop crops were checked; only these two came near anything that matters.
+
+| ID | File | Tool | Prompt (short) | Tries | Est. cost |
+|---|---|---|---|---|---|
+| bg-intro-1 sky extension | art-src/bg/bg-intro-1.png (original moved down 96 px; new sky strip from .gamegen/candidates/issue1/extend-1.png, blended in above the ears, deeper on the right; original kept as .gamegen/candidates/issue1/original-bg-intro-1.png) -> game/assets/bg/bg-intro-1.png | imagegen2 high 1536x1024, edit of the shifted canvas | repaint only the top placeholder strip as sky, clouds and meadow, ears complete with sky above, keep everything else | 1 | $0.35 |
+
+Issue #1 spend: $0.35 of its $20. Overall running total: $39.32 ($38.97 + $0.35).
