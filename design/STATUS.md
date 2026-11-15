@@ -47,6 +47,8 @@
 
 ## Phases
 
+- [x] Published 2026-11-15 (`/gamegen --publish`): GitHub had 2 commits made elsewhere (Report a bug for everyone; fixed form + Ctrl+Shift+F) that this copy lacked; rebased the touch notice and the issue #1 fix on top (index.html and STATUS conflicts were side-by-side additions, both kept). Checked locally (desktop: no touch notice, Ctrl+Shift+F opens the form, opening pictures; emulated phone: notice shows, dismiss remembered; c0-surface/warren/attack + pad-menus replay ok), deployed e015e2c, live checked at 1920x898 and phone (no console errors, title links, whole rabbit). Issue #1 closed by the push. Gallery unchanged (same title, tagline, card).
+
 - [x] Change 9 (issue #1, rabbit cut off on intro screen): cause was the art pipeline trimming 3:2 sources to 16:9 equally top and bottom (baked into the file, so every window size showed it). pixelize.py BG_FOCUS_Y per backdrop; bg-intro-1 source extended upward with a generated sky strip ($0.35) and trimmed from the top; bg-intro-3 trimmed at 0.3 for ear headroom; all 29 backdrop crops reviewed. Checked in game at 1920x898 and 1920x1080 (all three intro pictures, no console errors); c0-surface, c0-warren, c0-attack replay ok. Commit ends 'Fixes #1'; not pushed. Noted for the person: at 1920x898 the game scales 2x (1280x720) with wide borders; a fill-the-window scaling option is a possible follow-up.
 
 - [x] Preflight: all keys pass; Pillow installed.
